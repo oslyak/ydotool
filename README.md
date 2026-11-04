@@ -1,162 +1,138 @@
 # ydotool — PosBit fork
 
-Maintained fork of [ReimuNotMoe/ydotool](https://github.com/ReimuNotMoe/ydotool), with input validation fixes and restricted Debian packaging.
+Linux command-line keyboard and mouse automation through `/dev/uinput`, maintained as a fork of [ReimuNotMoe/ydotool](https://github.com/ReimuNotMoe/ydotool).
 
-Generic Linux command-line automation tool (no X!)
+The client sends input events to a persistent `ydotoold` daemon, which holds a virtual input device. This works with Wayland, X11 and Linux consoles; it does not depend on an X server.
 
-**`ydotool` is not limited to Wayland.** You can use it on anything as long as it accepts keyboard/mouse/whatever input. For example, X11, text console, "RetroArch OS", fbdev apps (fbterm/mplayer/SDL1/LittleVGL/Qt Embedded), etc.
+## This fork
 
-## Important Note
-The man page is not always up to date. Please use `--help` to ensure correctness.
+Based on upstream commit `708e96f`, this fork adds input validation, checked event delivery, client command serialization, recovery for interrupted input and Debian packaging with a restricted system service.
 
-## ChangeLog
-This project is now refactored. (from v1.0.0)
+The project is built as **C11** with compiler extensions enabled and uses Linux and POSIX APIs; see [CMakeLists.txt](CMakeLists.txt).
 
-Changes:
-- Rewritten in pure C99
-- No external dependencies
-- Uses a lot less memory & no dynamic memory allocation
+The release version is recorded in [VERSION](VERSION). Debian versions append the pinned upstream revision, for example `1.0.8+upstream.708e96f`.
 
-Breaking Changes:
-- `recorder` removed because it's irrelevant. It will become a separate project
-- Command chaining and `sleep` are removed because this should be your shell's job
-- `ydotool` now must work with `ydotoold`
-- Usage of `click` and `key` are changed
+## Install on Debian
 
-Good News:
-- Some people can finally build this project offline
-- `key` now (only) accepts keycodes, so it's not limited to a specific keyboard layout
-- Now it's possible to implement support for different keyboard layouts in `type`
+With the signed PosBit APT repository already configured:
 
-## Usage
-Currently implemented command(s):
-- `click` - Click on mouse buttons
-- `mousemove` - Move mouse pointer to absolute position
-- `type` - Type a string
-- `key` - Press keys
-- `debug` - Print the socket, number of parameters and parameter values
-- `bakers` - Show the honorable bakers
-- `stdin` - Sends the key presses as it was a keyboard (i.e from ssh) See [PR #229](https://github.com/ReimuNotMoe/ydotool/pull/229)
-
-## Examples
-Switch to tty1 (Ctrl+Alt+F1), wait 2 seconds, and type some words:
-
-    ydotool key 29:1 56:1 59:1 59:0 56:0 29:0; sleep 2; ydotool type 'echo Hey guys. This is Austin.'
-
-Close a window in graphical environment (Alt+F4):
-
-    ydotool key 56:1 62:1 62:0 56:0
-
-Relatively move mouse pointer to -100,100:
-
-    ydotool mousemove -x -100 -y 100
-
-Move mouse pointer to 100,100:
-
-    ydotool mousemove --absolute -x 100 -y 100
-
-Mouse right click:
-
-    ydotool click 0xC1
-
-Mouse repeating left click:
-
-    ydotool click --repeat 5 --next-delay 25 0xC0
-
-Repeat the keyboard presses from stdin:
-
-    ydotool stdin
-
-## Notes
-#### Runtime
-`ydotoold` (daemon) program requires access to `/dev/uinput`. **This usually requires root permissions.**
-
-#### Available key names
-See `/usr/include/linux/input-event-codes.h`
-
-#### Why a background service is needed
-ydotool works differently from xdotool. xdotool sends X events directly to X server, while ydotool uses the uinput framework of Linux kernel to emulate an input device.
-
-When ydotool runs and creates a virtual input device, it will take some time for your graphical environment (X11/Wayland) to recognize and enable the virtual input device. (Usually done by udev)
-
-So, if the delay was too short, the virtual input device may not get recognized & enabled by your graphical environment in time.
-
-In order to solve this problem, a persistent background service, ydotoold, is made to hold a persistent virtual device, and accept input from ydotool.
-
-Since v1.0.0, the use of ydotoold is mandatory.
-
-## Build
-**CMake 3.22+ is required.**
-
-### Build options
-There are a few extra options that can be configured when running CMake
-
-- BUILD_DOCS=ON|OFF - whether to build the documentation, depends on ``scdoc``. Default: ON
-- SYSTEMD_USER_SERVICE=ON|OFF - whether to use systemd user service file, depends on ``systemd``. Default: ON
-- SYSTEMD_SYSTEM_SERVICE=ON|OFF - whether to use systemd system service file, depends on ``systemd``. Default: OFF
-- OPENRC=ON|OFF - whether to use openrc service file. Default: OFF (TBD)
-
-
-### Compile
-
-    mkdir build
-    cd build
-    cmake ..
-    make -j `nproc`
-
-If issues appears, check the build options, but try to install the dependecies:
-
-Debian-based:
-
-    sudo apt install scdoc
-
-RHEL-based:
-
-    sudo dnf install scdoc
-## Troubleshooting
-### Custom keyboard layouts
-Currently, ydotool does not recognize if the user is using a custom keyboard layout. In order to comfortably use ydotool alongside a custom keyboard layout, the user could use one of the following fixes/workarounds:
-
-#### Sway
-In [sway](https://github.com/swaywm/sway), the process is [fairly easy](https://github.com/swaywm/sway/wiki#keyboard-layout). Following the instructions there, you would end up with something like:
-```
-input "16700:8197:DELL_DELL_USB_Keyboard" {
-	xkb_layout "us,us"
-	xkb_variant "dvorak,"
-	xkb_options "grp:shifts_toggle, caps:swapescape"
-}
-```
-The identifier for your keyboard can be obtained from the output of `swaymsg -t get_inputs`.
-
-#### Hyprland
-
-You can use [Per-device input configs](https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs) in [Hyprland](https://hyprland.org/). Simply add following snippet to your config:
-
-```
-device:ydotoold-virtual-device {
-    kb_layout = us
-    kb_variant =
-    kb_options =
-}
+```sh
+sudo apt update
+sudo apt install ydotool
 ```
 
-#### Use a hardware-configurable keyboard
-[As mentioned here](https://github.com/ReimuNotMoe/ydotool/issues/43#issuecomment-605921288), consider using a hardware-based configuration that supports using a custom layout without configuring it in software.
+Alternatively, install a downloaded DEB using `sudo apt install ./path/to/ydotool.deb`.
 
-### Current situation
-This project is now being maintained **thanks to all the people that are supporting this project!**
+The package creates and starts **one** `ydotoold.service` as the system user `ydotool`. Add each authorized user explicitly:
 
-All backers and sponsors are listed [here](https://github.com/TheNeuronProject/BACKERS/blob/main/README.md).
+```sh
+sudo usermod -aG ydotool "$USER"
+```
 
-### How to support us
-- Donate on our [Patreon](https://www.patreon.com/classicoldsong)
-- Buy our products on our [Official Store](https://su.mk/store), if they are meaningful to you (please leave a message: `ydotool user`, so we can know that this purchase is for supporting ydotool)
+Log out and back in so desktop applications receive the new group membership. The package does not add users automatically.
 
-### More talks
-[Article: "Open Source" is Broken](https://christine.website/blog/open-source-broken-2021-12-11)
+Check the installation after logging back in:
 
-Independent software developers in China, like us, have 10 times more life pressure than Marak, the author of faker.js. Since ydotool has the opportunity to benefit large IT companies who won't pay a penny to us, we've changed the license to AGPLv3. These large IT companies are the main cause of life pressure here, such as the "996" working hours.
+```sh
+systemctl status ydotoold.service
+ydotool debug
+```
 
-**Marak's fate will repeat on all open source developers eventually (of course we aren't talking about those who were born in billionare families) if we just _keep fighting with each other and do nothing to improve the situation._ If you make open source software as well, don't hesitate to ask for donations if you actually _need_ them.**
+`debug` checks the client connection without generating input. The daemon reports its build version with `ydotoold --version`.
 
-Also make sure you understand all the terms of AGPLv3 before using this software.
+### Access and service restrictions
+
+The socket is `/run/ydotoold/socket`, owned by `ydotool:ydotool` with mode `0660`, inside a directory with mode `0750`. Only root and authorized group members can connect.
+
+The packaged daemon runs without root privileges or capabilities. Its separate `ydotool-uinput` group grants access to `/dev/uinput`; desktop users do not need that group. The service blocks network access, protects system files and home directories, and disables SysRq and power/sleep/restart keys through `--no-system-keys`. Mouse input remains enabled.
+
+Membership in `ydotool` grants host input injection, not access limited to one application or login session. Add only trusted users. The service restrictions do not prevent clients from sending ordinary desktop shortcuts.
+
+Updates preserve administrator service disablement. A same-version reinstall starts an enabled service without restarting an already running daemon; an upgrade restarts it to load the new binary.
+
+## Commands and examples
+
+Commands inject input into the current desktop or console. Check each command's options with `ydotool COMMAND --help`.
+
+```sh
+# Close the focused window: Alt+F4.
+ydotool key 56:1 62:1 62:0 56:0
+
+# Move the pointer by -100 horizontally and +100 vertically.
+ydotool mousemove -x -100 -y 100
+
+# Right mouse click.
+ydotool click 0xC1
+
+# Type ASCII text using the US keyboard mapping.
+ydotool type 'Hello world!'
+
+# Release virtual keyboard and mouse buttons after an interrupted client.
+ydotool release-all
+```
+
+`key` accepts Linux keycodes; see `/usr/include/linux/input-event-codes.h`. `click` accepts button codes and press/release flags, documented in `man ydotool`. `stdin` translates terminal input into key events.
+
+### Text and keyboard layouts
+
+`type` uses a US keyboard mapping and rejects non-ASCII bytes, including UTF-8 text. The active desktop keyboard layout affects the resulting characters. For Ukrainian or other Unicode text, use an external clipboard tool and paste with a key combination; ydotool does not manage the clipboard.
+
+Command-line text is validated before typing. File input is streamed, so valid text may already have been typed before a later invalid byte is rejected.
+
+### Pointer coordinates
+
+`mousemove` sends relative movements. Its `--absolute` option approximates an absolute position using relative events; pointer acceleration and compositor behavior can affect the result. It does not guarantee exact screen coordinates under Wayland.
+
+### Interrupted commands
+
+Cooperating clients serialize complete commands through a lock on the socket directory. Clients attempt to release their held keys on SIGINT, SIGTERM and send failures. SIGKILL cannot run cleanup; use `ydotool release-all` to recover. Key-down-only commands intentionally keep keys held between invocations.
+
+## Socket selection
+
+Without `YDOTOOL_SOCKET`, the client tries `/run/ydotoold/socket`. If that service is absent or refuses the connection, it falls back to `$XDG_RUNTIME_DIR/.ydotool_socket`, or `/tmp/.ydotool_socket` when `XDG_RUNTIME_DIR` is unset or empty. Permission errors do not trigger fallback.
+
+Set `YDOTOOL_SOCKET` to select an explicit socket. Explicit overrides disable fallback.
+
+## Build and test
+
+On Debian, build and packaging tools include:
+
+```sh
+sudo apt install build-essential cmake git python3 scdoc dpkg-dev xz-utils systemd
+```
+
+CMake 3.22 or newer is required. To build the binaries without installing the upstream service templates:
+
+```sh
+cmake -S . -B .build/manual -DBUILD_DOCS=OFF \
+  -DSYSTEMD_USER_SERVICE=OFF -DSYSTEMD_SYSTEM_SERVICE=OFF
+cmake --build .build/manual --parallel
+```
+
+To run the isolated regression suite, including UBSan checks, without sending events to the live desktop:
+
+```sh
+make test
+```
+
+To build a DEB, first commit the intended changes so the checkout is clean, then run:
+
+```sh
+make build
+```
+
+The package is written to `dist/`. It includes the man pages, license and corresponding source archive. Packaging uses the committed source and records its revision in `X-Source-Commit`.
+
+After installing the package, the optional live sandbox check requires root:
+
+```sh
+sudo make test-sandbox
+```
+
+This verifies non-root execution, capability and network restrictions, filesystem protection, and access to the uinput device and local socket. It does not type text or move the pointer.
+
+The restricted service described above is installed by the DEB packaging. A direct CMake installation uses the separate upstream service options and does not install this packaging policy.
+
+## License and upstream authors
+
+Licensed under [GNU AGPLv3](LICENSE). The original ydotool was written by ReimuNotMoe; upstream copyright notices and attribution are retained in the source. PosBit maintains the changes in this fork.
