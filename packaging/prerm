@@ -2,15 +2,4 @@
 set -eu
 if [ "$1" = remove ] && [ -d /run/systemd/system ]; then
     systemctl stop 'ydotoold@*.service'
-    units="$(systemctl list-unit-files 'ydotoold@*.service' --state=enabled,enabled-runtime --no-legend --no-pager)"
-    while read -r unit state preset; do
-        [ -n "$unit" ] || continue
-        systemctl disable "$unit"
-    done <<UNITS
-$units
-UNITS
-    if systemctl is-active --quiet ydotoold.service; then
-        systemctl stop ydotoold.service
-        systemctl disable ydotoold.service
-    fi
 fi

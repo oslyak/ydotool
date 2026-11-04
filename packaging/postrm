@@ -1,5 +1,17 @@
 #!/bin/sh
 set -eu
+if [ "$1" = purge ]; then
+    for directory in /etc/systemd/system /run/systemd/system; do
+        [ -d "$directory" ] || continue
+        find "$directory" -type l -name 'ydotoold@*.service' -print | while IFS= read -r link; do
+        case "$(readlink "$link")" in
+            /usr/lib/systemd/system/ydotoold@.service|/lib/systemd/system/ydotoold@.service)
+                rm -- "$link"
+                ;;
+        esac
+        done
+    done
+fi
 case "$1" in
     remove|purge|disappear)
         if [ -d /run/systemd/system ]; then

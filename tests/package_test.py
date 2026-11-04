@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 class PackageTests(unittest.TestCase):
-    def run_hook(self, name, action, *, fail_modprobe=False, shadow_layout=None):
+    def run_hook(self, name, action, *, fail_modprobe=False, shadow_layout=None, old_version=None, no_enabled=False, no_systemd=False):
         with tempfile.TemporaryDirectory(prefix="ydotool-package-test-") as directory:
             directory = Path(directory)
             log = directory / "calls"
@@ -20,22 +20,23 @@ import sys
 name = Path(sys.argv[0]).name
 with open(os.environ["CALL_LOG"], "a") as log:
     log.write(name + " " + " ".join(sys.argv[1:]) + "\\n")
-if name == "sha256sum":
-    hashes = {"ydotool":"8f5c64f7fa72b8c84def96c7bd2b3ca3f1f29ab20c54b340c9840ab169db118f", "ydotoold":"98c7fb69ca9b727ced2e0871d78c7f3d2537ab3359f0f0a729ab170a0fd1f9d0"}
-    path = Path(sys.argv[1])
-    digest = hashes[path.name] if path.read_text() == "known local binary" else "0" * 64
-    print(digest + "  " + str(path))
+if name == "dpkg-query":
+    print(os.environ["TEST_PACKAGE_VERSION"])
 if name == "modprobe" and os.environ.get("FAIL_MODPROBE"):
     sys.exit(1)
 if name == "systemctl" and sys.argv[1] == "list-unit-files":
-    print("ydotoold@operators.service enabled enabled")
+    if os.environ.get("TEST_NO_ENABLED"):
+        if any(arg.startswith("--state=") for arg in sys.argv): sys.exit(1)
+        print("ydotoold@.service disabled enabled")
+    else:
+        print("ydotoold@.service indirect enabled")
 ''')
             mock.chmod(0o755)
-            for command in ("systemctl", "systemd-sysusers", "modprobe", "udevadm", "sha256sum"):
+            for command in ("systemctl", "systemd-sysusers", "modprobe", "udevadm", "dpkg-query"):
                 (directory / command).symlink_to(mock)
             hook = directory / name
             runtime = directory / "systemd"
-            runtime.mkdir()
+            if not no_systemd: runtime.mkdir()
             canonical = directory / "usr/bin"
             local = directory / "usr/local/bin"
             canonical.mkdir(parents=True)
@@ -58,35 +59,78 @@ if name == "systemctl" and sys.argv[1] == "list-unit-files":
                         shadow.write_text("custom binary")
             script = (ROOT / "packaging" / name).read_text()
             script = script.replace("/run/systemd/system", str(runtime))
+            script = script.replace("/etc/systemd/system", str(directory / "etc/systemd/system"))
+            units = directory / "etc/systemd/system/multi-user.target.wants"
+            units.mkdir(parents=True)
+            if not no_enabled:
+                (units / "ydotoold@operators.service").symlink_to("/usr/lib/systemd/system/ydotoold@.service")
+            device = directory / "uinput"
+            device.touch()
+            script = script.replace("/sys/class/misc/uinput", str(device))
             script = script.replace("/usr/local/bin/", str(local) + "/")
             script = script.replace("/usr/bin/", str(canonical) + "/")
             hook.write_text(script)
-            result = subprocess.run(["/bin/sh", str(hook), action],
+            result = subprocess.run(["/bin/sh", str(hook), action, *([old_version] if old_version is not None else [])],
                 env={**os.environ, "PATH": str(directory) + ":/usr/bin:/bin", "CALL_LOG": str(log),
-                     "FAIL_MODPROBE": "1" if fail_modprobe else ""}, capture_output=True, text=True)
+                     "FAIL_MODPROBE": "1" if fail_modprobe else "",
+                     "TEST_NO_ENABLED": "1" if no_enabled else "",
+                     "TEST_PACKAGE_VERSION": (ROOT / "VERSION").read_text().strip() + "+upstream.708e96f"}, capture_output=True, text=True)
+            self.enabled_links = list(units.iterdir())
             self.remaining_shadows = [tool for tool in ("ydotool", "ydotoold") if (local / tool).exists() or (local / tool).is_symlink()]
             return result, log.read_text() if log.exists() else ""
 
-    def test_configure_removes_redundant_local_aliases_and_identical_copies(self):
-        for layout in ("link", "copy", "known"):
-            with self.subTest(layout=layout):
-                result, calls = self.run_hook("postinst", "configure", shadow_layout=layout)
-                self.assertEqual(result.returncode, 0, result.stderr)
-                self.assertEqual(self.remaining_shadows, [])
-
-    def test_configure_preserves_unknown_local_overrides(self):
-        for layout in ("unknown", "other-link"):
+    def test_configure_preserves_all_administrator_local_overrides(self):
+        for layout in ("link", "copy", "known", "unknown", "other-link"):
             with self.subTest(layout=layout):
                 result, calls = self.run_hook("postinst", "configure", shadow_layout=layout)
                 self.assertEqual(result.returncode, 0, result.stderr)
                 self.assertEqual(self.remaining_shadows, ["ydotool", "ydotoold"])
                 self.assertIn("local override", result.stderr)
 
-    def test_remove_stops_and_disables_instances(self):
+    def test_hooks_do_not_manage_an_administrator_unit(self):
+        for hook, action in (("postinst", "configure"), ("prerm", "remove")):
+            result, calls = self.run_hook(hook, action)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertNotIn("systemctl is-active --quiet ydotoold.service", calls)
+            self.assertNotIn("systemctl stop ydotoold.service", calls)
+            self.assertNotIn("systemctl disable ydotoold.service", calls)
+            self.assertNotIn("systemctl try-restart ydotoold.service", calls)
+
+    def test_hooks_work_without_a_running_systemd_manager(self):
+        for hook, action in (("postinst", "configure"), ("prerm", "remove"), ("postrm", "purge")):
+            result, calls = self.run_hook(hook, action, no_systemd=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertNotIn("systemctl", calls)
+            self.assertNotIn("find:", result.stderr)
+
+    def test_fresh_install_without_enabled_instances_configures_successfully(self):
+        result, calls = self.run_hook("postinst", "configure", no_enabled=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertNotIn("systemctl start", calls)
+
+    def test_reinstall_starts_enabled_instances_without_restarting_active_ones(self):
+        current = (ROOT / "VERSION").read_text().strip() + "+upstream.708e96f"
+        result, calls = self.run_hook("postinst", "configure", old_version=current)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("systemctl start ydotoold@operators.service", calls)
+        self.assertNotIn("systemctl try-restart", calls)
+        result, calls = self.run_hook("postinst", "configure", old_version="1.0.5+upstream.708e96f")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("systemctl try-restart ydotoold@*.service", calls)
+
+    def test_remove_preserves_configuration_and_purge_cleans_package_links(self):
+        result, calls = self.run_hook("postrm", "remove")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(len(self.enabled_links), 1)
+        result, calls = self.run_hook("postrm", "purge")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.enabled_links, [])
+
+    def test_remove_stops_instances_but_preserves_enablement(self):
         result, calls = self.run_hook("prerm", "remove")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("systemctl stop ydotoold@*.service", calls)
-        self.assertIn("systemctl disable ydotoold@operators.service", calls)
+        self.assertNotIn("systemctl disable", calls)
 
     def test_upgrade_does_not_stop_instances_in_prerm(self):
         result, calls = self.run_hook("prerm", "upgrade")

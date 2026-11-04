@@ -120,7 +120,9 @@ Currently implemented command(s):
 
 # YDOTOOL SOCKET
 
-The socket to write to for *ydotoold*(8) can be changed by the environment variable YDOTOOL_SOCKET.
+The packaged client first discovers /run/ydotoold-GROUP/socket for the user's primary group, then tries the upstream runtime socket if the packaged service is absent.
+The environment variable YDOTOOL_SOCKET selects an explicit socket, for example when using a shared group.
+Processes retaining the retired /run/ydotoold/socket address automatically try the packaged group socket when that old address is absent.
 
 # AUTHOR
 

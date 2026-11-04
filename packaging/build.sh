@@ -43,6 +43,7 @@ cmake -S "$work/source" -B "$work/build" -DCMAKE_BUILD_TYPE=Release \
     "-DCMAKE_EXE_LINKER_FLAGS=$link_flags"
 cmake --build "$work/build" --parallel 2
 [[ "$("$work/build/ydotoold" --version)" == "posbit-${package_version}" ]]
+python3 "$work/source/tests/socket_paths_test.py" "$work/build/socket_paths"
 python3 "$work/source/tests/input_test.py" "$work/build/ydotool"
 python3 "$work/source/tests/source_test.py"
 python3 "$work/source/tests/package_test.py"
@@ -70,7 +71,7 @@ printf 'uinput\n' > "$root/usr/lib/modules-load.d/ydotool.conf"
 for hook in postinst prerm postrm; do
     install -m 755 "$work/source/packaging/$hook" "$root/DEBIAN/$hook"
 done
-tar --sort=name --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owner \
+tar --sort=name --mode=u+rw,go=r,a+X --mtime="@$SOURCE_DATE_EPOCH" --owner=0 --group=0 --numeric-owner \
     -cJf "$root/usr/share/doc/ydotool/source.tar.xz" -C "$work" source
 mkdir -p "$work/debian"
 printf 'Source: ydotool\n' > "$work/debian/control"
@@ -89,8 +90,8 @@ Homepage: https://github.com/ReimuNotMoe/ydotool
 Description: PosBit hardened build of ydotool
  Pinned upstream ${upstream}, ASCII input validation, explicit version,
  and an unprivileged per-user service with network and device restrictions.
- Enable ydotoold@USERGROUP.service and set YDOTOOL_SOCKET to
- /run/ydotoold-USERGROUP/socket. Non-ASCII text requires clipboard paste.
+ Enable ydotoold@USERGROUP.service. Clients automatically discover the
+ primary group socket; YDOTOOL_SOCKET can select another group socket. Non-ASCII text requires clipboard paste.
 CONTROL
 out="${OUT:-dist}"
 mkdir -p "$out"
