@@ -4,7 +4,7 @@ Linux keyboard and mouse automation for Wayland, X11 and consoles, using `/dev/u
 
 ## Install
 
-With the PosBit APT repository configured:
+On Debian amd64, with the PosBit APT repository configured:
 
 ```sh
 sudo apt update
@@ -12,7 +12,16 @@ sudo apt install ydotool
 sudo usermod -aG ydotool "$USER"
 ```
 
-Download the [DEB for amd64](https://github.com/oslyak/ydotool/releases/latest/download/ydotool_amd64.deb) (glibc 2.38+ and systemd), then install it with `sudo apt install ./ydotool_amd64.deb` and add your user to the `ydotool` group as above.
+Download a [Debian DEB for amd64](https://github.com/oslyak/ydotool/releases/latest/download/ydotool_amd64.deb), [Debian DEB for arm64](https://github.com/oslyak/ydotool/releases/latest/download/ydotool_arm64.deb), [Ubuntu 24.04 DEB](https://github.com/oslyak/ydotool/releases/latest/download/ydotool_ubuntu2404_amd64.deb), or [Fedora/openSUSE RPM](https://github.com/oslyak/ydotool/releases/latest). DEBs require glibc 2.38+ and systemd. Install the downloaded package:
+
+```sh
+sudo apt install ./ydotool_amd64.deb
+# Fedora: sudo dnf install ./ydotool_fedora43_x86_64.rpm
+# openSUSE: sudo zypper install --allow-unsigned-rpm ./ydotool_opensuse16_x86_64.rpm
+sudo usermod -aG ydotool "$USER"
+```
+
+The kernel must provide the `uinput` module.
 
 Log out and back in to apply group membership. The package automatically starts one `ydotoold.service` as the system user `ydotool`.
 
