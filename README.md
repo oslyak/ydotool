@@ -2,6 +2,8 @@
 
 Linux keyboard and mouse automation for Wayland, X11 and consoles, using `/dev/uinput`. Written in **C23 (GNU extensions)**. Maintained by PosBit as a fork of [ReimuNotMoe/ydotool](https://github.com/ReimuNotMoe/ydotool).
 
+Testing: [1.0.10 test report](docs/test-report-1.0.10.md).
+
 ## Install
 
 On Debian amd64, with the PosBit APT repository configured:
