@@ -39,9 +39,17 @@ if [[ "$mode" == test ]]; then
 fi
 cmake -S "$work/source" -B "$work/build" -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_DOCS=OFF -DYDOTOOL_TESTS=ON -DSYSTEMD_USER_SERVICE=OFF -DSYSTEMD_SYSTEM_SERVICE=OFF \
+    -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
     "-DYDOTOOL_VERSION=posbit-${package_version}" "-DCMAKE_C_FLAGS=$flags" \
     "-DCMAKE_EXE_LINKER_FLAGS=$link_flags"
 cmake --build "$work/build" --parallel 2
+python3 - "$work/build/compile_commands.json" <<'PY'
+import json
+import sys
+
+commands = json.load(open(sys.argv[1], encoding="utf-8"))
+assert commands and all(any(flag in entry["command"] for flag in ("-std=gnu2x", "-std=gnu23")) for entry in commands)
+PY
 [[ "$("$work/build/ydotoold" --version)" == "posbit-${package_version}" ]]
 python3 "$work/source/tests/socket_paths_test.py" "$work/build/socket_paths"
 python3 "$work/source/tests/input_test.py" "$work/build/ydotool"

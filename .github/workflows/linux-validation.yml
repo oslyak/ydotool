@@ -1,0 +1,77 @@
+name: Linux validation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  debian-arm64:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Validate native ARM64 Debian
+        run: |
+          docker run --rm --platform linux/arm64 --volume "$GITHUB_WORKSPACE:/src" --workdir /src debian:13 bash -euc '
+            apt-get update
+            DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential cmake git python3 scdoc systemd udev kmod dpkg-dev
+            git config --global --add safe.directory /src
+            make test
+            make build
+            apt-get install -y ./dist/ydotool_*.deb
+            dpkg-query -W ydotool
+          '
+  linux:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: debian:13
+            package: deb
+          - image: ubuntu:24.04
+            package: deb
+          - image: fedora:43
+            package: rpm
+          - image: opensuse/leap:16.0
+            package: rpm
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Build, run regression tests, and install package
+        env:
+          IMAGE: ${{ matrix.image }}
+          PACKAGE: ${{ matrix.package }}
+        run: |
+          docker run --rm --volume "$GITHUB_WORKSPACE:/src" --workdir /src "$IMAGE" bash -euc '
+            if command -v apt-get >/dev/null; then
+              apt-get update
+              if grep -q Ubuntu /etc/os-release; then compiler=gcc-14; else compiler=gcc; fi
+              DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential cmake git python3 scdoc systemd udev kmod dpkg-dev "$compiler"
+            elif command -v dnf >/dev/null; then
+              dnf install -y gcc gcc-c++ cmake git make python3 libubsan scdoc systemd systemd-udev systemd-rpm-macros rpm-build kmod
+            else
+              zypper --non-interactive refresh
+              zypper --non-interactive install --no-recommends -y gcc gcc-c++ cmake git-core make python3 libubsan1-gcc15 scdoc systemd systemd-rpm-macros rpm-build kmod udev
+            fi
+            git config --global --add safe.directory /src
+            if command -v gcc-14 >/dev/null; then CC=gcc-14 make test; else make test; fi
+            if [ "$PACKAGE" = deb ]; then
+              if command -v gcc-14 >/dev/null; then CC=gcc-14 make build; else make build; fi
+              apt-get install -y ./dist/ydotool_*.deb
+              dpkg-query -W ydotool
+            else
+              bash packaging/build-rpm.sh
+              if command -v dnf >/dev/null; then dnf install -y ./dist/ydotool-*.rpm; else zypper --non-interactive install --allow-unsigned-rpm -y ./dist/ydotool-*.rpm; fi
+              rpm -q ydotool
+            fi
+            compile_commands=$(find .build -name compile_commands.json -print -quit)
+            test -n "$compile_commands"
+            grep -Eq -- "-std=gnu(2x|23)" "$compile_commands"
+            grep -q "User=ydotool" packaging/ydotoold.service
+            grep -q "Group=ydotool" packaging/ydotoold.service
+            grep -q "SupplementaryGroups=ydotool-uinput" packaging/ydotoold.service
+            grep -q -- "--no-system-keys" packaging/ydotoold.service
+            grep -q "socket-perm=0660" packaging/ydotoold.service
+          '
