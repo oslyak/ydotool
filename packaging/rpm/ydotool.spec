@@ -1,9 +1,9 @@
 Name:           ydotool
-Version:        1.0.10
+Version:        @VERSION@
 Release:        1%{?dist}
 Summary:        PosBit hardened build of ydotool
-License:        MIT
-URL:            https://github.com/ReimuNotMoe/ydotool
+License:        AGPL-3.0-or-later
+URL:            https://github.com/oslyak/ydotool
 Source0:        %{name}-%{version}.tar.gz
 BuildRequires:  cmake >= 3.22
 BuildRequires:  gcc >= 14
@@ -28,7 +28,9 @@ users must be explicitly added to the ydotool group to access its socket.
 %build
 cmake -S . -B build -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_BUILD_TYPE=Release -DBUILD_DOCS=ON \
   -DSYSTEMD_USER_SERVICE=OFF -DSYSTEMD_SYSTEM_SERVICE=OFF \
-  -DYDOTOOL_VERSION=posbit-%{version}+upstream.708e96f
+  -DYDOTOOL_VERSION=posbit-%{version}+upstream.708e96f \
+  -DCMAKE_C_FLAGS="-O2 -D_FORTIFY_SOURCE=3 -fstack-protector-strong -fPIE" \
+  -DCMAKE_EXE_LINKER_FLAGS="-Wl,-z,relro,-z,now -pie"
 cmake --build build --parallel 2
 
 %install
@@ -42,25 +44,33 @@ install -Dpm0644 packaging/ydotool.conf %{buildroot}%{_modulesloaddir}/ydotool.c
 
 %post
 systemd-sysusers %{_sysusersdir}/ydotool.conf || :
-systemctl daemon-reload || :
-udevadm control --reload-rules || :
-if [ "$1" -eq 1 ]; then
-  systemctl enable ydotoold.service || :
+if [ -d /run/systemd/system ]; then
+  modprobe uinput || :
+  udevadm control --reload-rules || :
   if [ -e /sys/class/misc/uinput ]; then
-    modprobe uinput || :
-    systemctl start ydotoold.service || :
+    udevadm trigger --action=change /sys/class/misc/uinput || :
+    udevadm settle || :
+  fi
+  systemctl daemon-reload || :
+  if [ "$1" -eq 1 ]; then
+    systemctl enable ydotoold.service || :
+    if [ -e /sys/class/misc/uinput ]; then
+      systemctl start ydotoold.service || :
+    fi
   fi
 fi
 
 %preun
-if [ "$1" -eq 0 ]; then
+if [ "$1" -eq 0 ] && [ -d /run/systemd/system ]; then
   systemctl disable --now ydotoold.service || :
 fi
 
 %postun
-systemctl daemon-reload || :
-if [ "$1" -ge 1 ]; then
-  systemctl try-restart ydotoold.service || :
+if [ -d /run/systemd/system ]; then
+  systemctl daemon-reload || :
+  if [ "$1" -ge 1 ]; then
+    systemctl try-restart ydotoold.service || :
+  fi
 fi
 
 %files

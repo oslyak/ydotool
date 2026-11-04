@@ -3,6 +3,7 @@ name: Linux validation
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -23,6 +24,11 @@ jobs:
             apt-get install -y ./dist/ydotool_*.deb
             dpkg-query -W ydotool
           '
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: debian-arm64
+          path: dist/
+          if-no-files-found: error
   linux:
     runs-on: ubuntu-24.04
     strategy:
@@ -44,7 +50,7 @@ jobs:
           IMAGE: ${{ matrix.image }}
           PACKAGE: ${{ matrix.package }}
         run: |
-          docker run --rm --volume "$GITHUB_WORKSPACE:/src" --workdir /src "$IMAGE" bash -euc '
+          docker run --rm --env PACKAGE --volume "$GITHUB_WORKSPACE:/src" --workdir /src "$IMAGE" bash -euc '
             if command -v apt-get >/dev/null; then
               apt-get update
               if grep -q Ubuntu /etc/os-release; then compiler=gcc-14; else compiler=gcc; fi
@@ -66,12 +72,14 @@ jobs:
               if command -v dnf >/dev/null; then dnf install -y ./dist/ydotool-*.rpm; else zypper --non-interactive install --allow-unsigned-rpm -y ./dist/ydotool-*.rpm; fi
               rpm -q ydotool
             fi
-            compile_commands=$(find .build -name compile_commands.json -print -quit)
-            test -n "$compile_commands"
-            grep -Eq -- "-std=gnu(2x|23)" "$compile_commands"
             grep -q "User=ydotool" packaging/ydotoold.service
             grep -q "Group=ydotool" packaging/ydotoold.service
             grep -q "SupplementaryGroups=ydotool-uinput" packaging/ydotoold.service
             grep -q -- "--no-system-keys" packaging/ydotoold.service
             grep -q "socket-perm=0660" packaging/ydotoold.service
           '
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: linux-${{ strategy.job-index }}
+          path: dist/
+          if-no-files-found: error

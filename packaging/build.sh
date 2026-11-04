@@ -55,6 +55,7 @@ python3 "$work/source/tests/socket_paths_test.py" "$work/build/socket_paths"
 python3 "$work/source/tests/input_test.py" "$work/build/ydotool"
 python3 "$work/source/tests/source_test.py"
 python3 "$work/source/tests/package_test.py"
+python3 "$work/source/tests/rpm_test.py"
 python3 "$work/source/tests/daemon_test.py" "$work/build/ydotoold" "$work/build/libfake_uinput.so"
 set +e
 "$work/build/send_failure"
