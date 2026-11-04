@@ -1,0 +1,63 @@
+#!/bin/sh
+set -eu
+umask 077
+state=/var/lib/ydotool
+mkdir -p "$state"
+exec 9>"$state/lock"
+flock 9
+eligible=$(mktemp "$state/.eligible.XXXXXX")
+trap 'rm -f "$eligible" "$eligible.users" "$state/.marker"' EXIT HUP INT TERM
+if [ "${1:-}" = --install ]; then
+    if [ ! -e "$state/units-initialized" ]; then
+        for unit in ydotool-autosetup.service ydotool-autosetup.path; do
+            case "$(systemctl is-enabled "$unit" 2>/dev/null || true)" in
+                masked|masked-runtime) ;;
+                *) systemctl enable "$unit" ;;
+            esac
+        done
+        touch "$state/units-initialized"
+    fi
+    if systemctl is-enabled --quiet ydotool-autosetup.path; then
+        systemctl start ydotool-autosetup.path
+    fi
+fi
+awk '
+    FILENAME == ARGV[1] { if ($1 == "UID_MIN") low=$2; if ($1 == "UID_MAX") high=$2; next }
+    FILENAME == ARGV[2] { if ($1 ~ /^\// && $1 !~ /\/(nologin|false)$/) shells[$1]=1; next }
+    { split($0, user, ":"); if (user[3] >= (low ? low : 1000) && user[3] <= (high ? high : 60000) && shells[user[7]]) print user[4] }
+' /etc/login.defs /etc/shells /etc/passwd | sort -u > "$eligible.users"
+while IFS= read -r gid; do
+    entry=$(getent group "$gid") || continue
+    group=${entry%%:*}
+    case "$group" in ''|.|..|*[!a-zA-Z0-9_.-]*) continue ;; esac
+    printf '%s %s\n' "$group" "$gid" >> "$eligible"
+done < "$eligible.users"
+for marker in "$state"/group-*; do
+    [ -f "$marker" ] || continue
+    group=${marker##*/group-}
+    read -r gid managed < "$marker"
+    if ! awk -v group="$group" -v gid="$gid" '$1 == group && $2 == gid { found=1 } END { exit !found }' "$eligible"; then
+        if [ "$managed" = yes ]; then
+            unit=$(systemd-escape --template=ydotoold@.service -- "$group")
+            systemctl disable --now "$unit"
+        fi
+        rm -f "$marker"
+    fi
+done
+while read -r group gid; do
+    unit=$(systemd-escape --template=ydotoold@.service -- "$group")
+    marker="$state/group-$group"
+    if [ ! -f "$marker" ]; then
+        managed=no
+        status=$(systemctl is-enabled "$unit" 2>/dev/null || true)
+        case "$status" in
+            masked|masked-runtime|enabled|enabled-runtime) ;;
+            *) systemctl enable "$unit"; managed=yes ;;
+        esac
+        printf '%s %s\n' "$gid" "$managed" > "$state/.marker"
+        mv "$state/.marker" "$marker"
+    fi
+    if [ -e /sys/class/misc/uinput ] && systemctl is-enabled --quiet "$unit"; then
+        systemctl start "$unit"
+    fi
+done < "$eligible"

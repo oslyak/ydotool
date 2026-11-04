@@ -20,5 +20,5 @@ for line in (root / "packaging/ydotoold@.service").read_text().splitlines():
     elif section == "[Service]" and "=" in line:
         key, value = line.split("=", 1)
         if key not in ("ExecStart", "Restart", "RestartSec", "RuntimeDirectory", "RuntimeDirectoryMode"):
-            command.append("--property=" + line.replace("%i", args.group))
+            command.append("--property=" + line.replace("%I", args.group).replace("%i", args.group))
 subprocess.run([*command, "/usr/bin/python3", "-c", (root / "tests/sandbox_probe.py").read_text(), args.socket, args.home], check=True)

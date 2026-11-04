@@ -47,6 +47,7 @@ python3 "$work/source/tests/socket_paths_test.py" "$work/build/socket_paths"
 python3 "$work/source/tests/input_test.py" "$work/build/ydotool"
 python3 "$work/source/tests/source_test.py"
 python3 "$work/source/tests/package_test.py"
+python3 "$work/source/tests/auto_setup_test.py"
 python3 "$work/source/tests/daemon_test.py" "$work/build/ydotoold" "$work/build/libfake_uinput.so"
 set +e
 "$work/build/send_failure"
@@ -54,10 +55,20 @@ status=$?
 set -e
 [[ "$status" == 2 ]]
 if [[ "$mode" == test ]]; then
-    systemd-analyze verify "$work/source/packaging/ydotoold@.service"
+    mkdir "$work/verify"
+    for unit in ydotoold@.service ydotool-autosetup.service ydotool-autosetup.path; do
+        sed -e "s|/usr/lib/ydotool/auto-setup|$work/source/packaging/auto-setup|g" \
+            -e "s|/usr/bin/ydotoold|$work/build/ydotoold|g" \
+            "$work/source/packaging/$unit" > "$work/verify/$unit"
+    done
+    systemd-analyze verify "$work/verify/"*
     exit 0
 fi
 root="$work/package"
+install -D -m 755 "$work/source/packaging/auto-setup" "$root/usr/lib/ydotool/auto-setup"
+for unit in ydotool-autosetup.service ydotool-autosetup.path; do
+    install -D -m 644 "$work/source/packaging/$unit" "$root/usr/lib/systemd/system/$unit"
+done
 install -D -m 755 "$work/build/ydotool" "$root/usr/bin/ydotool"
 install -D -m 755 "$work/build/ydotoold" "$root/usr/bin/ydotoold"
 install -D -m 644 "$work/source/packaging/ydotoold@.service" "$root/usr/lib/systemd/system/ydotoold@.service"
@@ -84,13 +95,13 @@ Architecture: $(dpkg --print-architecture)
 Maintainer: PosBit <anton@sirius.if.ua>
 Section: utils
 Priority: optional
-Depends: ${libc_dep}, systemd, udev, kmod
+Depends: ${libc_dep}, systemd, udev, kmod, util-linux
 X-Source-Commit: ${source_revision}
 Homepage: https://github.com/ReimuNotMoe/ydotool
 Description: PosBit hardened build of ydotool
  Pinned upstream ${upstream}, ASCII input validation, explicit version,
  and an unprivileged per-user service with network and device restrictions.
- Enable ydotoold@USERGROUP.service. Clients automatically discover the
+ Local interactive users are configured automatically. Clients discover the
  primary group socket; YDOTOOL_SOCKET can select another group socket. Non-ASCII text requires clipboard paste.
 CONTROL
 out="${OUT:-dist}"

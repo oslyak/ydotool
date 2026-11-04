@@ -32,7 +32,7 @@ if name == "systemctl" and sys.argv[1] == "list-unit-files":
         print("ydotoold@.service indirect enabled")
 ''')
             mock.chmod(0o755)
-            for command in ("systemctl", "systemd-sysusers", "modprobe", "udevadm", "dpkg-query"):
+            for command in ("systemctl", "systemd-sysusers", "modprobe", "udevadm", "dpkg-query", "auto-setup"):
                 (directory / command).symlink_to(mock)
             hook = directory / name
             runtime = directory / "systemd"
@@ -58,6 +58,8 @@ if name == "systemctl" and sys.argv[1] == "list-unit-files":
                     else:
                         shadow.write_text("custom binary")
             script = (ROOT / "packaging" / name).read_text()
+            script = script.replace("/usr/lib/ydotool/auto-setup", str(directory / "auto-setup"))
+            script = script.replace("/var/lib/ydotool", str(directory / "state"))
             script = script.replace("/run/systemd/system", str(runtime))
             script = script.replace("/etc/systemd/system", str(directory / "etc/systemd/system"))
             units = directory / "etc/systemd/system/multi-user.target.wants"
@@ -106,7 +108,8 @@ if name == "systemctl" and sys.argv[1] == "list-unit-files":
     def test_fresh_install_without_enabled_instances_configures_successfully(self):
         result, calls = self.run_hook("postinst", "configure", no_enabled=True)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertNotIn("systemctl start", calls)
+        self.assertIn("auto-setup --install", calls)
+        self.assertNotIn("systemctl start ydotoold@", calls)
 
     def test_reinstall_starts_enabled_instances_without_restarting_active_ones(self):
         current = (ROOT / "VERSION").read_text().strip() + "+upstream.708e96f"
@@ -131,6 +134,7 @@ if name == "systemctl" and sys.argv[1] == "list-unit-files":
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("systemctl stop ydotoold@*.service", calls)
         self.assertNotIn("systemctl disable", calls)
+        self.assertIn("systemctl stop ydotool-autosetup.path ydotool-autosetup.service", calls)
 
     def test_upgrade_does_not_stop_instances_in_prerm(self):
         result, calls = self.run_hook("prerm", "upgrade")

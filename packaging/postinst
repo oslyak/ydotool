@@ -16,6 +16,9 @@ if [ "$1" = configure ]; then
         if [ -e /sys/class/misc/uinput ]; then
             udevadm trigger --action=change /sys/class/misc/uinput
             udevadm settle
+        fi
+        /usr/lib/ydotool/auto-setup --install
+        if [ -e /sys/class/misc/uinput ]; then
             if [ -n "${2:-}" ] && [ "$2" != "$(dpkg-query -W -f='${Version}' ydotool)" ]; then
                 systemctl try-restart 'ydotoold@*.service'
             fi
