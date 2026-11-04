@@ -36,7 +36,7 @@
 
 #include "ydotool.h"
 
-static void show_help() {
+static void show_help(void) {
 	puts(
 		"Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\n"
 		"Move mouse pointer or wheel.\n"
@@ -58,8 +58,8 @@ int tool_mousemove(int argc, char **argv) {
 		return 0;
 	}
 
-	int is_abs = 0;
-	int is_wheel = 0;
+	bool is_abs = false;
+	bool is_wheel = false;
 
 	int i = 0;
 	int32_t pos[2] = {0, 0};
@@ -68,12 +68,12 @@ int tool_mousemove(int argc, char **argv) {
 		int c;
 
 		static struct option long_options[] = {
-			{"absolute", no_argument, 0, 'a'},
-			{"help", no_argument, 0, 'h'},
-			{"wheel", no_argument, 0, 'w'},
-			{"xpos", required_argument, 0, 'x'},
-			{"ypos", required_argument, 0, 'y'},
-			{0, 0, 0, 0}
+			{"absolute", no_argument, nullptr, 'a'},
+			{"help", no_argument, nullptr, 'h'},
+			{"wheel", no_argument, nullptr, 'w'},
+			{"xpos", required_argument, nullptr, 'x'},
+			{"ypos", required_argument, nullptr, 'y'},
+			{}
 		};
 		/* getopt_long stores the option index here. */
 		int option_index = 0;
@@ -96,7 +96,7 @@ int tool_mousemove(int argc, char **argv) {
 				printf ("\n");
 				break;
 			case 'a':
-				is_abs = 1;
+				is_abs = true;
 				break;
 
 			case 'h':
@@ -104,14 +104,14 @@ int tool_mousemove(int argc, char **argv) {
 				return 0;
 
 			case 'w':
-				is_wheel = 1;
+				is_wheel = true;
 				break;
 			case 'x':
 				if (i >= 2) {
 					show_help();
 					return 1;
 				}
-				pos[0] = strtol(optarg, NULL, 10);
+				pos[0] = strtol(optarg, nullptr, 10);
 				i++;
 				break;
 			case 'y':
@@ -119,7 +119,7 @@ int tool_mousemove(int argc, char **argv) {
 					show_help();
 					return 1;
 				}
-				pos[1] = strtol(optarg, NULL, 10);
+				pos[1] = strtol(optarg, nullptr, 10);
 				i++;
 				break;
 
@@ -140,7 +140,7 @@ int tool_mousemove(int argc, char **argv) {
 				show_help();
 				return 1;
 			}
-			pos[i] = strtol(argv[optind++], NULL, 10);
+			pos[i] = strtol(argv[optind++], nullptr, 10);
 			i++;
 		}
 	}
@@ -152,16 +152,16 @@ int tool_mousemove(int argc, char **argv) {
 		}
 
 		if (is_abs) {
-			uinput_emit(EV_REL, REL_X, INT32_MIN, 0);
-			uinput_emit(EV_REL, REL_Y, INT32_MIN, 1);
+			uinput_emit(EV_REL, REL_X, INT32_MIN, false);
+			uinput_emit(EV_REL, REL_Y, INT32_MIN, true);
 		}
 
 		if (is_wheel) {
-			uinput_emit(EV_REL, REL_HWHEEL, pos[0], 0);
-			uinput_emit(EV_REL, REL_WHEEL, pos[1], 1);
+			uinput_emit(EV_REL, REL_HWHEEL, pos[0], false);
+			uinput_emit(EV_REL, REL_WHEEL, pos[1], true);
 		} else {
-			uinput_emit(EV_REL, REL_X, pos[0], 0);
-			uinput_emit(EV_REL, REL_Y, pos[1], 1);
+			uinput_emit(EV_REL, REL_X, pos[0], false);
+			uinput_emit(EV_REL, REL_Y, pos[1], true);
 		}
 	} else {
 		show_help();

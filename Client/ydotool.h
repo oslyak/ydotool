@@ -36,7 +36,6 @@
 
 #pragma once
 
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -71,4 +70,4 @@ extern int tool_key(int argc, char **argv);
 extern int tool_stdin(int argc, char **argv);
 
 extern void uinput_release_keys(void);
-extern long parse_number(const char *text, long minimum, long maximum, const char *name);
+[[nodiscard]] extern long parse_number(const char *text, long minimum, long maximum, const char *name);

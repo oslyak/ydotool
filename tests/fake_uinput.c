@@ -26,6 +26,10 @@ int open(const char *path, int flags, ...) {
     return syscall(SYS_openat, AT_FDCWD, path, flags, mode);
 }
 
+int __open_2(const char *path, int flags) {
+    return open(path, flags, 0);
+}
+
 int ioctl(int fd, unsigned long request, ...) {
     if (fd != device_fd) return -1;
     if (request == UI_SET_EVBIT || request == UI_SET_KEYBIT) {
@@ -45,6 +49,6 @@ ssize_t write(int fd, const void *buffer, size_t length) {
     return result;
 }
 
-unsigned int sleep(unsigned int seconds) {
+unsigned int sleep([[maybe_unused]] unsigned int seconds) {
     return 0;
 }

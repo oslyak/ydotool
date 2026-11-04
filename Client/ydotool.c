@@ -44,7 +44,7 @@
 
 struct tool_def {
 	char name[16];
-	void *ptr;
+	typeof(tool_key) *ptr;
 };
 
 int fd_daemon_socket = -1;
@@ -60,7 +60,7 @@ static int tool_debug(int argc, char **argv) {
 	return 0;
 }
 
-static int tool_bakers(int argc, char **argv) {
+static int tool_bakers([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
 	puts("These are our honorable bakers:\n"
 	     "\n"
 	     "Dustin Van Tate Testa\n"
@@ -96,13 +96,13 @@ static const struct tool_def tool_list[] = {
 	{"stdin",     tool_stdin},
 };
 
-static void show_help() {
+static constexpr size_t tool_count = sizeof(tool_list) / sizeof(tool_list[0]);
+
+static void show_help(void) {
 	puts("Usage: ydotool <cmd> <args>\n"
 	     "Available commands:");
 
-	int tool_count = sizeof(tool_list) / sizeof(struct tool_def);
-
-	for (int i=0; i<tool_count; i++) {
+	for (size_t i=0; i<tool_count; i++) {
 		printf("  %s\n", tool_list[i].name);
 	}
 
@@ -175,11 +175,9 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 
-	int (*tool_main)(int argc, char **argv) = NULL;
+	typeof(tool_key) *tool_main = nullptr;
 
-	int tool_count = sizeof(tool_list) / sizeof(struct tool_def);
-
-	for (int i=0; i<tool_count; i++) {
+	for (size_t i=0; i<tool_count; i++) {
 		if (strcmp(tool_list[i].name, argv[1]) == 0) {
 			tool_main = tool_list[i].ptr;
 		}
@@ -211,7 +209,7 @@ int main(int argc, char **argv) {
 		snprintf(upstream_socket, sizeof(upstream_socket), "/tmp/.ydotool_socket");
 	}
 	const char *requested = env_ys && *env_ys ? env_ys : "/run/ydotoold/socket";
-	const char *fallback = env_ys && *env_ys ? NULL : upstream_socket;
+	const char *fallback = env_ys && *env_ys ? nullptr : upstream_socket;
 	if (snprintf(sa.sun_path, sizeof(sa.sun_path), "%s", requested) >= sizeof(sa.sun_path)) {
 		fputs("ydotool: socket path is too long\n", stderr);
 		return 2;
@@ -244,7 +242,7 @@ int main(int argc, char **argv) {
 	sigemptyset(&action.sa_mask);
 	sigaddset(&action.sa_mask, SIGINT);
 	sigaddset(&action.sa_mask, SIGTERM);
-	if (sigaction(SIGINT, &action, NULL) || sigaction(SIGTERM, &action, NULL)) {
+	if (sigaction(SIGINT, &action, nullptr) || sigaction(SIGTERM, &action, nullptr)) {
 		perror("ydotool: install signal handler");
 		return 2;
 	}

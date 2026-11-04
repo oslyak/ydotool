@@ -50,7 +50,7 @@ static int opt_next_delay_ms = 0;
 
 static struct termios old_tio;
 
-static void restore_terminal() {
+static void restore_terminal(void) {
     // Restore the old terminal attributes
     tcsetattr(STDIN_FILENO, TCSANOW, &old_tio);
 }
@@ -61,7 +61,7 @@ static void handle_signal(int sig) {
     _exit(128 + sig);
 }
 
-static void configure_terminal() {
+static void configure_terminal(void) {
     struct termios new_tio;
     
     // Get the current terminal attributes
@@ -77,7 +77,7 @@ static void configure_terminal() {
     signal(SIGTERM, handle_signal);
 }
 
-int tool_stdin(int argc, char **argv) {
+int tool_stdin([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
     configure_terminal(); // Set terminal to raw mode
 
     printf("Type anything (CTRL-C to exit):\n");
@@ -125,20 +125,20 @@ int tool_stdin(int argc, char **argv) {
 		// Emit key events
 		if (isUppercase) {
 		printf("  Sending shift\n");
-			uinput_emit(EV_KEY, KEY_LEFTSHIFT, 1, 1); // Press shift for uppercase
+			uinput_emit(EV_KEY, KEY_LEFTSHIFT, 1, true); // Press shift for uppercase
 		}
 		if (isCtrl) {
 			printf("  Sending ctrl\n");
-			uinput_emit(EV_KEY, KEY_LEFTCTRL, 1, 1); // Press ctrl
+			uinput_emit(EV_KEY, KEY_LEFTCTRL, 1, true); // Press ctrl
 			}
-			uinput_emit(EV_KEY, kc, 1, 1); // Key down
+			uinput_emit(EV_KEY, kc, 1, true); // Key down
 			usleep(opt_key_hold_ms * 1000); // Hold key
-			uinput_emit(EV_KEY, kc, 0, 1); // Key up
+			uinput_emit(EV_KEY, kc, 0, true); // Key up
 		if (isCtrl) {
-			uinput_emit(EV_KEY, KEY_LEFTCTRL, 0, 1); // Release ctrl
+			uinput_emit(EV_KEY, KEY_LEFTCTRL, 0, true); // Release ctrl
 		}
 		if (isUppercase) {
-			uinput_emit(EV_KEY, KEY_LEFTSHIFT, 0, 1); // Release shift for uppercase
+			uinput_emit(EV_KEY, KEY_LEFTSHIFT, 0, true); // Release shift for uppercase
 		}
 
 		usleep(opt_key_delay_ms * 1000); // Delay between keys

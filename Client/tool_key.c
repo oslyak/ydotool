@@ -37,7 +37,7 @@
 #include "ydotool.h"
 #include <string.h>
 
-static void show_help() {
+static void show_help(void) {
 	puts(
 		"Usage: key [OPTION]... [KEYCODES]...\n"
 		"Emit key events.\n"
@@ -73,9 +73,9 @@ int tool_key(int argc, char **argv) {
 		int c;
 
 		static struct option long_options[] = {
-			{"key-delay", required_argument, 0, 'd'},
-			{"help", no_argument, 0, 'h'},
-			{0, 0, 0, 0}
+			{"key-delay", required_argument, nullptr, 'd'},
+			{"help", no_argument, nullptr, 'h'},
+			{}
 		};
 		/* getopt_long stores the option index here. */
 		int option_index = 0;
@@ -123,7 +123,7 @@ int tool_key(int argc, char **argv) {
 			long kc = strtol(pstr, &end, strncmp(pstr, "0x", 2) == 0 ? 16 : 10);
 			if (!errno && end != pstr && *end == ':' &&
 			    (end[1] == '0' || end[1] == '1') && end[2] == 0 && kc > 0 && kc < KEY_CNT) {
-				uinput_emit(EV_KEY, kc, end[1] - '0', 1);
+				uinput_emit(EV_KEY, kc, end[1] - '0', true);
 			}
 
 			usleep(key_delay * 1000);

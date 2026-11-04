@@ -36,7 +36,7 @@
 
 #include "ydotool.h"
 
-static void show_help() {
+static void show_help(void) {
 	puts(
 		"Usage: click [OPTION]... [BUTTONS]...\n"
 		"Click mouse buttons.\n"
@@ -78,17 +78,17 @@ int tool_click(int argc, char **argv) {
 
 	int repeats = 1;
 	int next_delay_ms = 25;
-	bool press_release = 0;
+	bool press_release = false;
 
 	while (1) {
 		int c;
 
 		static struct option long_options[] = {
-			{"repeat", required_argument, 0, 'r'},
-			{"next-delay", required_argument, 0, 'D'},
-			{"press-release", no_argument, 0, 'P'},
-			{"help", no_argument, 0, 'h'},
-			{0, 0, 0, 0}
+			{"repeat", required_argument, nullptr, 'r'},
+			{"next-delay", required_argument, nullptr, 'D'},
+			{"press-release", no_argument, nullptr, 'P'},
+			{"help", no_argument, nullptr, 'h'},
+			{}
 		};
 		/* getopt_long stores the option index here. */
 		int option_index = 0;
@@ -119,7 +119,7 @@ int tool_click(int argc, char **argv) {
 				break;
 			
 			case 'P':
-				press_release = 1;
+				press_release = true;
 				break;
 
 			case 'h':
@@ -141,24 +141,24 @@ int tool_click(int argc, char **argv) {
 		for (int i=0; i<repeats; i++) {
 			optind = optind_save;
 			while (optind < argc) {
-				int key = strtol(argv[optind++], NULL, 16);
+				int key = strtol(argv[optind++], nullptr, 16);
 				int keycode = (key & 0xf) | 0x110;
 
 				if (press_release) {
 					printf("Click Event %d\n", i);
-					uinput_emit(EV_KEY, keycode, 1, 1);
-					uinput_emit(EV_KEY, keycode, 0, 1);
+					uinput_emit(EV_KEY, keycode, 1, true);
+					uinput_emit(EV_KEY, keycode, 0, true);
 					usleep(next_delay_ms * 1000);
 					continue;
 				}
 
 				if (key & 0x40) {
-					uinput_emit(EV_KEY, keycode, 1, 1);
+					uinput_emit(EV_KEY, keycode, 1, true);
 					usleep(next_delay_ms * 1000);
 				}
 
 				if (key & 0x80) {
-					uinput_emit(EV_KEY, keycode, 0, 1);
+					uinput_emit(EV_KEY, keycode, 0, true);
 					usleep(next_delay_ms * 1000);
 				}
 

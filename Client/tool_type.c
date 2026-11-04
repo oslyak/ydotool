@@ -77,7 +77,7 @@ static int opt_key_delay_ms = 20;
 static int opt_key_hold_ms = 20;
 static int opt_next_delay_ms = 0;
 
-static void show_help() {
+static void show_help(void) {
 	puts(
 		"Usage: type [OPTION]... [STRINGS]...\n"
 		"Type strings.\n"
@@ -109,7 +109,7 @@ static void show_help() {
 
 
 
-static int type_char(char c, bool delay) {
+[[nodiscard]] static int type_char(char c, bool delay) {
 	if ((unsigned char)c >= sizeof(ascii2keycode_map) / sizeof(ascii2keycode_map[0])) {
 		fputs("ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n", stderr);
 		return 2;
@@ -122,15 +122,15 @@ static int type_char(char c, bool delay) {
 	uint16_t kc = kdef & 0xffff;
 
 	if (kdef & FLAG_UPPERCASE) {
-		uinput_emit(EV_KEY, KEY_LEFTSHIFT, 1, 1);
+		uinput_emit(EV_KEY, KEY_LEFTSHIFT, 1, true);
 	}
-	uinput_emit(EV_KEY, kc, 1, 1);
+	uinput_emit(EV_KEY, kc, 1, true);
 
 	usleep(opt_key_hold_ms * 1000);
 
-	uinput_emit(EV_KEY, kc, 0, 1);
+	uinput_emit(EV_KEY, kc, 0, true);
 	if (kdef & FLAG_UPPERCASE) {
-		uinput_emit(EV_KEY, KEY_LEFTSHIFT, 0, 1);
+		uinput_emit(EV_KEY, KEY_LEFTSHIFT, 0, true);
 	}
 
 	if (delay) {
@@ -174,7 +174,7 @@ static int escape(char in) {
 		case 3:
 			escape_state = 0;
 			hex_str[1] = in;
-			return (int)strtol(hex_str, NULL, 16);
+			return (int)strtol(hex_str, nullptr, 16);
 		default:
 			abort();
 	}
@@ -188,7 +188,7 @@ int tool_type(int argc, char **argv) {
 
 
 
-	const char *file_path = NULL;
+	const char *file_path = nullptr;
 
 	int enable_escape = -1;
 
@@ -196,13 +196,13 @@ int tool_type(int argc, char **argv) {
 		int c;
 
 		static struct option long_options[] = {
-			{"key-delay", required_argument, 0, 'd'},
-			{"next-delay", required_argument, 0, 'D'},
-			{"key-hold", required_argument, 0, 'H'},
-			{"escape", required_argument, 0, 'e'},
-			{"file", required_argument, 0, 'f'},
-			{"help", no_argument, 0, 'h'},
-			{0, 0, 0, 0}
+			{"key-delay", required_argument, nullptr, 'd'},
+			{"next-delay", required_argument, nullptr, 'D'},
+			{"key-hold", required_argument, nullptr, 'H'},
+			{"escape", required_argument, nullptr, 'e'},
+			{"file", required_argument, nullptr, 'f'},
+			{"help", no_argument, nullptr, 'h'},
+			{}
 		};
 		/* getopt_long stores the option index here. */
 		int option_index = 0;

@@ -35,7 +35,6 @@
 */
 
 #include <assert.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -82,7 +81,7 @@ static char opt_socket_path[SOCKET_PATH_LEN] = "/tmp/.ydotool_socket";
 static char opt_socket_perm[16] = "0600";
 static char opt_socket_own[16] = "";
 
-static void show_help() {
+static void show_help(void) {
 	puts(
 		"Usage: ydotoold [OPTION]...\n"
 		"The ydotool Daemon.\n"
@@ -100,7 +99,7 @@ static void show_help() {
 	);
 }
 
-static void show_version() {
+static void show_version(void) {
 	puts(VERSION);
 }
 
@@ -195,16 +194,16 @@ int main(int argc, char **argv) {
 		int c;
 
 		static struct option long_options[] = {
-			{"help", no_argument, 0, 'h'},
-			{"version", no_argument, 0, 'V'},
-			{"socket-perm", required_argument, 0, 'P'},
-			{"socket-own", required_argument, 0, 'o'},
-			{"socket-path", required_argument, 0, 'p'},
-			{"mouse-off", no_argument, 0, 'm'},
-			{"no-system-keys", no_argument, 0, 's'},
-			{"keyboard-off", no_argument, 0, 'k'},
-			{"touch-on", no_argument, 0, 'T'},
-			{0, 0, 0, 0}
+			{"help", no_argument, nullptr, 'h'},
+			{"version", no_argument, nullptr, 'V'},
+			{"socket-perm", required_argument, nullptr, 'P'},
+			{"socket-own", required_argument, nullptr, 'o'},
+			{"socket-path", required_argument, nullptr, 'p'},
+			{"mouse-off", no_argument, nullptr, 'm'},
+			{"no-system-keys", no_argument, nullptr, 's'},
+			{"keyboard-off", no_argument, nullptr, 'k'},
+			{"touch-on", no_argument, nullptr, 'T'},
+			{}
 		};
 		/* getopt_long stores the option index here. */
 		int option_index = 0;
@@ -336,7 +335,7 @@ int main(int argc, char **argv) {
 	}
 
 
-	if (chmod(opt_socket_path, strtol(opt_socket_perm, NULL, 8))) {
+	if (chmod(opt_socket_path, strtol(opt_socket_perm, nullptr, 8))) {
 		perror("failed to change socket permission");
 		exit(2);
 	}
@@ -353,8 +352,8 @@ int main(int argc, char **argv) {
 
 		gid_pos++;
 
-		uid_t uid = strtol(opt_socket_own, NULL, 10);
-		gid_t gid = strtol(gid_pos, NULL, 10);
+		uid_t uid = strtol(opt_socket_own, nullptr, 10);
+		gid_t gid = strtol(gid_pos, nullptr, 10);
 
 		if (chown(opt_socket_path, uid, gid)) {
 			perror("failed to change socket ownership");
@@ -376,13 +375,13 @@ int main(int argc, char **argv) {
 			pid_t npid = fork();
 
 			if (npid == 0) {
-				execl(xinput_path, "xinput", "--set-prop", "pointer:ydotoold virtual device", "libinput Accel Profile Enabled", "0,", "1", NULL);
+				execl(xinput_path, "xinput", "--set-prop", "pointer:ydotoold virtual device", "libinput Accel Profile Enabled", "0,", "1", (char *)nullptr);
 				perror("failed to run xinput command");
 				_exit(2);
 			} else if (npid == -1) {
 				perror("failed to fork");
 			} else {
-				while (waitpid(npid, NULL, 0) < 0 && errno == EINTR) {}
+				while (waitpid(npid, nullptr, 0) < 0 && errno == EINTR) {}
 			}
 		} else {
 			printf("xinput command not found in `%s', not disabling mouser pointer acceleration", xinput_path);

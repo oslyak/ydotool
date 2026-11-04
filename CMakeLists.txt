@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.22)
 project(ydotool C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 23)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS ON)
 
 # Include GNU install directory module to detect where to install
 # files on Linux/Unix systems (e.g., lib vs lib64)
@@ -36,9 +38,10 @@ add_subdirectory(manpage)
 
 option(YDOTOOL_TESTS "Build isolated input test fixtures" OFF)
 if(YDOTOOL_TESTS)
+    add_library(c23_contract OBJECT tests/c23_contract.c)
     add_library(fake_uinput SHARED tests/fake_uinput.c)
     list(REMOVE_ITEM SOURCE_FILES_CLIENT Client/ydotool.c)
     add_executable(send_failure tests/send_failure.c ${SOURCE_FILES_CLIENT})
     add_executable(socket_paths tests/socket_paths.c ${SOURCE_FILES_CLIENT})
-    target_link_options(socket_paths PRIVATE -Wl,--wrap=connect -Wl,--wrap=open)
+    target_link_options(socket_paths PRIVATE -Wl,--wrap=connect -Wl,--wrap=open -Wl,--wrap=__open_2)
 endif()

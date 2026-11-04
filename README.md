@@ -1,6 +1,6 @@
 # ydotool
 
-Linux keyboard and mouse automation for Wayland, X11 and consoles, using `/dev/uinput`. Written in **C11 with GNU extensions**. Maintained by PosBit as a fork of [ReimuNotMoe/ydotool](https://github.com/ReimuNotMoe/ydotool).
+Linux keyboard and mouse automation for Wayland, X11 and consoles, using `/dev/uinput`. Written in **C23 (GNU extensions)**. Maintained by PosBit as a fork of [ReimuNotMoe/ydotool](https://github.com/ReimuNotMoe/ydotool).
 
 ## Install
 

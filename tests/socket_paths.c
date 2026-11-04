@@ -36,4 +36,9 @@ int __wrap_open(const char *path, int flags, ...) {
     return __real_open(path, flags, mode);
 }
 
+// Clang fortifies two-argument open calls through this glibc entry point.
+int __wrap___open_2(const char *path, int flags) {
+    return __wrap_open(path, flags);
+}
+
 int main(int argc, char **argv) { return ydotool_client_main(argc, argv); }
