@@ -12,7 +12,7 @@ sudo apt install ydotool
 sudo usermod -aG ydotool "$USER"
 ```
 
-Alternatively, install a downloaded DEB with `sudo apt install ./path/to/ydotool.deb`, then add your user to the `ydotool` group as above.
+Download the [DEB for amd64](https://github.com/oslyak/ydotool/releases/latest/download/ydotool_amd64.deb) (glibc 2.38+ and systemd), then install it with `sudo apt install ./ydotool_amd64.deb` and add your user to the `ydotool` group as above.
 
 Log out and back in to apply group membership. The package automatically starts one `ydotoold.service` as the system user `ydotool`.
 
