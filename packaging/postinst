@@ -1,6 +1,40 @@
 #!/bin/sh
 set -eu
 if [ "$1" = configure ]; then
+    for tool in ydotool ydotoold; do
+        shadow="/usr/local/bin/$tool"
+        canonical="/usr/bin/$tool"
+        remove_shadow=false
+        if [ -L "$shadow" ]; then
+            if [ "$(readlink -f "$shadow")" = "$canonical" ]; then
+                remove_shadow=true
+            fi
+        elif [ -f "$shadow" ]; then
+            if cmp -s "$shadow" "$canonical"; then
+                remove_shadow=true
+            else
+                digest="$(sha256sum "$shadow")"
+                digest="${digest%% *}"
+                # Only migrate byte-identified builds previously installed by this deployment.
+                case "$tool:$digest" in
+                    ydotool:8f5c64f7fa72b8c84def96c7bd2b3ca3f1f29ab20c54b340c9840ab169db118f|\
+                    ydotool:a227073452592466056319c3697c6667e149f4894249b2061ab821b8c4a7be5d|\
+                    ydotool:6da58c6ceed2fb3a32931f118a5be9f974f3e26fa28c82f7dcdca86a70edd196|\
+                    ydotoold:98c7fb69ca9b727ced2e0871d78c7f3d2537ab3359f0f0a729ab170a0fd1f9d0|\
+                    ydotoold:19aa6e3adeb664583791c46d7da8fea5fcc54b8d31a17b39effd3eaaf104efc6|\
+                    ydotoold:dfab63df44d7d4ede5a57da2969d8c9de0a61821bba0b014e8b42475d2c819f3)
+                        remove_shadow=true
+                        ;;
+                esac
+            fi
+        fi
+        if [ "$remove_shadow" = true ]; then
+            rm -- "$shadow"
+            echo "ydotool: removed redundant local override $shadow"
+        elif [ -e "$shadow" ] || [ -L "$shadow" ]; then
+            echo "ydotool: unknown local override $shadow still takes precedence; inspect it before removal" >&2
+        fi
+    done
     systemd-sysusers /usr/lib/sysusers.d/ydotool.conf
     if [ -d /run/systemd/system ]; then
         if ! modprobe uinput; then

@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 class PackageTests(unittest.TestCase):
-    def run_hook(self, name, action, *, fail_modprobe=False):
+    def run_hook(self, name, action, *, fail_modprobe=False, shadow_layout=None):
         with tempfile.TemporaryDirectory(prefix="ydotool-package-test-") as directory:
             directory = Path(directory)
             log = directory / "calls"
@@ -20,22 +20,67 @@ import sys
 name = Path(sys.argv[0]).name
 with open(os.environ["CALL_LOG"], "a") as log:
     log.write(name + " " + " ".join(sys.argv[1:]) + "\\n")
+if name == "sha256sum":
+    hashes = {"ydotool":"8f5c64f7fa72b8c84def96c7bd2b3ca3f1f29ab20c54b340c9840ab169db118f", "ydotoold":"98c7fb69ca9b727ced2e0871d78c7f3d2537ab3359f0f0a729ab170a0fd1f9d0"}
+    path = Path(sys.argv[1])
+    digest = hashes[path.name] if path.read_text() == "known local binary" else "0" * 64
+    print(digest + "  " + str(path))
 if name == "modprobe" and os.environ.get("FAIL_MODPROBE"):
     sys.exit(1)
 if name == "systemctl" and sys.argv[1] == "list-unit-files":
     print("ydotoold@operators.service enabled enabled")
 ''')
             mock.chmod(0o755)
-            for command in ("systemctl", "systemd-sysusers", "modprobe", "udevadm"):
+            for command in ("systemctl", "systemd-sysusers", "modprobe", "udevadm", "sha256sum"):
                 (directory / command).symlink_to(mock)
             hook = directory / name
             runtime = directory / "systemd"
             runtime.mkdir()
-            hook.write_text((ROOT / "packaging" / name).read_text().replace("/run/systemd/system", str(runtime)))
+            canonical = directory / "usr/bin"
+            local = directory / "usr/local/bin"
+            canonical.mkdir(parents=True)
+            local.mkdir(parents=True)
+            if shadow_layout:
+                for tool in ("ydotool", "ydotoold"):
+                    (canonical / tool).write_text("packaged " + tool)
+                    shadow = local / tool
+                    if shadow_layout == "link":
+                        shadow.symlink_to(canonical / tool)
+                    elif shadow_layout == "copy":
+                        shadow.write_bytes((canonical / tool).read_bytes())
+                    elif shadow_layout == "known":
+                        shadow.write_text("known local binary")
+                    elif shadow_layout == "other-link":
+                        alternate = directory / (tool + "-custom")
+                        alternate.write_text("custom binary")
+                        shadow.symlink_to(alternate)
+                    else:
+                        shadow.write_text("custom binary")
+            script = (ROOT / "packaging" / name).read_text()
+            script = script.replace("/run/systemd/system", str(runtime))
+            script = script.replace("/usr/local/bin/", str(local) + "/")
+            script = script.replace("/usr/bin/", str(canonical) + "/")
+            hook.write_text(script)
             result = subprocess.run(["/bin/sh", str(hook), action],
                 env={**os.environ, "PATH": str(directory) + ":/usr/bin:/bin", "CALL_LOG": str(log),
                      "FAIL_MODPROBE": "1" if fail_modprobe else ""}, capture_output=True, text=True)
+            self.remaining_shadows = [tool for tool in ("ydotool", "ydotoold") if (local / tool).exists() or (local / tool).is_symlink()]
             return result, log.read_text() if log.exists() else ""
+
+    def test_configure_removes_redundant_local_aliases_and_identical_copies(self):
+        for layout in ("link", "copy", "known"):
+            with self.subTest(layout=layout):
+                result, calls = self.run_hook("postinst", "configure", shadow_layout=layout)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(self.remaining_shadows, [])
+
+    def test_configure_preserves_unknown_local_overrides(self):
+        for layout in ("unknown", "other-link"):
+            with self.subTest(layout=layout):
+                result, calls = self.run_hook("postinst", "configure", shadow_layout=layout)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(self.remaining_shadows, ["ydotool", "ydotoold"])
+                self.assertIn("local override", result.stderr)
 
     def test_remove_stops_and_disables_instances(self):
         result, calls = self.run_hook("prerm", "remove")
