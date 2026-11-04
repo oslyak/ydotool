@@ -1,0 +1,38 @@
+[Unit]
+Description=Restricted ydotool input for %i
+After=systemd-udevd.service systemd-modules-load.service
+
+[Service]
+User=ydotool
+Group=%i
+SupplementaryGroups=ydotool-uinput
+RuntimeDirectory=ydotoold-%i
+RuntimeDirectoryMode=0750
+UMask=0077
+ExecStart=/usr/bin/ydotoold --socket-path=/run/ydotoold-%i/socket --socket-perm=0660 --no-system-keys
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+PrivateNetwork=yes
+RestrictAddressFamilies=AF_UNIX
+IPAddressDeny=any
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+DevicePolicy=closed
+DeviceAllow=/dev/uinput w
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
+UnsetEnvironment=DISPLAY LD_PRELOAD LD_LIBRARY_PATH
+
+[Install]
+WantedBy=multi-user.target

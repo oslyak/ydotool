@@ -74,7 +74,6 @@ int tool_key(int argc, char **argv) {
 
 		static struct option long_options[] = {
 			{"key-delay", required_argument, 0, 'd'},
-			{"file", required_argument, 0, 'f'},
 			{"help", no_argument, 0, 'h'},
 			{0, 0, 0, 0}
 		};
@@ -98,12 +97,8 @@ int tool_key(int argc, char **argv) {
 					printf (" with arg %s", optarg);
 				printf ("\n");
 				break;
-			case 'D':
-				key_delay = strtol(optarg, NULL, 10);
-				break;
-
 			case 'd':
-				key_delay = strtol(optarg, NULL, 10);
+				key_delay = parse_number(optarg, 0, 60000, "delay (0..60000 ms)");
 				break;
 
 			case 'h':
@@ -112,8 +107,7 @@ int tool_key(int argc, char **argv) {
 				break;
 
 			case '?':
-				/* getopt_long already printed an error message. */
-				break;
+				return 2;
 
 			default:
 				abort();
@@ -124,22 +118,12 @@ int tool_key(int argc, char **argv) {
 	if (optind < argc) {
 		while (optind < argc) {
 			char *pstr = argv[optind++];
-			uint16_t kc;
-			if (strchr(pstr, 'x')) {
-				kc = strtol(pstr, NULL, 16);
-			} else {
-				kc = strtol(pstr, NULL, 10);
-			}
-
-			size_t slen = strlen(pstr);
-			if (slen) {
-				char cen = pstr[slen-1];
-
-				if (cen == '0') {
-					uinput_emit(EV_KEY, kc, 0, 1);
-				} else {
-					uinput_emit(EV_KEY, kc, 1, 1);
-				}
+			char *end;
+			errno = 0;
+			long kc = strtol(pstr, &end, strncmp(pstr, "0x", 2) == 0 ? 16 : 10);
+			if (!errno && end != pstr && *end == ':' &&
+			    (end[1] == '0' || end[1] == '1') && end[2] == 0 && kc > 0 && kc < KEY_CNT) {
+				uinput_emit(EV_KEY, kc, end[1] - '0', 1);
 			}
 
 			usleep(key_delay * 1000);

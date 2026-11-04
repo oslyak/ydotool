@@ -69,3 +69,6 @@ extern int tool_mousemove(int argc, char **argv);
 extern int tool_type(int argc, char **argv);
 extern int tool_key(int argc, char **argv);
 extern int tool_stdin(int argc, char **argv);
+
+extern void uinput_release_keys(void);
+extern long parse_number(const char *text, long minimum, long maximum, const char *name);

@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+if [ "$1" = configure ]; then
+    systemd-sysusers /usr/lib/sysusers.d/ydotool.conf
+    if [ -d /run/systemd/system ]; then
+        if ! modprobe uinput; then
+            echo 'ydotool: could not load uinput; ensure it is built in or loadable before starting the service' >&2
+        fi
+        udevadm control --reload-rules
+        systemctl daemon-reload
+        if [ -e /sys/class/misc/uinput ]; then
+            udevadm trigger --action=change /sys/class/misc/uinput
+            udevadm settle
+            systemctl try-restart 'ydotoold@*.service'
+            if systemctl is-active --quiet ydotoold.service; then
+                systemctl try-restart ydotoold.service
+            fi
+        fi
+    fi
+fi

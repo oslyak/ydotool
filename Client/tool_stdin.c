@@ -56,17 +56,16 @@ static void restore_terminal() {
 }
 
 static void handle_signal(int sig) {
-    if (sig == SIGINT) {
-        restore_terminal();
-        exit(0);
-    }
+    restore_terminal();
+    uinput_release_keys();
+    _exit(128 + sig);
 }
 
 static void configure_terminal() {
     struct termios new_tio;
     
     // Get the current terminal attributes
-    tcgetattr(STDIN_FILENO, &old_tio);
+    if (tcgetattr(STDIN_FILENO, &old_tio)) return;
     
     // Set the new attributes for the terminal (non-canonical, no echo)
     new_tio = old_tio;
@@ -75,6 +74,7 @@ static void configure_terminal() {
 
     atexit(restore_terminal); // Ensure terminal settings are restored on exit
     signal(SIGINT, handle_signal); // Handle CTRL-C
+    signal(SIGTERM, handle_signal);
 }
 
 int tool_stdin(int argc, char **argv) {
@@ -84,17 +84,35 @@ int tool_stdin(int argc, char **argv) {
 
     while (1) {
 		char buffer[4] = {0};
-		read(STDIN_FILENO, buffer, 3);
+		ssize_t count = read(STDIN_FILENO, buffer, 1);
+		if (count == 0) return 0;
+		if (count < 0) {
+			perror("ydotool: read stdin");
+			return 2;
+		}
 
 		printf("Key code: %d %d %d\n", buffer[0], buffer[1], buffer[2]);
 
-		char c = buffer[0];
+		unsigned char c = (unsigned char)buffer[0];
+		if (c >= sizeof(ascii2keycode_map) / sizeof(ascii2keycode_map[0])) {
+			fputs("ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n", stderr);
+			return 2;
+		}
 
 		// Convert char to keycode and flags based on the ascii2keycode_map
 		int kdef = ascii2keycode_map[(int)c];
 
-		if ((int)buffer[0] == 27 && (int)buffer[1] == 91 && (int)buffer[2] >= 65 && (int)buffer[2] <= 76) {
-			kdef = ascii2ctrlcode_map[(int)buffer[2] - 65];
+		if (c == 27) {
+			char sequence[2];
+			size_t length = 0;
+			while (length < sizeof(sequence)) {
+				ssize_t n = read(STDIN_FILENO, sequence + length, sizeof(sequence) - length);
+				if (n <= 0) return n == 0 ? 0 : 2;
+				length += n;
+			}
+			if (sequence[0] == '[' && sequence[1] >= 'A' && sequence[1] <= 'L') {
+				kdef = ascii2ctrlcode_map[sequence[1] - 'A'];
+			}
 		}
 
 		if (kdef == -1) continue; // Skip unsupported characters

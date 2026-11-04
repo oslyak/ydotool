@@ -23,6 +23,9 @@ ydotoold \- daemon for *ydotool*(1)
 	*-o*, *--socket-own=UID:GID*
 		Socket ownership.
 
+	*-s*, *--no-system-keys*
+		Reject SysRq and power, sleep, suspend and restart keys. Enabled by the packaged service.
+
 	*-m*, *--mouse-off*
 		Disable mouse (EV_REL)
 

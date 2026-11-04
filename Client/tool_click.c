@@ -111,11 +111,11 @@ int tool_click(int argc, char **argv) {
 				printf ("\n");
 				break;
 			case 'r':
-				repeats = strtol(optarg, NULL, 10);
+				repeats = parse_number(optarg, 0, 1000000, "repeat count");
 				break;
 
 			case 'D':
-				next_delay_ms = strtol(optarg, NULL, 10);
+				next_delay_ms = parse_number(optarg, 0, 60000, "delay (0..60000 ms)");
 				break;
 			
 			case 'P':
@@ -128,8 +128,7 @@ int tool_click(int argc, char **argv) {
 				break;
 
 			case '?':
-				/* getopt_long already printed an error message. */
-				break;
+				return 2;
 
 			default:
 				abort();

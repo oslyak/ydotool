@@ -7,7 +7,14 @@ set(CMAKE_C_STANDARD 11)
 # files on Linux/Unix systems (e.g., lib vs lib64)
 include(GNUInstallDirs)
 
-execute_process(COMMAND git describe --tags --long --always RESULT_VARIABLE RC_GIT_VER OUTPUT_VARIABLE GIT_VERSION)
+if(NOT DEFINED YDOTOOL_VERSION)
+    execute_process(COMMAND git describe --tags --long --always
+        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+        RESULT_VARIABLE RC_GIT_VER OUTPUT_VARIABLE GIT_VERSION)
+else()
+    set(RC_GIT_VER 0)
+    set(GIT_VERSION "${YDOTOOL_VERSION}")
+endif()
 
 if (${RC_GIT_VER} EQUAL 0)
     string(STRIP ${GIT_VERSION} GIT_VERSION)
@@ -26,3 +33,10 @@ install(TARGETS ydotool DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 add_subdirectory(Daemon)
 add_subdirectory(manpage)
+
+option(YDOTOOL_TESTS "Build isolated input test fixtures" OFF)
+if(YDOTOOL_TESTS)
+    add_library(fake_uinput SHARED tests/fake_uinput.c)
+    list(REMOVE_ITEM SOURCE_FILES_CLIENT Client/ydotool.c)
+    add_executable(send_failure tests/send_failure.c ${SOURCE_FILES_CLIENT})
+endif()

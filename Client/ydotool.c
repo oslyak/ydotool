@@ -40,6 +40,7 @@
 #include <stdio.h>
 
 #include <string.h>
+#include <sys/file.h>
 
 struct tool_def {
 	char name[16];
@@ -70,7 +71,22 @@ static int tool_bakers(int argc, char **argv) {
 	return 0;
 }
 
+static int tool_release_all(int argc, char **argv) {
+	if (argc > 1) {
+		if (argc == 2 && (!strcmp(argv[1], "--help") || !strcmp(argv[1], "-h"))) {
+			puts("Usage: release-all\nRelease all virtual keyboard and mouse buttons.");
+			return 0;
+		}
+		fputs("ydotool: release-all takes no arguments\n", stderr);
+		return 2;
+	}
+	for (int code = 1; code < KEY_CNT; code++) uinput_emit(EV_KEY, code, 0, false);
+	uinput_emit(EV_SYN, SYN_REPORT, 0, false);
+	return 0;
+}
+
 static const struct tool_def tool_list[] = {
+	{"release-all", tool_release_all},
 	{"click",     tool_click},
 	{"mousemove", tool_mousemove},
 	{"type",      tool_type},
@@ -90,25 +106,67 @@ static void show_help() {
 		printf("  %s\n", tool_list[i].name);
 	}
 
-	puts("Use environment variable YDOTOOL_SOCKET to specify daemon socket.");
+	puts("Use release-all to recover held keys after a killed client.\n"
+	     "Use environment variable YDOTOOL_SOCKET to specify daemon socket.");
+}
+
+static volatile sig_atomic_t pressed_keys[KEY_CNT];
+
+long parse_number(const char *text, long minimum, long maximum, const char *name) {
+	char *end;
+	errno = 0;
+	long value = strtol(text, &end, 10);
+	if (errno || end == text || *end || value < minimum || value > maximum) {
+		fprintf(stderr, "ydotool: invalid %s: %s\n", name, text);
+		exit(2);
+	}
+	return value;
+}
+
+void uinput_release_keys(void) {
+	struct input_event event = {.type = EV_KEY};
+	bool released = false;
+	for (int code = 0; code < KEY_CNT; code++) {
+		if (pressed_keys[code]) {
+			event.code = code;
+			released = true;
+			send(fd_daemon_socket, &event, sizeof(event), MSG_DONTWAIT | MSG_NOSIGNAL);
+		}
+	}
+	if (!released) return;
+	event.type = EV_SYN;
+	event.code = SYN_REPORT;
+	send(fd_daemon_socket, &event, sizeof(event), MSG_DONTWAIT | MSG_NOSIGNAL);
+}
+
+static void handle_signal(int sig) {
+	uinput_release_keys();
+	_exit(128 + sig);
+}
+
+static void send_event(const struct input_event *event) {
+	ssize_t result;
+	do {
+		result = send(fd_daemon_socket, event, sizeof(*event), MSG_NOSIGNAL);
+	} while (result < 0 && errno == EINTR);
+	if (result != sizeof(*event)) {
+		perror("ydotool: send input event");
+		uinput_release_keys();
+		exit(2);
+	}
 }
 
 void uinput_emit(uint16_t type, uint16_t code, int32_t val, bool syn_report) {
-	struct input_event ie = {
-		.type = type,
-		.code = code,
-		.value = val
-	};
-
-	write(fd_daemon_socket, &ie, sizeof(ie));
-
+	struct input_event ie = {.type = type, .code = code, .value = val};
+	if (type == EV_KEY && code < KEY_CNT && val) pressed_keys[code] = 1;
+	send_event(&ie);
+	if (type == EV_KEY && code < KEY_CNT && !val) pressed_keys[code] = 0;
 	if (syn_report) {
 		ie.type = EV_SYN;
 		ie.code = SYN_REPORT;
 		ie.value = 0;
-		write(fd_daemon_socket, &ie, sizeof(ie));
+		send_event(&ie);
 	}
-
 }
 
 int main(int argc, char **argv) {
@@ -133,7 +191,7 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	fd_daemon_socket = socket(AF_UNIX, SOCK_DGRAM, 0);
+	fd_daemon_socket = socket(AF_UNIX, SOCK_DGRAM | SOCK_CLOEXEC, 0);
 
 	if (fd_daemon_socket < 0) {
 		perror("failed to create socket");
@@ -173,5 +231,27 @@ int main(int argc, char **argv) {
 		exit(2);
 	}
 
+	struct sigaction action = {.sa_handler = handle_signal};
+	sigemptyset(&action.sa_mask);
+	sigaddset(&action.sa_mask, SIGINT);
+	sigaddset(&action.sa_mask, SIGTERM);
+	if (sigaction(SIGINT, &action, NULL) || sigaction(SIGTERM, &action, NULL)) {
+		perror("ydotool: install signal handler");
+		return 2;
+	}
+	char directory[sizeof(sa.sun_path)];
+	snprintf(directory, sizeof(directory), "%s", sa.sun_path);
+	char *separator = strrchr(directory, '/');
+	if (separator) {
+		separator[separator == directory ? 1 : 0] = 0;
+	} else {
+		snprintf(directory, sizeof(directory), ".");
+	}
+	// Cooperating clients keep one complete command together, including signal cleanup.
+	int lock_fd = open(directory, O_RDONLY | O_DIRECTORY | O_CLOEXEC);
+	if (lock_fd < 0 || flock(lock_fd, LOCK_EX)) {
+		perror("ydotool: lock socket directory");
+		return 2;
+	}
 	return tool_main(argc-1, argv+1);
 }

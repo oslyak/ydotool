@@ -27,8 +27,14 @@ Currently implemented command(s):
 	Click on mouse buttons
 *stdin*
 	Resend all keypresses as a keyboard (i.e. from ssh)
+*release-all*
+	Release all keyboard and mouse buttons after an interrupted client
 
 # KEYBOARD COMMANDS
+
+*release-all*
+	Release all virtual keys and mouse buttons. Use this to recover after a client was killed with SIGKILL. Normal key-down-only commands deliberately keep the key held between invocations.
+
 *key* [*-d*,*--key-delay* _<ms>_] [_<KEYCODE:PRESSED>_ ...]
 
 	Type a given keycode.
@@ -46,16 +52,17 @@ Currently implemented command(s):
 
 	Options:
 	*-d*,*--key-delay* _<ms>_
-		Delay time between keystrokes. Default 12ms.
+		Delay time between keystrokes. Range 0..60000ms. Default 12ms.
 
 *type* [*-D*,*--next-delay* _<ms>_] [*-d*,*--key-delay* _<ms>_] [*-f*,*--file* _<filepath>_] "_text_"
 
-	Types text as if you had typed it on the keyboard.
+	Types ASCII text using a US keyboard mapping. Use clipboard paste for non-ASCII text.
+	Command-line arguments are validated before typing; file input is streamed and may already have typed valid text before a later error.
 
 	Options:
 
 	*-d*,*--key-delay* _<ms>_
-		Delay time between key events (up/down each). Default 12ms.
+		Delay time between key events (up/down each). Default 20ms.
 
 	*-D*,*--next-delay* _<ms>_
 		Delay between strings. Default 0ms.
@@ -73,16 +80,16 @@ Currently implemented command(s):
 
 	Options:
 	*--absolute*
-		Use absolute position
+		Approximate absolute position using relative movements. Pointer acceleration must be disabled; Wayland does not guarantee exact coordinates.
 
 	Example: to move the cursor to absolute coordinates (100,100):
 		ydotool mousemove --absolute 100 100
 
-*click* [*-d*,*--next-delay* _<ms>_] [*-r*,*--repeat* _N_ ] [_button_ ...]
+*click* [*-D*,*--next-delay* _<ms>_] [*-r*,*--repeat* _N_ ] [_button_ ...]
 	Send a click.
 
 	Options:
-	*-d*,*--next-delay* _<ms>_
+	*-D*,*--next-delay* _<ms>_
 		Delay between input events (up/down, a compete click means doubled time). Default 25ms.
 
 	*-r*,*--repeat* _N_

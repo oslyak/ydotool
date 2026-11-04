@@ -9,3 +9,7 @@ libydotool.so
 ydotool
 ydotoold
 build/*
+
+/.build/
+/dist/
+!/Makefile
