@@ -1,6 +1,5 @@
 #!/bin/sh
 set -eu
 if [ "$1" = remove ] && [ -d /run/systemd/system ]; then
-    systemctl stop ydotool-autosetup.path ydotool-autosetup.service
-    systemctl stop 'ydotoold@*.service'
+    deb-systemd-invoke stop ydotoold.service
 fi

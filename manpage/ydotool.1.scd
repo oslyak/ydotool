@@ -120,13 +120,10 @@ Currently implemented command(s):
 
 # YDOTOOL SOCKET
 
-The DEB automatically enables a restricted daemon for each primary group of local interactive users (UID_MIN..UID_MAX from login.defs, with a shell listed in /etc/shells). New local accounts are detected automatically. No username is hardcoded and no login-session restart is required. All members of these groups can inject input into the host desktop.
+The DEB starts one restricted daemon as the system user ydotool. Its socket is /run/ydotoold/socket, owned by ydotool:ydotool with mode 0660.
+Add each authorized user explicitly with sudo usermod -aG ydotool USER, then log out and back in so applications receive the new group membership. Members can inject input into the host desktop. The package never adds desktop users automatically.
 
-To opt out for a group, disable its instance using systemctl disable --now and the unit name returned by systemd-escape --template=ydotoold@.service GROUP. Updates preserve this choice; purge clears it.
-
-The packaged client first discovers /run/ydotoold-GROUP/socket for the user's primary group, then tries the upstream runtime socket if the packaged service is absent.
-The environment variable YDOTOOL_SOCKET selects an explicit socket, for example when using a shared group.
-Processes retaining the retired /run/ydotoold/socket address automatically try the packaged group socket when that old address is absent.
+The client uses /run/ydotoold/socket by default, then tries the upstream runtime socket if the packaged service is absent. YDOTOOL_SOCKET selects an explicit socket and disables fallback.
 
 # AUTHOR
 

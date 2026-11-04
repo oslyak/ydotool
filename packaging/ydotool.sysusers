@@ -1,2 +1,3 @@
+g ydotool -
 g ydotool-uinput -
 u ydotool - "Restricted input daemon" /nonexistent

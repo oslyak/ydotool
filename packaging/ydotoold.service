@@ -1,15 +1,15 @@
 [Unit]
-Description=Restricted ydotool input for %I
+Description=Restricted ydotool input daemon
 After=systemd-udevd.service systemd-modules-load.service
 
 [Service]
 User=ydotool
-Group=%I
+Group=ydotool
 SupplementaryGroups=ydotool-uinput
-RuntimeDirectory=ydotoold-%I
+RuntimeDirectory=ydotoold
 RuntimeDirectoryMode=0750
 UMask=0077
-ExecStart=/usr/bin/ydotoold --socket-path=/run/ydotoold-%I/socket --socket-perm=0660 --no-system-keys
+ExecStart=/usr/bin/ydotoold --socket-path=/run/ydotoold/socket --socket-perm=0660 --no-system-keys
 Restart=on-failure
 RestartSec=3
 NoNewPrivileges=yes

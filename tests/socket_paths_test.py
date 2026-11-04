@@ -1,4 +1,3 @@
-import grp
 import os
 from pathlib import Path
 import socket
@@ -8,13 +7,13 @@ import tempfile
 import unittest
 
 BINARY = Path(sys.argv.pop(1)).resolve()
-PACKAGE_DIRECTORY = "/run/ydotoold-" + grp.getgrgid(os.getgid()).gr_name
+PACKAGE_DIRECTORY = "/run/ydotoold"
 PACKAGE_SOCKET = PACKAGE_DIRECTORY + "/socket"
 
 
 class SocketPathTests(unittest.TestCase):
-    def test_package_discovery_legacy_migration_and_explicit_override(self):
-        for scenario in ("default", "empty", "legacy", "missing", "denied", "custom"):
+    def test_shared_socket_discovery_and_explicit_override(self):
+        for scenario in ("default", "empty", "explicit", "missing", "denied", "custom"):
             with self.subTest(scenario=scenario), tempfile.TemporaryDirectory(prefix="ydotool-paths-") as directory:
                 directory = Path(directory)
                 real = directory / ".ydotool_socket"
@@ -28,9 +27,9 @@ class SocketPathTests(unittest.TestCase):
                     expected = [PACKAGE_SOCKET]
                     expected_rc = 0
                     if scenario == "empty": env["YDOTOOL_SOCKET"] = ""
-                    if scenario == "legacy":
+                    if scenario == "explicit":
                         env["YDOTOOL_SOCKET"] = "/run/ydotoold/socket"
-                        expected = ["/run/ydotoold/socket", PACKAGE_SOCKET]
+                        expected = [PACKAGE_SOCKET]
                     if scenario == "missing":
                         env["TEST_PACKAGE_MISSING"] = "1"
                         expected = [PACKAGE_SOCKET, str(real)]

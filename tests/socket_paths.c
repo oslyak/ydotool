@@ -13,10 +13,6 @@ int __wrap_connect(int fd, const struct sockaddr *address, socklen_t length) {
     if (!log) return -1;
     fprintf(log, "%s\n", sa->sun_path);
     fclose(log);
-    if (strcmp(sa->sun_path, "/run/ydotoold/socket") == 0) {
-        errno = ENOENT;
-        return -1;
-    }
     if (strcmp(sa->sun_path, getenv("TEST_PACKAGE_SOCKET")) == 0) {
         if (getenv("TEST_PACKAGE_MISSING")) { errno = ENOENT; return -1; }
         if (getenv("TEST_PACKAGE_DENIED")) { errno = EACCES; return -1; }

@@ -41,7 +41,6 @@
 
 #include <string.h>
 #include <sys/file.h>
-#include <grp.h>
 
 struct tool_def {
 	char name[16];
@@ -205,27 +204,14 @@ int main(int argc, char **argv) {
 
 	char *env_ys = getenv("YDOTOOL_SOCKET");
 	char *env_xrd = getenv("XDG_RUNTIME_DIR");
-	char package_socket[sizeof(sa.sun_path)] = "";
 	char upstream_socket[sizeof(sa.sun_path)];
-	struct group *group = getgrgid(getgid());
-	if (group) snprintf(package_socket, sizeof(package_socket), "/run/ydotoold-%s/socket", group->gr_name);
 	if (env_xrd && *env_xrd) {
 		snprintf(upstream_socket, sizeof(upstream_socket), "%s/.ydotool_socket", env_xrd);
 	} else {
 		snprintf(upstream_socket, sizeof(upstream_socket), "/tmp/.ydotool_socket");
 	}
-	const char *fallback = NULL;
-	const char *requested;
-	if (env_ys && *env_ys) {
-		requested = env_ys;
-		// Existing desktop processes may retain the retired deployment's socket variable.
-		if (strcmp(env_ys, "/run/ydotoold/socket") == 0 && package_socket[0]) fallback = package_socket;
-	} else if (package_socket[0]) {
-		requested = package_socket;
-		fallback = upstream_socket;
-	} else {
-		requested = upstream_socket;
-	}
+	const char *requested = env_ys && *env_ys ? env_ys : "/run/ydotoold/socket";
+	const char *fallback = env_ys && *env_ys ? NULL : upstream_socket;
 	if (snprintf(sa.sun_path, sizeof(sa.sun_path), "%s", requested) >= sizeof(sa.sun_path)) {
 		fputs("ydotool: socket path is too long\n", stderr);
 		return 2;
