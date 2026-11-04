@@ -29,7 +29,7 @@ users must be explicitly added to the ydotool group to access its socket.
 cmake -S . -B build -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_BUILD_TYPE=Release -DBUILD_DOCS=ON \
   -DSYSTEMD_USER_SERVICE=OFF -DSYSTEMD_SYSTEM_SERVICE=OFF \
   -DYDOTOOL_VERSION=posbit-%{version}+upstream.708e96f \
-  -DCMAKE_C_FLAGS="-O2 -D_FORTIFY_SOURCE=3 -fstack-protector-strong -fPIE" \
+  -DCMAKE_C_FLAGS="-O2 -g -D_FORTIFY_SOURCE=3 -fstack-protector-strong -fPIE" \
   -DCMAKE_EXE_LINKER_FLAGS="-Wl,-z,relro,-z,now -pie"
 cmake --build build --parallel 2
 
