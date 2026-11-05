@@ -21,6 +21,7 @@ jobs:
             if command -v apt-get >/dev/null; then localedef -i en_US -f UTF-8 en_US.UTF-8; fi
             git config --global --add safe.directory /src
             make test
+            python3 po/check_catalogs.py --strict --require-reviewed dz
             make build
             lintian --fail-on error,warning dist/ydotool_*.deb
             apt-get install -y ./dist/ydotool_*.deb
@@ -66,6 +67,7 @@ jobs:
             if command -v apt-get >/dev/null; then localedef -i en_US -f UTF-8 en_US.UTF-8; fi
             git config --global --add safe.directory /src
             if command -v gcc-14 >/dev/null; then CC=gcc-14 make test; else make test; fi
+            python3 po/check_catalogs.py --strict --require-reviewed dz
             if [ "$PACKAGE" = deb ]; then
               if command -v gcc-14 >/dev/null; then CC=gcc-14 make build; else make build; fi
               apt-get install -y ./dist/ydotool_*.deb

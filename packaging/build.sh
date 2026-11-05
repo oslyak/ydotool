@@ -13,6 +13,7 @@ if [[ "$mode" == package ]]; then
         echo 'ydotool: release requires a clean Git checkout; commit the reviewed source first' >&2
         exit 2
     fi
+    python3 po/check_catalogs.py --strict --require-reviewed dz
 fi
 if [[ -e .git ]]; then
     source_revision="$(git rev-parse HEAD)"
@@ -57,6 +58,7 @@ python3 "$work/source/tests/socket_paths_test.py" "$work/build/socket_paths"
 python3 "$work/source/tests/input_test.py" "$work/build/ydotool"
 python3 "$work/source/tests/source_test.py"
 python3 "$work/source/tests/catalog_test.py"
+python3 "$work/source/tests/release_gate_test.py"
 python3 "$work/source/tests/gettext_test.py" "$work/build/ydotool"
 python3 "$work/source/po/check_catalogs.py"
 python3 "$work/source/tests/package_test.py"
