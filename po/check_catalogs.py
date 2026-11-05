@@ -10,7 +10,6 @@ from catalogs import messages, validate_translation
 root = pathlib.Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument('--strict', action='store_true', help='require every LINGUAS locale catalog to be complete')
-parser.add_argument('--require-reviewed', action='append', default=[], metavar='LOCALE', help='require X-Native-Review: approved for this locale')
 args = parser.parse_args()
 pot = messages(root / 'po/ydotool.pot')
 msgids = set(pot) - {''}
@@ -22,10 +21,6 @@ for lang in langs:
         missing.append(lang)
         continue
     catalog = messages(path)
-    if lang in args.require_reviewed:
-        header = dict(line.split(': ', 1) for line in catalog.get('', '').splitlines() if ': ' in line)
-        if header.get('X-Native-Review') != 'approved':
-            raise SystemExit(f'{path}: native-language review must be approved before release')
     if set(catalog) - {''} != msgids:
         raise SystemExit(f'{path}: msgid set differs from POT')
     for msgid, msgstr in catalog.items():

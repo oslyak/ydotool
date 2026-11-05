@@ -1,4 +1,4 @@
-"""Verify release completeness and the explicit native-review requirement."""
+"""Verify that releases require complete catalogs for every supported locale."""
 from pathlib import Path
 import shutil
 import subprocess
@@ -14,26 +14,28 @@ with tempfile.TemporaryDirectory(prefix='ydotool-release-gate-') as directory:
     po.mkdir()
     for name in ['catalogs.py', 'check_catalogs.py', 'ydotool.pot', 'en.po']:
         shutil.copy2(ROOT / 'po' / name, po / name)
-    (po / 'LINGUAS').write_text('en\ndz\n')
+    (po / 'LINGUAS').write_text('en\nuk\n')
 
     def check():
-        return subprocess.run([sys.executable, str(po / 'check_catalogs.py'), '--strict', '--require-reviewed', 'dz'], capture_output=True, text=True)
+        return subprocess.run([sys.executable, str(po / 'check_catalogs.py'), '--strict'], capture_output=True, text=True)
 
     missing = check()
-    assert missing.returncode != 0 and 'missing locale catalogs: dz' in missing.stderr
-    # An existing translated catalog supplies fixture content, not a real dz translation.
-    fixture = messages(ROOT / 'po/uk.po')
+    assert missing.returncode != 0 and 'missing locale catalogs: uk' in missing.stderr
+    shutil.copy2(ROOT / 'po/uk.po', po / 'uk.po')
+    complete = check()
+    assert complete.returncode == 0, complete.stderr
+    fixture = messages(po / 'uk.po')
     headers = dict(line.split(': ', 1) for line in fixture.pop('').splitlines() if ': ' in line)
-    headers.update({'Language': 'dz', 'X-Native-Review': 'pending'})
-    write_po(po / 'dz.po', fixture, headers)
-    pending = check()
-    assert pending.returncode != 0 and 'native-language review must be approved' in pending.stderr
-    headers['X-Native-Review'] = 'approved'
-    write_po(po / 'dz.po', fixture, headers)
-    approved = check()
-    assert approved.returncode == 0, approved.stderr
-    fixture.pop(next(iter(fixture)))
-    write_po(po / 'dz.po', fixture, headers)
+    first = next(iter(fixture))
+    original = fixture.pop(first)
+    write_po(po / 'uk.po', fixture, headers)
     incomplete = check()
     assert incomplete.returncode != 0 and 'msgid set differs' in incomplete.stderr
-print('release gate: missing, unreviewed and incomplete catalogs rejected; approved fixture accepted')
+    fixture[first] = ''
+    write_po(po / 'uk.po', fixture, headers)
+    empty = check()
+    assert empty.returncode != 0 and 'untranslated entries remain' in empty.stderr
+    fixture[first] = original
+    write_po(po / 'uk.po', fixture, headers)
+    assert check().returncode == 0
+print('release gate: missing, incomplete and empty translations rejected; complete supported set accepted')

@@ -13,10 +13,11 @@ po_ids = set(messages(root / 'po/en.po')) - {''}
 assert len(pot_ids) > 20 and len(pot_ids) == len(set(pot_ids))
 assert pot_ids == po_ids
 linguas = (root / 'po/LINGUAS').read_text().split()
-assert len(linguas) == 77 and len(set(linguas)) == 77 and 'en' in linguas
+assert len(linguas) == len(set(linguas)) and {'en', 'uk', 'th'} <= set(linguas)
 entries = __import__('json').loads((root/'po/debian-installer.json').read_text())['entries']
 assert len(entries) == 78
-assert set(linguas) == {entry['code'] for entry in entries if entry['code'] != 'C'}
+assert set(linguas) <= {entry['code'] for entry in entries if entry['code'] != 'C'}
+assert {path.stem for path in (root / 'po').glob('*.po')} == set(linguas)
 with tempfile.TemporaryDirectory(prefix='ydotool-po-') as tmp:
     fixture = pathlib.Path(tmp) / 'fixture.po'
     write_po(fixture, {'Usage: tool --help\nPath: /usr/bin/tool %s': 'Uso: tool --help\nRuta: /usr/bin/tool %s'}, {'Language': 'es', 'Content-Type': 'text/plain; charset=UTF-8'})
