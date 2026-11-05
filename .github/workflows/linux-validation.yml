@@ -17,10 +17,12 @@ jobs:
         run: |
           docker run --rm --platform linux/arm64 --volume "$GITHUB_WORKSPACE:/src" --workdir /src debian:13 bash -euc '
             apt-get update
-            DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential cmake git python3 scdoc systemd udev kmod dpkg-dev
+            DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential cmake git python3 scdoc gettext locales lintian systemd udev kmod dpkg-dev
+            if command -v apt-get >/dev/null; then localedef -i en_US -f UTF-8 en_US.UTF-8; fi
             git config --global --add safe.directory /src
             make test
             make build
+            lintian --fail-on error,warning dist/ydotool_*.deb
             apt-get install -y ./dist/ydotool_*.deb
             dpkg-query -W ydotool
           '
@@ -54,19 +56,21 @@ jobs:
             if command -v apt-get >/dev/null; then
               apt-get update
               if grep -q Ubuntu /etc/os-release; then compiler=gcc-14; else compiler=gcc; fi
-              DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential cmake git python3 scdoc systemd udev kmod dpkg-dev "$compiler"
+              DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential cmake git python3 scdoc gettext locales lintian systemd udev kmod dpkg-dev "$compiler"
             elif command -v dnf >/dev/null; then
-              dnf install -y gcc gcc-c++ cmake git make python3 libubsan scdoc systemd systemd-udev systemd-rpm-macros rpm-build redhat-rpm-config kmod
+              dnf install -y gcc gcc-c++ cmake git make python3 gettext glibc-langpack-en libubsan scdoc systemd systemd-udev systemd-rpm-macros rpm-build redhat-rpm-config kmod
             else
               zypper --non-interactive refresh
-              zypper --non-interactive install --no-recommends -y gcc gcc-c++ cmake git-core make python3 libubsan1-gcc15 scdoc systemd systemd-rpm-macros rpm-build kmod udev
+              zypper --non-interactive install --no-recommends -y gcc gcc-c++ cmake git-core make python3 gettext-tools glibc-locale libubsan1-gcc15 scdoc systemd systemd-rpm-macros rpm-build kmod udev
             fi
+            if command -v apt-get >/dev/null; then localedef -i en_US -f UTF-8 en_US.UTF-8; fi
             git config --global --add safe.directory /src
             if command -v gcc-14 >/dev/null; then CC=gcc-14 make test; else make test; fi
             if [ "$PACKAGE" = deb ]; then
               if command -v gcc-14 >/dev/null; then CC=gcc-14 make build; else make build; fi
               apt-get install -y ./dist/ydotool_*.deb
               dpkg-query -W ydotool
+              lintian --fail-on error,warning ./dist/ydotool_*.deb
             else
               bash packaging/build-rpm.sh
               if command -v dnf >/dev/null; then dnf install -y ./dist/ydotool-*.rpm; else zypper --non-interactive install --allow-unsigned-rpm -y ./dist/ydotool-*.rpm; fi

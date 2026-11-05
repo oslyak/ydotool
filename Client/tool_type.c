@@ -78,40 +78,34 @@ static int opt_key_hold_ms = 20;
 static int opt_next_delay_ms = 0;
 
 static void show_help(void) {
-	puts(
-		"Usage: type [OPTION]... [STRINGS]...\n"
+	puts(_("Usage: type [OPTION]... [STRINGS]...\n"
 		"Type strings.\n"
 		"\n"
-		"Options:");
+		"Options:"));
 
-	printf(
-		"  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n", opt_key_delay_ms
+	printf(_("  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"), opt_key_delay_ms
 	);
 
-	printf(
-		"  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n", opt_key_hold_ms
+	printf(_("  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"), opt_key_hold_ms
 	);
 
-	printf(
-		"  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n", opt_next_delay_ms
+	printf(_("  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"), opt_next_delay_ms
 	);
 
-	puts(
-		"  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n"
+	puts(_("  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n"
 		"                               The filepath may also be '-' to read from stdin\n"
 		"  -e, --escape=BOOL          Escape enable (1) or disable (0)\n"
 		"  -h, --help                 Display this help and exit\n"
 		"\n"
 		"Escape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\n"
-		"File input is streamed: valid ASCII before a later error may already have been typed."
-	);
+		"File input is streamed: valid ASCII before a later error may already have been typed."));
 }
 
 
 
 [[nodiscard]] static int type_char(char c, bool delay) {
 	if ((unsigned char)c >= sizeof(ascii2keycode_map) / sizeof(ascii2keycode_map[0])) {
-		fputs("ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n", stderr);
+		fputs(_("ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"), stderr);
 		return 2;
 	}
 	int kdef = ascii2keycode_map[c];
@@ -219,21 +213,21 @@ int tool_type(int argc, char **argv) {
 				/* If this option set a flag, do nothing else now. */
 				if (long_options[option_index].flag != 0)
 					break;
-				printf ("option %s", long_options[option_index].name);
+				printf (_("option %s"), long_options[option_index].name);
 				if (optarg)
-					printf (" with arg %s", optarg);
+					printf (_(" with arg %s"), optarg);
 				printf ("\n");
 				break;
 			case 'd':
-				opt_key_delay_ms = parse_number(optarg, 0, 60000, "delay (0..60000 ms)");
+				opt_key_delay_ms = parse_number(optarg, 0, 60000, _("delay (0..60000 ms)"));
 				break;
 
 			case 'D':
-				opt_next_delay_ms = parse_number(optarg, 0, 60000, "delay (0..60000 ms)");
+				opt_next_delay_ms = parse_number(optarg, 0, 60000, _("delay (0..60000 ms)"));
 				break;
 
 			case 'H':
-				opt_key_hold_ms = parse_number(optarg, 0, 60000, "delay (0..60000 ms)");
+				opt_key_hold_ms = parse_number(optarg, 0, 60000, _("delay (0..60000 ms)"));
 				break;
 
 			case 'f':
@@ -246,7 +240,7 @@ int tool_type(int argc, char **argv) {
 				break;
 
 			case 'e':
-				enable_escape = parse_number(optarg, 0, 1, "escape mode");
+				enable_escape = parse_number(optarg, 0, 1, _("escape mode"));
 				break;
 
 			case '?':
@@ -267,7 +261,7 @@ int tool_type(int argc, char **argv) {
 			 : open(file_path, O_RDONLY);
 
 		if (fd == -1) {
-			fprintf(stderr, "ydotool: type: error: failed to open %s: %s\n", file_path,
+			fprintf(stderr, _("ydotool: type: error: failed to open %s: %s\n"), file_path,
 				strerror(errno));
 			return 2;
 		}
@@ -284,7 +278,7 @@ int tool_type(int argc, char **argv) {
 					}
 				}
 			} else if (rc < 0) {
-				fprintf(stderr, "ydotool: type: error: read %s failed: %s\n", file_path, strerror(errno));
+				fprintf(stderr, _("ydotool: type: error: read %s failed: %s\n"), file_path, strerror(errno));
 				return 2;
 			}
 		}
@@ -298,7 +292,7 @@ int tool_type(int argc, char **argv) {
 			for (int i = 0; argv[arg][i]; i++) {
 				int c = enable_escape ? escape(argv[arg][i]) : (unsigned char)argv[arg][i];
 				if (c >= 128) {
-					fputs("ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n", stderr);
+					fputs(_("ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"), stderr);
 					return 2;
 				}
 			}

@@ -1,0 +1,236 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ydotool 1.0.11\n"
+"Report-Msgid-Bugs-To: anton@sirius.if.ua\n"
+"POT-Creation-Date: 2026-11-06 02:52+0700\n"
+"PO-Revision-Date: 2026-11-06 00:00+0000\n"
+"Last-Translator: ydotool translation tooling <anton@sirius.if.ua>\n"
+"Language-Team: Slovak\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Native-Review: pending\n"
+
+#, c-format
+msgid "option %s"
+msgstr "voľba %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " s argumentom %s"
+
+msgid "repeat count"
+msgstr "počet opakovaní"
+
+msgid "delay (0..60000 ms)"
+msgstr "oneskorenie (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Udalosť kliknutia %d\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Použitie: click [OPTION]... [BUTTONS]...\nKliká tlačidlami myši.\n\nMožnosti:\n  -r, --repeat=N             Zopakuje celú postupnosť N-krát\n  -D, --next-delay=N         Oneskorenie N milisekúnd medzi vstupnými udalosťami (stlačenie/uvoľnenie,                                celý klik znamená dvojnásobný čas)\n  -P, --press-release        Stlačením a uvoľnením tlačidla myši dokončí klik (voliteľné)\n  -h, --help                 Zobrazí túto pomoc a skončí\n\nAko určiť tlačidlá:\n  Všetky tlačidlá myši sa teraz reprezentujú hexadecimálnymi číselnými hodnotami; voliteľná\nbitová maska určuje, či sa má vynechať stlačenie alebo uvoľnenie tlačidla myši.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - stlačenie tlačidla myši\n  0x80 - uvoľnenie tlačidla myši\n  Príklady:\n    0x00: vyberie ľavé tlačidlo, ale nič neurobí (možno to použiť na vloženie ďalších prestávok)\n    0xC0: klik ľavým tlačidlom (stlačenie a potom uvoľnenie)\n    0x41: stlačenie pravého tlačidla\n    0x82: uvoľnenie stredného tlačidla\n  Ak chcete, predponu '0x' môžete vynechať.\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Použitie: key [OPTION]... [KEYCODES]...\nGeneruje udalosti klávesov.\n\nMožnosti:\n  -d, --key-delay=N          Oneskorenie N milisekúnd medzi udalosťami klávesov\n  -h, --help                 Zobrazí túto pomoc a skončí\n\nKeďže nemožno zistiť, koľko rozložení klávesnice na svete existuje,\npoužívame teraz priamo číselné kódy klávesov.\n\nSyntax: <keycode>:<pressed>\nnapr. 28:1 28:0 znamená stlačenie klávesu Enter na štandardnej klávesnici US.\n     (:1 znamená, že kláves je stlačený, a potom :0, že je uvoľnený)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNespracovateľné hodnoty, napríklad 0, aaa, l0l, spôsobia iba oneskorenie.\n\nDostupné kódy klávesov (KEY_*) nájdete v `/usr/include/linux/input-event-codes.h'.\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Použitie: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nPosunie ukazovateľ myši alebo koliesko.\n\nMožnosti:\n  -w, --wheel                Relatívne posunie koliesko myši\n  -a, --absolute             Použije absolútnu polohu; nevzťahuje sa na koliesko\n  -x, --xpos                 Poloha X\n  -y, --ypos                 Poloha Y\n  -h, --help                 Zobrazí túto pomoc a skončí\n\nPre správny absolútny pohyb musíte vypnúť zrýchlenie myši."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: príliš veľa súradníc\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Pohyby kolieska myši nesmú byť absolútne hodnoty\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: vyžadujú sa dve súradnice\n"
+
+#, c-format
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Napíšte čokoľvek (CTRL-C na ukončenie):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: čítanie zo stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Kód klávesu: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin podporuje iba ASCII; text UTF-8 vložte zo schránky\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Mapuje sa na: %d\n"
+
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  Odosiela sa shift\n"
+
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  Odosiela sa ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Použitie: type [OPTION]... [STRINGS]...\nZadá reťazce.\n\nMožnosti:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Oneskorenie N milisekúnd medzi klávesmi (oneskorenie medzi každou dvojicou stlačenia a uvoľnenia) (predvolené: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Podrží každý kláves N milisekúnd (oneskorenie medzi stlačením a uvoľnením klávesu) (predvolené: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Oneskorenie N milisekúnd medzi reťazcami príkazového riadka (predvolené: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Určí súbor, ktorého obsah sa napíše, ako keby bol zadaný ako argument.\n                               Cesta k súboru môže byť aj '-' na čítanie zo stdin\n  -e, --escape=BOOL          Povolenie (1) alebo zakázanie (0) escape sekvencií\n  -h, --help                 Zobrazí túto pomoc a skončí\n\nPri písaní argumentov príkazového riadka sú escape sekvencie predvolene povolené; pri čítaní zo súboru a stdin sú predvolene zakázané.\nVstup zo súboru sa spracúva priebežne: platné ASCII znaky pred neskoršou chybou už mohli byť napísané."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type podporuje iba ASCII; text UTF-8 vložte zo schránky\n"
+
+msgid "escape mode"
+msgstr "režim escape sekvencií"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: chyba: nepodarilo sa otvoriť %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: chyba: čítanie %s zlyhalo: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Toto sú naši vážení tvorcovia:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Použitie: release-all\nUvoľní všetky virtuálne tlačidlá klávesnice a myši."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all neprijíma argumenty\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Použitie: ydotool <cmd> <args>\nDostupné príkazy:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Ak bol klient násilne ukončený a klávesy zostali stlačené, uvoľnite ich príkazom release-all.\n  -h, --help     Zobrazí túto pomoc a skončí\n  -V, --version  Zobrazí informácie o verzii a skončí\nNa určenie soketu démona použite premennú prostredia YDOTOOL_SOCKET."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: neplatné %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: odoslanie vstupnej udalosti"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Neznámy príkaz: %s\nZoznam príkazov zobrazíte spustením 'ydotool help'\n"
+
+msgid "failed to create socket"
+msgstr "nepodarilo sa vytvoriť soket"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: cesta k soketu je príliš dlhá\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "nepodarilo sa pripojiť k soketu `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Skontrolujte, či je ydotoold spustený.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Skontrolujte, či má aktuálny používateľ dostatočné oprávnenia na prístup k súboru soketu.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: inštalácia obsluhy signálov"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: uzamknutie adresára soketu"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Použitie: ydotoold [OPTION]...\nDémon ydotool.\n\nMožnosti:\n  -p, --socket-path=PATH     Vlastná cesta k soketu\n  -P, --socket-perm=PERM     Oprávnenia soketu (predvolené 0600)\n  -o, --socket-own=UID:GID   Vlastník soketu\n  -s, --no-system-keys        Zakáže klávesy SysRq a klávesy napájania, spánku a reštartu\n  -m, --mouse-off            Zakáže myš (EV_REL)\n  -k, --keyboard-off         Zakáže klávesnicu (EV_KEY)\n  -T, --touch-on             Povoliť dotykovú obrazovku (EV_ABS)\n  -h, --help                 Zobrazí túto pomoc a skončí\n  -V, --version              Zobrazí informácie o verzii\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s zlyhalo\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d zlyhalo\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d zlyhalo\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d zlyhalo\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "volanie ioctl UI_DEV_SETUP zlyhalo"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "volanie ioctl UI_DEV_CREATE zlyhalo"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Odporúčame spustiť tento program ako root; inak sa výsledky môžu líšiť (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "nepodarilo sa otvoriť zariadenie uinput"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Cesta k soketu: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "nepodarilo sa vytvoriť soket na zistenie kolízie démona"
+
+msgid "Removing old stale socket"
+msgstr "Odstraňuje sa starý neplatný soket"
+
+msgid "failed remove old stale socket"
+msgstr "nepodarilo sa odstrániť starý neplatný soket"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "chyba: Iný ydotoold už používa rovnaký soket."
+
+msgid "failed to bind socket"
+msgstr "nepodarilo sa naviazať soket"
+
+msgid "failed to change socket permission"
+msgstr "nepodarilo sa zmeniť oprávnenia soketu"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Oprávnenia soketu: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "neplatné určenie vlastníka"
+
+msgid "failed to change socket ownership"
+msgstr "nepodarilo sa zmeniť vlastníka soketu"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Vlastník soketu: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "nepodarilo sa spustiť príkaz xinput"
+
+msgid "failed to fork"
+msgstr "nepodarilo sa vytvoriť proces fork"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "príkaz xinput sa v `%s' nenašiel; zrýchlenie ukazovateľa myši sa nevypne"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: zápis vstupnej udalosti"

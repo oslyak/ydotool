@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Kurdish (Kurmanji)\nLanguage: ku\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Bikaranîn: click [OPTION]... [BUTTONS]...\nBişkojkên mişkê bikirtînin.\n\nVebijêrk:\n  -r, --repeat=N             Tevahiya rêzê N caran dubare bike\n  -D, --next-delay=N         Di navbera bûyerên têketinê de N mîlîçirkeyan raweste (daketin/rabûn; demê kirtînekê ya tam du qat e)\n  -P, --press-release        Ji bo temamkirina kirtînekê bişkojka mişkê bitikîne û berde (ne mecbûrî)\n  -h, --help                 Vê alîkariyê nîşan bide û derkeve\n\nÇawa bişkojk bên diyarkirin:\n  Hemû bişkojkên mişkê bi nirxên hejmarî yên şazdehî tên nîşandan; maskeyeke bitan a ne mecbûrî\n  diyar dike ka bûyera daketin an rabûna bişkojkê bê avêtin an na.\n  0x00 - LEFT (çep)\n  0x01 - RIGHT (rast)\n  0x02 - MIDDLE (navîn)\n  0x03 - SIDE (alî)\n  0x04 - EXTR (zêde)\n  0x05 - FORWARD (pêş)\n  0x06 - BACK (paş)\n  0x07 - TASK (peywir)\n  0x40 - Bişkojka mişkê dikeve\n  0x80 - Bişkojka mişkê radibe\n  Mînak:\n    0x00: bişkojka çep hildibijêre lê tiştekê nake (dikare ji bo rawestanên zêde bê bikaranîn)\n    0xC0: kirtîna bişkojka çep (pêşî daketin paşê rabûn)\n    0x41: daketina bişkojka rast\n    0x82: rabûna bişkojka navîn\n  Heke bixwazin, pêşgira '0x' dikare neyê nivîsandin.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "vebijêrk %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " bi argûmana %s"
+
+msgid "repeat count"
+msgstr "hejmara dubarekirinan"
+
+msgid "delay (0..60000 ms)"
+msgstr "derengî (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Bûyera kirtînê %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Bikaranîn: key [OPTION]... [KEYCODES]...\nBûyerên bişkojkan bişîne.\n\nVebijêrk:\n  -d, --key-delay=N          Di navbera bûyerên bişkojkan de N mîlîçirkeyan raweste\n  -h, --help                 Vê alîkariyê nîşan bide û derkeve\n\nJi ber ku em nikarin hejmara hemû rêzên klavyeyê yên li dinyayê bizanin,\nem niha kodên xav ên bişkojkan bi kar tînin.\n\nRêziman: <keycode>:<pressed>\nMînak, 28:1 28:0 tê wateya tikandin û berdana bişkojka Enter li klavyeyeke standard a US.\n     (:1 tê wateya bişkojk hatiye tikandin, :0 jî tê wateya bişkojk hatiye berdan)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNirxên ku nayên şîrovekirin, wek 0, aaa, l0l, tenê dibin sedema derengiyê.\n\nJi bo kodên bişkojkên berdest (KEY_*) li `/usr/include/linux/input-event-codes.h' binêrin.\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Bikaranîn: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nNîşandera mişkê an çerxa wê bilivîne.\n\nVebijêrk:\n  -w, --wheel                Çerxa mişkê bi awayekî nîsbetî bilivîne\n  -a, --absolute             Cihê mutleq bi kar bîne; ji bo çerxê nayê bikaranîn\n  -x, --xpos                 Cihê X\n  -y, --ypos                 Cihê Y\n  -h, --help                 Vê alîkariyê nîşan bide û derkeve\n\nJi bo tevgera mutleq a rast, divê lezkirina mişkê were neçalak kirin."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: koordînat pir zêde ne\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Tevgerên çerxa mişkê divê nirxên mutleq nebin\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: du koordînat pêwîst in\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Tiştekê binivîsin (ji bo derketinê CTRL-C):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: xwendina stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Koda bişkojkê: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin tenê ASCII piştgirî dike; ji bo nivîsa UTF-8 ji panoyê pêve bikin\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Dibe: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  shift tê şandin\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  ctrl tê şandin\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Bikaranîn: type [OPTION]... [STRINGS]...\nRêzikên nivîsê binivîse.\n\nVebijêrk:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Di navbera bişkojkan de N mîlîçirkeyan raweste (navbera her cotê daketin/rabûnê) (pêşdiyar: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Her bişkojkê N mîlîçirkeyan tikandî bigire (navbera tikandin û berdanê) (pêşdiyar: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Di navbera rêzikên rêza fermanê de N mîlîçirkeyan raweste (pêşdiyar: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Pelekê diyar bike; naveroka wê wek argûmanê hatibe dayîn dê were nivîsandin.\n                               Riya pelê dikare '-' be ji bo xwendina ji stdin\n  -e, --escape=BOOL          Şîrovekirina nîşaneyên revê çalak (1) an neçalak (0) bike\n  -h, --help                 Vê alîkariyê nîşan bide û derkeve\n\nŞîrovekirina nîşaneyên revê ji bo argûmanên rêza fermanê bi pêşdiyarî çalak e; ji bo pel û stdin bi pêşdiyarî neçalak e.\nTêketina pelê bi herikînê tê xwendin: berî xeletiyeke paşîn, dibe ku beşa ASCII ya derbasdar jixwe hatibe nivîsandin."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type tenê ASCII piştgirî dike; ji bo nivîsa UTF-8 ji panoyê pêve bikin\n"
+
+msgid "escape mode"
+msgstr "moda şîrovekirina nîşaneyên revê"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: xeletî: vekirina %s bi ser neket: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: xeletî: xwendina %s bi ser neket: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Ev nanpêjên me yên hêja ne:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Bikaranîn: release-all\nHemû bişkojkên klavye û mişka virtual berde."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all argûmanan qebûl nake\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Bikaranîn: ydotool <cmd> <args>\nFermanên berdest:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Ji bo berdana bişkojkên ku piştî kuştina xerîdarê tikandî mane, release-all bi kar bînin.\n  -h, --help     Vê alîkariyê nîşan bide û derkeve\n  -V, --version  Agahiyên guhertoyê nîşan bide û derkeve\nJi bo diyarkirina soketa daemonê guhêrbarê hawirdorê YDOTOOL_SOCKET bi kar bînin."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: %s nederbasdar e: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: şandina bûyera têketinê"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Fermana nenas: %s\nJi bo lîsteya fermanan 'ydotool help' bimeşînin\n"
+
+msgid "failed to create socket"
+msgstr "çêkirina soketê bi ser neket"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: riya soketê pir dirêj e\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "girêdana bi soketa `%s' re bi ser neket: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Ji kerema xwe binêrin ka ydotoold dimeşe an na.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Ji kerema xwe binêrin ka bikarhênerê niha destûrên têr ên gihîştina pelê soketê hene an na.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: sazkirina hilgira sînyalê"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: qufkirina peldanka soketê"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Bikaranîn: ydotoold [OPTION]...\nDaemonê ydotool.\n\nVebijêrk:\n  -p, --socket-path=PATH     Riya soketê ya taybet\n  -P, --socket-perm=PERM     Destûrên soketê (pêşdiyar 0600)\n  -o, --socket-own=UID:GID   Xwedîtiya soketê\n  -s, --no-system-keys        Bişkojkên SysRq û hêz/xew/ji-nû-ve-destpêkirinê neçalak bike\n  -m, --mouse-off            Mişkê neçalak bike (EV_REL)\n  -k, --keyboard-off         Klavyeyê neçalak bike (EV_KEY)\n  -T, --touch-on             Ekrana destdanê çalak bike (EV_ABS)\n  -h, --help                 Vê alîkariyê nîşan bide û derkeve\n  -V, --version              Agahiyên guhertoyê nîşan bide\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s bi ser neket\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d bi ser neket\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d bi ser neket\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d bi ser neket\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl bi ser neket"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl bi ser neket"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Tê şîretkirin ku hûn vê bernameyê wek root bimeşînin; wekî din encam dikarin cuda bin (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "vekirina amûra uinput bi ser neket"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Riya soketê: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "çêkirina soketê ji bo tesbîtkirina lihevketina daemonan bi ser neket"
+
+msgid "Removing old stale socket"
+msgstr "Soketa kevn a bêkar tê rakirin"
+
+msgid "failed remove old stale socket"
+msgstr "rakirina soketa kevn a bêkar bi ser neket"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "xeletî: ydotoold-eke din bi heman soketê dimeşe."
+
+msgid "failed to bind socket"
+msgstr "girêdana navnîşana soketê bi ser neket"
+
+msgid "failed to change socket permission"
+msgstr "guhertina destûrên soketê bi ser neket"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Destûrên soketê: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "diyarkirina xwedîtiyê nederbasdar e"
+
+msgid "failed to change socket ownership"
+msgstr "guhertina xwedîtiya soketê bi ser neket"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Xwedîtiya soketê: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "meşandina fermana xinput bi ser neket"
+
+msgid "failed to fork"
+msgstr "çêkirina pêvajoya zarok bi ser neket"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "Fermana xinput li `%s' nehat dîtin; lezkirina nîşandera mişkê nayê neçalak kirin"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: nivîsandina bûyera têketinê"

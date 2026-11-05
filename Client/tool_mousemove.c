@@ -37,8 +37,7 @@
 #include "ydotool.h"
 
 static void show_help(void) {
-	puts(
-		"Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\n"
+	puts(_("Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\n"
 		"Move mouse pointer or wheel.\n"
 		"\n"
 		"Options:\n"
@@ -48,8 +47,7 @@ static void show_help(void) {
 		"  -y, --ypos                 Y position\n"
 		"  -h, --help                 Display this help and exit\n"
 		"\n"
-		"You need to disable mouse speed acceleration for correct absolute movement."
-	);
+		"You need to disable mouse speed acceleration for correct absolute movement."));
 }
 
 int tool_mousemove(int argc, char **argv) {
@@ -90,9 +88,9 @@ int tool_mousemove(int argc, char **argv) {
 				/* If this option set a flag, do nothing else now. */
 				if (long_options[option_index].flag != 0)
 					break;
-				printf ("option %s", long_options[option_index].name);
+				printf (_("option %s"), long_options[option_index].name);
 				if (optarg)
-					printf (" with arg %s", optarg);
+					printf (_(" with arg %s"), optarg);
 				printf ("\n");
 				break;
 			case 'a':
@@ -108,7 +106,7 @@ int tool_mousemove(int argc, char **argv) {
 				break;
 			case 'x':
 				if (i >= 2) {
-					fputs("ydotool: mousemove: too many coordinates\n", stderr);
+					fputs(_("ydotool: mousemove: too many coordinates\n"), stderr);
 					return 1;
 				}
 				pos[0] = strtol(optarg, nullptr, 10);
@@ -116,7 +114,7 @@ int tool_mousemove(int argc, char **argv) {
 				break;
 			case 'y':
 				if (i >= 2) {
-					fputs("ydotool: mousemove: too many coordinates\n", stderr);
+					fputs(_("ydotool: mousemove: too many coordinates\n"), stderr);
 					return 1;
 				}
 				pos[1] = strtol(optarg, nullptr, 10);
@@ -136,7 +134,7 @@ int tool_mousemove(int argc, char **argv) {
 	if (optind < argc) {
 		while (optind < argc) {
 			if (i >= 2) {
-				fputs("ydotool: mousemove: too many coordinates\n", stderr);
+				fputs(_("ydotool: mousemove: too many coordinates\n"), stderr);
 				return 1;
 			}
 			pos[i] = strtol(argv[optind++], nullptr, 10);
@@ -146,7 +144,7 @@ int tool_mousemove(int argc, char **argv) {
 
 	if (i == 2) {
 		if (is_abs && is_wheel) {
-			fputs("Mouse wheel moves should not be absolute values\n", stderr);
+			fputs(_("Mouse wheel moves should not be absolute values\n"), stderr);
 			return 1;
 		}
 
@@ -163,7 +161,7 @@ int tool_mousemove(int argc, char **argv) {
 			uinput_emit(EV_REL, REL_Y, pos[1], true);
 		}
 	} else {
-		fputs("ydotool: mousemove: two coordinates are required\n", stderr);
+		fputs(_("ydotool: mousemove: two coordinates are required\n"), stderr);
 		return 1;
 	}
 

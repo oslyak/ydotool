@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: ja\nLanguage: ja\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "使い方: click [OPTION]... [BUTTONS]...\nマウスボタンをクリックします。\n\nオプション:\n  -r, --repeat=N             シーケンス全体を N 回繰り返す\n  -D, --next-delay=N         入力イベント間の遅延（Nミリ秒）（up/down、完全なクリックでは時間が2倍）\n  -P, --press-release        クリックを完了するためマウスボタンを押して離す（任意）\n  -h, --help                 このヘルプを表示して終了\n\nボタンの指定方法:\n  すべてのマウスボタンは現在、16進数の数値で表されます。マウスのup/downを省略するか指定するためのビットマスクを付けることもできます。\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - マウス押下\n  0x80 - マウス解放\n  例:\n    0x00: 左ボタンを選択しますが何もしません（追加の待機時間を実装するために使えます）\n    0xC0: 左ボタンのクリック（押下してから解放）\n    0x41: 右ボタンを押下\n    0x82: 中ボタンを解放\n  必要なら '0x' 接頭辞を省略できます。\n"
+
+#, c-format
+msgid "option %s"
+msgstr "オプション %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " 引数 %s"
+
+msgid "repeat count"
+msgstr "繰り返し回数"
+
+msgid "delay (0..60000 ms)"
+msgstr "遅延（0..60000 ms）"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "クリックイベント %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "使い方: key [OPTION]... [KEYCODES]...\nキーイベントを送信します。\n\nオプション:\n  -d, --key-delay=N          キーイベント間の遅延をNミリ秒にする\n  -h, --help                 このヘルプを表示して終了\n\n世界にキーボード配列がいくつあるかを把握する方法がないため、\n現在は生のキーコードを使用しています。\n\n構文: <keycode>:<pressed>\n例: 28:1 28:0 は標準的なUSキーボードのEnterキーを押すことを意味します。\n     （:1 はキー押下、:0 はキー解放を意味します）     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\n0、aaa、l0l など解釈できない値は、遅延を発生させるだけです。\n\n利用可能なキーコード（KEY_*）は `/usr/include/linux/input-event-codes.h' を参照してください。\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "使い方: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nマウスポインターまたはホイールを動かします。\n\nオプション:\n  -w, --wheel                マウスホイールを相対的に動かす\n  -a, --absolute             ホイールには適用されない絶対位置を使う\n  -x, --xpos                 X位置\n  -y, --ypos                 Y位置\n  -h, --help                 このヘルプを表示して終了\n\n絶対移動を正しく行うには、マウス速度の加速を無効にしてください。"
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: 座標が多すぎます\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "マウスホイールの移動に絶対値は指定できません\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: 座標を2つ指定してください\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "何か入力してください（終了するには CTRL-C）：\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: stdin の読み取り"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "キーコード: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin はASCIIのみ対応です。UTF-8テキストにはクリップボード貼り付けを使用してください\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  対応先: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  shift を送信\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  ctrl を送信\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "使い方: type [OPTION]... [STRINGS]...\n文字列を入力します。\n\nオプション:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          キー間の遅延（各キーのdown/up間の遅延）（既定値: %d）\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           各キーをNミリ秒間押し続ける（キーdownとupの間の遅延）（既定値: %d）\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         コマンドライン文字列間の遅延（Nミリ秒）（既定値: %d）\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            ファイルを指定します。その内容を引数として渡した場合と同様に入力します。\n                               ファイルパスに '-' を指定すると stdin から読み込みます\n  -e, --escape=BOOL          エスケープを有効 (1) または無効 (0) にする\n  -h, --help                 このヘルプを表示して終了\n\nコマンドライン引数の入力では既定でエスケープが有効です。ファイルおよび stdin からの入力では既定で無効です。\nファイル入力はストリーム処理されます。後でエラーが起きても、それ以前の有効なASCIIはすでに入力されている場合があります。"
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type はASCIIのみ対応です。UTF-8テキストにはクリップボード貼り付けを使用してください\n"
+
+msgid "escape mode"
+msgstr "エスケープモード"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: エラー: %s を開けませんでした: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: エラー: %s の読み取りに失敗しました: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "私たちの尊敬すべきパン職人たち:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "使い方: release-all\n仮想キーボードとマウスのすべてのボタンを解放します。"
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all は引数を取りません\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "使い方: ydotool <cmd> <args>\n利用可能なコマンド:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "release-all を使うと、クライアント強制終了後に押されたままのキーを解放できます。\n  -h, --help     このヘルプを表示して終了\n  -V, --version  バージョン情報を表示して終了\n環境変数 YDOTOOL_SOCKET でデーモンソケットを指定します。"
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: 無効な %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: 入力イベントの送信"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: 不明なコマンド: %s\nコマンド一覧を見るには 'ydotool help' を実行してください\n"
+
+msgid "failed to create socket"
+msgstr "ソケットの作成に失敗しました"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: ソケットパスが長すぎます\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "ソケット `%s' への接続に失敗しました: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "ydotoold が実行中か確認してください。\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "現在のユーザーにソケットファイルへのアクセス権限があるか確認してください。\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: シグナルハンドラーの設定"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: ソケットディレクトリのロック"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "使い方: ydotoold [OPTION]...\nydotool デーモンです。\n\nオプション:\n  -p, --socket-path=PATH     カスタムソケットパス\n  -P, --socket-perm=PERM     ソケット権限（既定値 0600）\n  -o, --socket-own=UID:GID   ソケット所有者\n  -s, --no-system-keys        SysRqおよび電源/スリープ/再起動キーを無効にする\n  -m, --mouse-off            マウスを無効にする（EV_REL）\n  -k, --keyboard-off         キーボードを無効にする（EV_KEY）\n  -T, --touch-on             タッチスクリーンを有効にする（EV_ABS）\n  -h, --help                 このヘルプを表示して終了\n  -V, --version              バージョン情報を表示する\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s に失敗しました\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d に失敗しました\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d に失敗しました\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d に失敗しました\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl に失敗しました"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl に失敗しました"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "このプログラムはrootとして実行することを推奨します。そうしない場合の結果は環境によります。 (YMMV)"
+
+msgid "failed to open uinput device"
+msgstr "uinput デバイスを開けませんでした"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "ソケットパス: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "デーモンの重複検出用ソケットの作成に失敗しました"
+
+msgid "Removing old stale socket"
+msgstr "古い残存ソケットを削除しています"
+
+msgid "failed remove old stale socket"
+msgstr "古い残存ソケットの削除に失敗しました"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "エラー: 同じソケットで別の ydotoold が実行中です。"
+
+msgid "failed to bind socket"
+msgstr "ソケットのバインドに失敗しました"
+
+msgid "failed to change socket permission"
+msgstr "ソケット権限の変更に失敗しました"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "ソケット権限: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "所有者指定が無効です"
+
+msgid "failed to change socket ownership"
+msgstr "ソケット所有者の変更に失敗しました"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "ソケット所有者: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "xinput コマンドの実行に失敗しました"
+
+msgid "failed to fork"
+msgstr "fork に失敗しました"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "`%s' に xinput コマンドが見つからないため、マウスポインターの加速を無効にしません"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: 入力イベントの書き込み"

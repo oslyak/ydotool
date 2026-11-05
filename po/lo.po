@@ -1,0 +1,168 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Lao\nLanguage: lo\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Usage: click [OPTION]... [BUTTONS]...\nກົດປຸ່ມເມົາສ໌.\n\nຕົວເລືອກ:\n  -r, --repeat=N             ເຮັດລຳດັບທັງໝົດຊ້ຳ N ເທື່ອ\n  -D, --next-delay=N         ໜ่วง N ມິນລິວິນາທີລະຫວ່າງເຫດການປ້ອນຂໍ້ມູນ (ກົດລົງ/ປ່ອຍຂຶ້ນ,                                ການຄລິກຄົບຊຸດໃຊ້ເວລາສອງເທົ່າ)\n  -P, --press-release        ກົດແລ້ວປ່ອຍປຸ່ມເມົາສ໌ໃຫ້ຄົບການຄລິກ (ເລືອກໃຊ້ໄດ້)\n  -h, --help                 ສະແດງຄຳຊ່ວຍນີ້ແລ້ວອອກ\n\nວິທີລະບຸປຸ່ມ:\n  ປຸ່ມເມົາສ໌ທັງໝົດໃຊ້ຄ່າຕົວເລກແບບເລກຖານສິບຫົກ ແລະອາດມີ\nbit mask ເພື່ອລະບຸວ່າຈະຂ້າມການກົດລົງ/ປ່ອຍຂຶ້ນຂອງເມົາສ໌ຫຼືບໍ່.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - ກົດປຸ່ມລົງ\n  0x80 - ປ່ອຍປຸ່ມຂຶ້ນ\n  ຕົວຢ່າງ:\n    0x00: ເລືອກປຸ່ມຊ້າຍ ແຕ່ບໍ່ເຮັດຫຍັງ (ໃຊ້ສຳລັບໜ่วงເວລາເພີ່ມໄດ້)\n    0xC0: ຄລິກປຸ່ມຊ້າຍ (ກົດລົງແລ້ວປ່ອຍຂຶ້ນ)\n    0x41: ກົດປຸ່ມຂວາລົງ\n    0x82: ປ່ອຍປຸ່ມກາງຂຶ້ນ\n  ສາມາດລະເວັ້ນຄຳນຳໜ້າ '0x' ໄດ້.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "ຕົວເລືອກ %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " ພ້ອມອາກິວເມັນ %s"
+
+msgid "repeat count"
+msgstr "ຈຳນວນຄັ້ງທີ່ເຮັດຊ້ຳ"
+
+msgid "delay (0..60000 ms)"
+msgstr "ເວລາໜ่วง (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "ເຫດການຄລິກ %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Usage: key [OPTION]... [KEYCODES]...\nສົ່ງເຫດການປຸ່ມກົດ.\n\nຕົວເລືອກ:\n  -d, --key-delay=N          ໜ่วง N ມິນລິວິນາທີລະຫວ່າງເຫດການປຸ່ມກົດ\n  -h, --help                 ສະແດງຄຳຊ່ວຍນີ້ແລ້ວອອກ\n\nເນື່ອງຈາກບໍ່ມີວິທີຮູ້ວ່າມີຮູບແບບແປ້ນພິມຈັກແບບໃນໂລກ,\nຕອນນີ້ຈຶ່ງໃຊ້ລະຫັດປຸ່ມດິບ.\n\nໄວຍາກອນ: <keycode>:<pressed>\nຕົວຢ່າງ 28:1 28:0 ໝາຍເຖິງການກົດປຸ່ມ Enter ເທິງແປ້ນພິມ US ມາດຕະຖານ.\n     (ໂດຍ :1 ໝາຍເຖິງກົດປຸ່ມລົງ ແລະ :0 ໝາຍເຖິງປ່ອຍປຸ່ມຂຶ້ນ)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nຄ່າທີ່ຕີຄວາມບໍ່ໄດ້ ເຊັ່ນ 0, aaa, l0l ຈະເຮັດໃຫ້ໜ่วงເວລາເທົ່ານັ້ນ.\n\nເບິ່ງ `/usr/include/linux/input-event-codes.h' ສຳລັບລະຫັດປຸ່ມທີ່ມີ (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nເຄື່ອນຕົວຊີ້ເມົາສ໌ ຫຼືລໍ້ເມົາສ໌.\n\nຕົວເລືອກ:\n  -w, --wheel                ເຄື່ອນລໍ້ເມົາສ໌ແບບສຳພັນ\n  -a, --absolute             ໃຊ້ຕຳແໜ່ງສົມບູນ, ໃຊ້ກັບລໍ້ບໍ່ໄດ້\n  -x, --xpos                 ຕຳແໜ່ງ X\n  -y, --ypos                 ຕຳແໜ່ງ Y\n  -h, --help                 ສະແດງຄຳຊ່ວຍນີ້ແລ້ວອອກ\n\nຕ້ອງປິດການເລັ່ງຄວາມໄວເມົາສ໌ ເພື່ອໃຫ້ການເຄື່ອນແບບສົມບູນຖືກຕ້ອງ."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: ມີພິກັດຫຼາຍເກີນໄປ\n"
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "ການເຄື່ອນລໍ້ເມົາສ໌ບໍ່ຄວນໃຊ້ຄ່າສົມບູນ\n"
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: ຕ້ອງລະບຸພິກັດສອງຄ່າ\n"
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "ພິມຂໍ້ຄວາມໃດກໍໄດ້ (CTRL-C ເພື່ອອອກ):\n"
+msgid "ydotool: read stdin"
+msgstr "ydotool: ອ່ານ stdin"
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "ລະຫັດປຸ່ມ: %d %d %d\n"
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin ຮອງຮັບສະເພາະ ASCII; ໃຫ້ວາງຂໍ້ຄວາມ UTF-8 ຈາກ clipboard\n"
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  ແປງເປັນ: %d\n"
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  ກຳລັງສົ່ງ shift\n"
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  ກຳລັງສົ່ງ ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Usage: type [OPTION]... [STRINGS]...\nພິມສະຕຣິງ.\n\nຕົວເລືອກ:"
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          ໜ่วง N ມິນລິວິນາທີລະຫວ່າງປຸ່ມ (ໜ่วงລະຫວ່າງຄູ່ກົດລົງ/ປ່ອຍຂຶ້ນແຕ່ລະຄູ່) (ຄ່າປົກກະຕິ: %d)\n"
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           ກົດຄ້າງແຕ່ລະປຸ່ມ N ມິນລິວິນາທີ (ເວລາລະຫວ່າງກົດປຸ່ມລົງແລະປ່ອຍຂຶ້ນ) (ຄ່າປົກກະຕິ: %d)\n"
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         ໜ่วง N ມິນລິວິນາທີລະຫວ່າງສະຕຣິງໃນບັນທັດຄຳສັ່ງ (ຄ່າປົກກະຕິ: %d)\n"
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            ລະບຸໄຟລ໌ ເນື້ອໃນຂອງໄຟລ໌ຈະຖືກພິມເໝືອນສົ່ງເປັນອາກິວເມັນ.\n                               ເສັ້ນທາງໄຟລ໌ອາດເປັນ '-' ເພື່ອອ່ານຈາກ stdin\n  -e, --escape=BOOL          ເປີດ Escape (1) ຫຼືປິດ (0)\n  -h, --help                 ສະແດງຄຳຊ່ວຍນີ້ແລ້ວອອກ\n\nເມື່ອພິມອາກິວເມັນບັນທັດຄຳສັ່ງ Escape ເປີດໄວ້ໂດຍປົກກະຕິ; ເມື່ອພິມຈາກໄຟລ໌ແລະ stdin ຈະປິດໄວ້ໂດຍປົກກະຕິ.\nຂໍ້ມູນຈາກໄຟລ໌ຖືກອ່ານແບບສະຕຣີມ: ASCII ທີ່ຖືກຕ້ອງກ່ອນພົບຂໍ້ຜິດພາດພາຍຫຼັງ ອາດຖືກພິມອອກໄປແລ້ວ."
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type ຮອງຮັບສະເພາະ ASCII; ໃຫ້ວາງຂໍ້ຄວາມ UTF-8 ຈາກ clipboard\n"
+msgid "escape mode"
+msgstr "ໂໝດ escape"
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: ຜິດພາດ: ເປີດ %s ບໍ່ສຳເລັດ: %s\n"
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: ຜິດພາດ: ອ່ານ %s ບໍ່ສຳເລັດ: %s\n"
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "ຜູ້ສ້າງສັນຜູ້ມີກຽດຂອງພວກເຮົາ:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Usage: release-all\nປ່ອຍປຸ່ມແປ້ນພິມແລະເມົາສ໌ຈຳລອງທັງໝົດ."
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all ບໍ່ຮັບອາກິວເມັນ\n"
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Usage: ydotool <cmd> <args>\nຄຳສັ່ງທີ່ມີ:"
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "ໃຊ້ release-all ເພື່ອປ່ອຍປຸ່ມທີ່ຄ້າງຫຼັງຈາກ client ຖືກປິດກະທັນຫັນ.\n  -h, --help     ສະແດງຄຳຊ່ວຍນີ້ແລ້ວອອກ\n  -V, --version  ສະແດງຂໍ້ມູນລຸ້ນແລ້ວອອກ\nໃຊ້ຕົວແປສະພາບແວດລ້ອມ YDOTOOL_SOCKET ເພື່ອລະບຸ socket ຂອງ daemon."
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: %s ບໍ່ຖືກຕ້ອງ: %s\n"
+msgid "ydotool: send input event"
+msgstr "ydotool: ສົ່ງເຫດການປ້ອນຂໍ້ມູນ"
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: ບໍ່ຮູ້ຈັກຄຳສັ່ງ: %s\nຮັນ 'ydotool help' ຫາກຕ້ອງການລາຍການຄຳສັ່ງ\n"
+msgid "failed to create socket"
+msgstr "ສ້າງ socket ບໍ່ສຳເລັດ"
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: ເສັ້ນທາງ socket ຍາວເກີນໄປ\n"
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "ເຊື່ອມຕໍ່ socket `%s' ບໍ່ສຳເລັດ: %s\n"
+msgid "Please check if ydotoold is running.\n"
+msgstr "ກະລຸນາກວດວ່າ ydotoold ກຳລັງເຮັດວຽກຢູ່ຫຼືບໍ່.\n"
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "ກະລຸນາກວດວ່າຜູ້ໃຊ້ປັດຈຸບັນມີສິດພຽງພໍເຂົ້າເຖິງໄຟລ໌ socket ຫຼືບໍ່.\n"
+msgid "ydotool: install signal handler"
+msgstr "ydotool: ຕິດຕັ້ງ signal handler"
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: ລັອກໄດເຣັກທໍຣີ socket"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Usage: ydotoold [OPTION]...\nydotool daemon.\n\nຕົວເລືອກ:\n  -p, --socket-path=PATH     ກຳນົດເສັ້ນທາງ socket ເອງ\n  -P, --socket-perm=PERM     ສິດຂອງ socket (ຄ່າປົກກະຕິ 0600)\n  -o, --socket-own=UID:GID   ເຈົ້າຂອງ socket\n  -s, --no-system-keys        ປິດປຸ່ມ SysRq ແລະປຸ່ມປິດເຄື່ອງ/ພັກ/ເລີ່ມໃໝ່\n  -m, --mouse-off            ປິດເມົາສ໌ (EV_REL)\n  -k, --keyboard-off         ປິດແປ້ນພິມ (EV_KEY)\n  -T, --touch-on             ເປີດໜ້າຈໍສຳຜັດ (EV_ABS)\n  -h, --help                 ສະແດງຄຳຊ່ວຍນີ້ແລ້ວອອກ\n  -V, --version              ສະແດງຂໍ້ມູນລຸ້ນ\n"
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s ລົ້ມເຫຼວ\n"
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d ລົ້ມເຫຼວ\n"
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d ລົ້ມເຫຼວ\n"
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d ລົ້ມເຫຼວ\n"
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl ລົ້ມເຫຼວ"
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl ລົ້ມເຫຼວ"
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "ແນະນຳໃຫ້ຮັນໂປຣແກຣມນີ້ໃນສິດ root; ຜົນອາດແຕກຕ່າງກັນ (YMMV)."
+msgid "failed to open uinput device"
+msgstr "ເປີດອຸປະກອນ uinput ບໍ່ສຳເລັດ"
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "ເສັ້ນທາງ Socket: %s\n"
+msgid "failed to create socket for daemon collision detection"
+msgstr "ສ້າງ socket ເພື່ອກວດຈັບ daemon ຊ້ຳກັນບໍ່ສຳເລັດ"
+msgid "Removing old stale socket"
+msgstr "ກຳລັງລຶບ socket ເກົ່າທີ່ຄ້າງຢູ່"
+msgid "failed remove old stale socket"
+msgstr "ລຶບ socket ເກົ່າທີ່ຄ້າງຢູ່ບໍ່ສຳເລັດ"
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "ຜິດພາດ: ມີ ydotoold ອີກໂຕກຳລັງໃຊ້ socket ດຽວກັນ."
+msgid "failed to bind socket"
+msgstr "ຜູກ socket ບໍ່ສຳເລັດ"
+msgid "failed to change socket permission"
+msgstr "ປ່ຽນສິດ socket ບໍ່ສຳເລັດ"
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "ສິດ Socket: %s\n"
+msgid "invalid ownership specification"
+msgstr "ການລະບຸເຈົ້າຂອງບໍ່ຖືກຕ້ອງ"
+msgid "failed to change socket ownership"
+msgstr "ປ່ຽນເຈົ້າຂອງ socket ບໍ່ສຳເລັດ"
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "ເຈົ້າຂອງ Socket: UID=%d, GID=%d\n"
+msgid "failed to run xinput command"
+msgstr "ຮັນຄຳສັ່ງ xinput ບໍ່ສຳເລັດ"
+msgid "failed to fork"
+msgstr "ສ້າງຂະບວນການລູກບໍ່ສຳເລັດ"
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "ບໍ່ພົບຄຳສັ່ງ xinput ໃນ `%s', ຈຶ່ງບໍ່ປິດການເລັ່ງຄວາມໄວຕົວຊີ້ເມົາສ໌"
+msgid "ydotoold: write input event"
+msgstr "ydotoold: ຂຽນເຫດການປ້ອນຂໍ້ມູນ"

@@ -1,0 +1,224 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Estonian\nLanguage: et\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Usage: click [OPTION]... [BUTTONS]...\nKlõpsa hiirenuppe.\n\nValikud:\n  -r, --repeat=N             Korda kogu jada N korda\n  -D, --next-delay=N         Viivitus sisendsündmuste vahel millisekundites (alla/üles,                                täielik klõps tähendab kahekordset aega)\n  -P, --press-release        Hiirenupu klõpsu lõpetamiseks vajuta ja vabasta see (valikuline)\n  -h, --help                 Kuva see abiinfo ja lõpeta\n\nNuppude määramine:\n  Kõik hiirenupud on nüüd esitatud kuueteistkümnendväärtustena, soovi korral\nbitimaskiga, mis määrab, kas hiirenupu alla- või ülesliigutus jäetakse ära.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Hiirenupp alla\n  0x80 - Hiirenupp üles\n  Näited:\n    0x00: valib vasaku nupu, kuid ei tee midagi (seda saab kasutada lisaviivituste tekitamiseks)\n    0xC0: vasaku nupu klõps (alla ja seejärel üles)\n    0x41: parem nupp alla\n    0x82: keskmine nupp üles\n  Soovi korral võib eesliite '0x' ära jätta.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "valik %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " argumendiga %s"
+
+msgid "repeat count"
+msgstr "korduste arv"
+
+msgid "delay (0..60000 ms)"
+msgstr "viivitus (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Klõpsusündmus %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Usage: key [OPTION]... [KEYCODES]...\nSaada klahvisündmused.\n\nValikud:\n  -d, --key-delay=N          Viivitus klahvisündmuste vahel millisekundites\n  -h, --help                 Kuva see abiinfo ja lõpeta\n\nKuna pole võimalik teada, kui palju klaviatuuripaigutusi maailmas leidub,\nkasutame nüüd tooreid klahvikoode.\n\nSüntaks: <keycode>:<pressed>\nnt 28:1 28:0 tähendab tavalisel US-klaviatuuril Enter-klahvi vajutamist.\n     (:1 tähendab, et klahv vajutatakse alla, ja :0, et see vabastatakse)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nMittetõlgendatavad väärtused, näiteks 0, aaa, l0l, põhjustavad ainult viivituse.\n\nSaadaolevad klahvikoodid (KEY_*) leiate failist `/usr/include/linux/input-event-codes.h'.\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nLiiguta hiirekursorit või ratast.\n\nValikud:\n  -w, --wheel                Liiguta hiireratast suhteliselt\n  -a, --absolute             Kasuta absoluutset asukohta; rattale see ei kehti\n  -x, --xpos                 X-asukoht\n  -y, --ypos                 Y-asukoht\n  -h, --help                 Kuva see abiinfo ja lõpeta\n\nAbsoluutseks liikumiseks tuleb hiire kiirendamine õigesti toimimiseks välja lülitada."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: liiga palju koordinaate\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Hiireratta liikumised ei tohi olla absoluutsed väärtused\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: vaja on kahte koordinaati\n"
+
+#, c-format
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Sisesta midagi (väljumiseks CTRL-C):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: stdin-i lugemine"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Klahvikood: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin toetab ainult ASCII-t; UTF-8 teksti jaoks kasuta lõikelaualt kleepimist\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Vastab koodile: %d\n"
+
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  Saadan shift-klahvi\n"
+
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  Saadan ctrl-klahvi\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Usage: type [OPTION]... [STRINGS]...\nSisesta tekstisõned.\n\nValikud:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Viivitus klahvide vahel millisekundites (viivitus iga klahvi alla/üles paari vahel) (vaikimisi: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Hoia iga klahvi all N millisekundit (viivitus klahvi alla- ja ülesvajutuse vahel) (vaikimisi: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Viivitus käsurea tekstisõnede vahel millisekundites (vaikimisi: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Määra fail, mille sisu sisestatakse nii, nagu oleks see argumendina antud.\n                               Failitee võib stdin-ist lugemiseks olla ka '-'\n  -e, --escape=BOOL          Lülita paomärgi töötlemine sisse (1) või välja (0)\n  -h, --help                 Kuva see abiinfo ja lõpeta\n\nKäsurea argumentide sisestamisel on paomärgi töötlemine vaikimisi sisse lülitatud, failist ja stdin-ist sisestamisel aga välja lülitatud.\nFaili sisendit töödeldakse voona: enne hilisemat viga võidi kehtiv ASCII juba sisestada."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type toetab ainult ASCII-t; UTF-8 teksti jaoks kasuta lõikelaualt kleepimist\n"
+
+msgid "escape mode"
+msgstr "paomärgi režiim"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: viga: faili %s avamine nurjus: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: viga: faili %s lugemine nurjus: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Need on meie austatud küpsetajad:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Usage: release-all\nVabasta kõik virtuaalse klaviatuuri ja hiire nupud."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all ei võta argumente\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Usage: ydotool <cmd> <args>\nSaadaolevad käsud:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Kasuta release-all-i allavajutatud klahvide vabastamiseks pärast kliendi sunnitud sulgemist.\n  -h, --help     Kuva see abiinfo ja lõpeta\n  -V, --version  Kuva versiooniteave ja lõpeta\nDeemoni sokli määramiseks kasuta keskkonnamuutujat YDOTOOL_SOCKET."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: vigane %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: sisendsündmuse saatmine"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: tundmatu käsk: %s\nKäskude loendi kuvamiseks käivita 'ydotool help'\n"
+
+msgid "failed to create socket"
+msgstr "sokli loomine nurjus"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: sokli tee on liiga pikk\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "sokliga `%s' ühendumine nurjus: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Kontrolli, kas ydotoold töötab.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Kontrolli, kas praegusel kasutajal on soklifailile juurdepääsuks piisavad õigused.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: signaalitöötleja paigaldamine"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: soklikataloogi lukustamine"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Usage: ydotoold [OPTION]...\nydotooli deemon.\n\nValikud:\n  -p, --socket-path=PATH     Kohandatud sokli tee\n  -P, --socket-perm=PERM     Sokli õigused (vaikimisi 0600)\n  -o, --socket-own=UID:GID   Sokli omanik\n  -s, --no-system-keys        Keela SysRq ning toite-, une- ja taaskäivitamisklahvid\n  -m, --mouse-off            Keela hiir (EV_REL)\n  -k, --keyboard-off         Keela klaviatuur (EV_KEY)\n  -T, --touch-on             Luba puuteekraan (EV_ABS)\n  -h, --help                 Kuva see abiinfo ja lõpeta\n  -V, --version              Kuva versiooniteave\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s nurjus\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d nurjus\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d nurjus\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d nurjus\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl nurjus"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl nurjus"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Soovitatav on käivitada see programm root-kasutajana; tulemus võib erineda (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "uinput-seadme avamine nurjus"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Sokli tee: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "deemoni kokkupõrke tuvastamiseks sokli loomine nurjus"
+
+msgid "Removing old stale socket"
+msgstr "Eemaldan vana aegunud sokli"
+
+msgid "failed remove old stale socket"
+msgstr "vana aegunud sokli eemaldamine nurjus"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "viga: sama sokliga töötab juba teine ydotoold."
+
+msgid "failed to bind socket"
+msgstr "sokli sidumine nurjus"
+
+msgid "failed to change socket permission"
+msgstr "sokli õiguste muutmine nurjus"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Sokli õigused: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "vigane omaniku määrang"
+
+msgid "failed to change socket ownership"
+msgstr "sokli omaniku muutmine nurjus"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Sokli omanik: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "xinput-käsu käivitamine nurjus"
+
+msgid "failed to fork"
+msgstr "alamprotsessi loomine nurjus"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "xinput-käsku ei leitud asukohast `%s'; hiirekursori kiirendust ei keelata"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: sisendsündmuse kirjutamine"

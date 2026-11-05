@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool 1.0.11\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:52+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Kabyle / Taqbaylit\nLanguage: kab\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Native-Review: pending\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Aseqdec: click [OPTION]... [BUTTONS]...\nSsed tiqeffalin n umẓuɣ.\n\nTinefrunin:\n  -r, --repeat=N             Ales taɣuri n tuddsa meṛṛa N n tikal\n  -D, --next-delay=N         Rǧu N n millisecund gar ineḍruyen n usekcem (up/down,                                a complete click means doubled time)\n  -P, --press-release        Ssed sakin serreḥ taqeffalt n umẓuɣ iwakken ad tfak tissit, (d afrayan)\n  -h, --help                 Sken tallalt-agi sakin ffɣ\n\nAmek ara d-teskanḍ tiqeffalin:\n  Tura, tiqeffalin n umẓuɣ akk ttwaskanent s wazal amḍan s hexadecimal, s tezmer ad ternuḍ\ntamaskalt n bit iwakken ad tettwakkes tɣawla n usali/ukcim n umẓuɣ.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Ddu s umẓuɣ\n  0x80 - Awi-d umẓuɣ\n  Imedyaten:\n    0x00: yefren taqeffalt tazelmaḍt, maca ur yegi ara kra (tzemreḍ ad tesqedceḍ aya i yiḍes-nniḍen)\n    0xC0: tissit s taqeffalt tazelmaḍt (sali sakin dder)\n    0x41: dder taqeffalt tayefust\n    0x82: serreḥ taqeffalt talemmast\n  Tzemreḍ ad tekkseḍ azwir '0x'.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "tanefrunt %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " s wawel %s"
+
+msgid "repeat count"
+msgstr "amḍan n wallus"
+
+msgid "delay (0..60000 ms)"
+msgstr "aḥbas (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Aneḍru n tissit %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Aseqdec: key [OPTION]... [KEYCODES]...\nSuffeɣ ineḍruyen n tsekla.\n\nTinefrunin:\n  -d, --key-delay=N          Rǧu N n millisecund gar ineḍruyen n tsekla\n  -h, --help                 Sken tallalt-agi sakin ffɣ\n\nImi ulac abrid i wakken ad nessin acḥal n yisuddam n unasiw yellan di ddunit,\nnettaɣa tura s tengalin raw n yisekla.\n\nTaseddast: <keycode>:<pressed>\nmd. 28:1 28:0 yemmal-d tissit ɣef tqeffalt Enter deg unasiw US amagnu.\n     (:1 n ussed yemmal-d belli taqeffalt tettwased, syin :0 yemmal-d belli tettwaserreḥ)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nAzalen ur nettwafham ara, am 0, aaa, l0l, ad d-rren kan aḥbas.\n\nẒer `/usr/include/linux/input-event-codes.h' i tengalin n tsekla yellan (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Aseqdec: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nSmutti ameɣnu n umẓuɣ neɣ agerruj.\n\nTinefrunin:\n  -w, --wheel                Smutti agerruj n umẓuɣ s wazal amsemlal\n  -a, --absolute             Seqdec adeg amsɣan, ur yesseqdac ara i ugerruj\n  -x, --xpos                 Adeg X\n  -y, --ypos                 Adeg Y\n  -h, --help                 Sken tallalt-agi sakin ffɣ\n\nIlaq ad tsenseḍ arurad n tɣawla n umẓuɣ iwakken ad yeddu usmutti amsɣan."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: aṭas n yisɣaren n usmideg\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Asmutti n ugerruj n umẓuɣ ur ilaq ara ad yili s wazal amsɣan\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: ilaqen sin n yisɣaren n usmideg\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Aru ayen tebɣiḍ (CTRL-C i tuffɣa):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: ɣer stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Tangalt n tsekla: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin yesseqdac kan ASCII; seqdec clipboard i usenteḍ n uḍris UTF-8\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Yettwasemres i: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  Azen shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  Azen ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Aseqdec: type [OPTION]... [STRINGS]...\nAru azrir n yisekkilen.\n\nTinefrunin:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Rǧu N n millisecund gar tsekla (aḥbas gar yal tanmeẓla n usali/ukcim) (default: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Ḥbes yal taqeffalt N n millisecund (aḥbas gar usali d ukcim n tsekla) (default: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Rǧu N n millisecund gar izirigen n yiseɣẓanen n tladna (default: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Mmel-d afaylu, agbur-is ad yettwaru amzun d awel i d-yettunefken.\n                               Abrid n ufaylu yezmer daɣen ad yili '-' i tɣuri seg stdin\n  -e, --escape=BOOL          Rmed (1) neɣ sens (0) Escape\n  -h, --help                 Sken tallalt-agi sakin ffɣ\n\nEscape yettarmed s lexṣas mi ara tettaru iwenniten n yiseɣẓanen n tladna, yerna yettwasens s lexṣas mi ara tettaru seg ufaylu d stdin.\nAnekcum n ufaylu yettwaɣra s usuddem: ASCII ameɣtu uqbel anamek n tuccḍa yezmer ad yili yettwaru yakan."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type yesseqdac kan ASCII; seqdec clipboard i usenteḍ n uḍris UTF-8\n"
+
+msgid "escape mode"
+msgstr "askar n Escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: tuccḍa: ur yessaweḍ ara ad yeldi %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: tuccḍa: ur yessaweḍ ara ad yeɣre %s: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Wigi d imeskar n uɣrum iɣerfan-nneɣ:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Aseqdec: release-all\nSerreḥ akk tiqeffalin tuɣtin n unasiw d umẓuɣ."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all ur yesɛi ara iwenniten\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Aseqdec: ydotool <cmd> <args>\nTiludna yellan:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Seqdec release-all iwakken ad d-terreḍ tisekla yeṭṭfen ticki yenger umsaɣ.\n  -h, --help     Sken tallalt-agi sakin ffɣ\n  -V, --version  Sken talɣut n lqem sakin ffɣ\nSeqdec tawila n twennaḍt YDOTOOL_SOCKET i uskan n socket n daemon."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: %s mačči d ameɣtu: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: azen aneḍru n unekcum"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: taladna tarussint: %s\nSelkem 'ydotool help' ma tebɣiḍ tabdart n tiludna\n"
+
+msgid "failed to create socket"
+msgstr "ur yessaweḍ ara ad d-yernu socket"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: abrid n socket ɣezzif aṭas\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "ur yessaweḍ ara ad yeqqen ɣer socket `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Ttxil-k selken ma yella ydotoold iteddu.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Ttxil-k selken ma ɣur useqdac amiran tisirag ilaqen i unekcum ɣer ufaylu socket.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: sbadu amsefrak n useɣẓan"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: sekkeṛ akaram n socket"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Aseqdec: ydotoold [OPTION]...\nDaemon n ydotool.\n\nTinefrunin:\n  -p, --socket-path=PATH     Abrid n socket yugnen\n  -P, --socket-perm=PERM     Tisirag n socket (default 0600)\n  -o, --socket-own=UID:GID   Bab n socket\n  -s, --no-system-keys        Sens tisekla SysRq d n tɣellist/yiḍes/ales n usekker\n  -m, --mouse-off            Sens amẓuɣ (EV_REL)\n  -k, --keyboard-off         Sens anasiw (EV_KEY)\n  -T, --touch-on             Rmed agelmis n umḍiq (EV_ABS)\n  -h, --help                 Sken tallalt-agi sakin ffɣ\n  -V, --version              Sken talɣut n lqem\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s ur yeddi ara\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d ur yeddi ara\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d ur yeddi ara\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d ur yeddi ara\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl ur yeddi ara"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl ur yeddi ara"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Ahat ilaq ad tselkmeḍ ahil-agi am root, neɣ YMMV."
+
+msgid "failed to open uinput device"
+msgstr "ur yessaweḍ ara ad yeldi ibenk uinput"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Abrid n socket: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "ur yessaweḍ ara ad d-yernu socket i usenqed n umennuɣ n daemon"
+
+msgid "Removing old stale socket"
+msgstr "Asfaḍ n socket aqbur iɣezfan"
+
+msgid "failed remove old stale socket"
+msgstr "ur yessaweḍ ara ad yesfeḍ socket aqbur iɣezfan"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "tuccḍa: yella ydotoold-nniḍen yetteddun s yiwen n socket."
+
+msgid "failed to bind socket"
+msgstr "ur yessaweḍ ara ad yeqqen socket"
+
+msgid "failed to change socket permission"
+msgstr "ur yessaweḍ ara ad ibeddel tisirag n socket"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Tisirag n socket: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "talfut n bab mačči d tameɣtut"
+
+msgid "failed to change socket ownership"
+msgstr "ur yessaweḍ ara ad ibeddel bab n socket"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Bab n socket: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "ur yessaweḍ ara ad iselkem taladna xinput"
+
+msgid "failed to fork"
+msgstr "ur yessaweḍ ara ad yebḍu fork"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "ulac taladna xinput deg `%s', ur tettwasens ara tririt n tɣawla n umeɣnu n umẓuɣ"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: aru aneḍru n unekcum"

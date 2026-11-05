@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool 1.0.11\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:52+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Қазақша\nLanguage: kk\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Native-Review: pending\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Пайдалану: click [OPTION]... [BUTTONS]...\nТінтуір түймелерін басу.\n\nПараметрлер:\n  -r, --repeat=N             Бүкіл реттілікті N рет қайталау\n  -D, --next-delay=N         Енгізу оқиғалары арасында N миллисекунд күту (up/down,                                a complete click means doubled time)\n  -P, --press-release        Шертуді аяқтау үшін тінтуір түймесін басып, босату, (optional)\n  -h, --help                 Осы көмекті көрсету және шығу\n\nТүймелерді көрсету:\n  Қазір барлық тінтуір түймелері он алтылық сан мәндерімен беріледі; қажет болса,\nтінтуірді төмен/жоғары жіберуді алып тастау үшін бит маскасын көрсетуге болады.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Тінтуірді басу\n  0x80 - Тінтуірді босату\n  Мысалдар:\n    0x00: сол жақ түймені таңдайды, бірақ әрекет жасамайды (қосымша кідірістер жасауға болады)\n    0xC0: сол жақ түймені шерту (басу, содан кейін босату)\n    0x41: оң жақ түймені басу\n    0x82: ортаңғы түймені босату\n  Қаласаңыз, '0x' префиксін жазбауға болады.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "option %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " with arg %s"
+
+msgid "repeat count"
+msgstr "repeat count"
+
+msgid "delay (0..60000 ms)"
+msgstr "delay (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Click Event %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Пайдалану: key [OPTION]... [KEYCODES]...\nПерне оқиғаларын жіберу.\n\nПараметрлер:\n  -d, --key-delay=N          Перне оқиғалары арасында N миллисекунд күту\n  -h, --help                 Осы көмекті көрсету және шығу\n\nӘлемде қанша пернетақта жаймасы барын білу мүмкін болмағандықтан,\nқазір шикі перне кодтарын қолданамыз.\n\nСинтаксис: <keycode>:<pressed>\nмысалы, 28:1 28:0 стандартты US пернетақтасындағы Enter пернесін басуды білдіреді.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\n0, aaa, l0l сияқты түсіндірілмейтін мәндер тек кідіріс туғызады.\n\nҚараңыз `/usr/include/linux/input-event-codes.h' қолжетімді перне кодтары үшін (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Пайдалану: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nТінтуір меңзерін немесе дөңгелегін жылжыту.\n\nПараметрлер:\n  -w, --wheel                Тінтуір дөңгелегін салыстырмалы түрде жылжыту\n  -a, --absolute             Абсолютті орынды қолдану; дөңгелекке қолданылмайды\n  -x, --xpos                 X орны\n  -y, --ypos                 Y орны\n  -h, --help                 Осы көмекті көрсету және шығу\n\nАбсолютті жылжыту дұрыс болуы үшін тінтуір жылдамдығының үдеуін өшіру керек."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: координаттар тым көп\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Тінтуір дөңгелегінің қозғалысын абсолютті мәндермен беруге болмайды\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: екі координат қажет\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Кез келген нәрсені теріңіз (CTRL-C шығу үшін):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: stdin оқу"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Перне коды: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin тек ASCII таңбаларын қолдайды; UTF-8 мәтіні үшін алмасу буферінен қойыңыз\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Түрленеді: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  shift жіберілуде\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  ctrl жіберілуде\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Пайдалану: type [OPTION]... [STRINGS]...\nЖолдарды теру.\n\nПараметрлер:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Пернелер арасында N миллисекунд күту (әр пернені басу/босату жұбы арасындағы кідіріс) (default: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Әр пернені N миллисекунд ұстап тұру (пернені басу мен босату арасындағы кідіріс) (default: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Пәрмен жолындағы жолдар арасында N миллисекунд күту (default: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Мазмұны аргумент ретінде берілгендей терілетін файлды көрсету.\n                               Файл жолы сондай-ақ '-' stdin-нен оқу үшін\n  -e, --escape=BOOL          Escape режимін қосу (1) не өшіру (0)\n  -h, --help                 Осы көмекті көрсету және шығу\n\nПәрмен жолы аргументтерін тергенде Escape әдепкіде қосулы, файл мен stdin-нен тергенде әдепкіде өшірулі.\nФайл кірісі ағынмен оқылады: кейін қате шықса да, оған дейінгі жарамды ASCII мәтіні теріліп үлгеруі мүмкін."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type тек ASCII таңбаларын қолдайды; UTF-8 мәтіні үшін алмасу буферінен қойыңыз\n"
+
+msgid "escape mode"
+msgstr "escape режимі"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: error: ашу мүмкін болмады %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: error: оқу %s орындалмады: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Біздің құрметті нан пісірушілеріміз:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Пайдалану: release-all\nВиртуалды пернетақта мен тінтуірдің барлық түймелерін босату."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all аргумент қабылдамайды\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Пайдалану: ydotool <cmd> <args>\nҚолжетімді пәрмендер:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Өлтірілген клиенттен кейін басылып қалған пернелерді босату үшін release-all қолданыңыз.\n  -h, --help     Осы көмекті көрсету және шығу\n  -V, --version  Нұсқа ақпаратын көрсету және шығу\nYDOTOOL_SOCKET орта айнымалысын демон сокетін көрсету үшін қолданыңыз."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: жарамсыз %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: енгізу оқиғасын жіберу"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: белгісіз пәрмен: %s\nОрындаңыз 'ydotool help' егер пәрмендер тізімі керек болса\n"
+
+msgid "failed to create socket"
+msgstr "сокет жасау сәтсіз аяқталды"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: сокет жолы тым ұзын\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "сокетіне қосылу сәтсіз аяқталды `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Тексеріңіз, ydotoold іске қосулы ма.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Ағымдағы пайдаланушының сокет файлына кіруге жеткілікті рұқсаты барын тексеріңіз.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: сигнал өңдегішін орнату"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: сокет каталогын құлыптау"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Пайдалану: ydotoold [OPTION]...\nydotool демоны.\n\nПараметрлер:\n  -p, --socket-path=PATH     Арнайы сокет жолы\n  -P, --socket-perm=PERM     Сокет рұқсаты (default 0600)\n  -o, --socket-own=UID:GID   Сокет иесі\n  -s, --no-system-keys        SysRq және қуат/ұйқы/қайта іске қосу пернелерін өшіру\n  -m, --mouse-off            Тінтуірді өшіру (EV_REL)\n  -k, --keyboard-off         Пернетақтаны өшіру (EV_KEY)\n  -T, --touch-on             Сенсорлық экранды қосу (EV_ABS)\n  -h, --help                 Осы көмекті көрсету және шығу\n  -V, --version              Нұсқа ақпаратын көрсету\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s орындалмады\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d орындалмады\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d орындалмады\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d орындалмады\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl сәтсіз аяқталды"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl сәтсіз аяқталды"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Бұл бағдарламаны root ретінде іске қосу ұсынылады, әйтпесе нәтиже әртүрлі болуы мүмкін (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "uinput құрылғысын ашу сәтсіз аяқталды"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Сокет жолы: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "демон қақтығысын анықтау үшін сокет жасау сәтсіз аяқталды"
+
+msgid "Removing old stale socket"
+msgstr "Ескі жарамсыз сокет жойылуда"
+
+msgid "failed remove old stale socket"
+msgstr "ескі жарамсыз сокетті жою сәтсіз аяқталды"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "error: дәл осы сокетті пайдаланатын басқа ydotoold іске қосылып тұр."
+
+msgid "failed to bind socket"
+msgstr "сокетке байланыстыру сәтсіз аяқталды"
+
+msgid "failed to change socket permission"
+msgstr "сокет рұқсатын өзгерту сәтсіз аяқталды"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Сокет рұқсаты: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "иелік сипаттамасы жарамсыз"
+
+msgid "failed to change socket ownership"
+msgstr "сокет иелігін өзгерту сәтсіз аяқталды"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Сокет иесі: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "xinput пәрменін орындау сәтсіз аяқталды"
+
+msgid "failed to fork"
+msgstr "fork жасау сәтсіз аяқталды"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "xinput пәрмені табылмады, `%s', тінтуір меңзерінің үдеуі өшірілмейді"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: енгізу оқиғасын жазу"

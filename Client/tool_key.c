@@ -38,8 +38,7 @@
 #include <string.h>
 
 static void show_help(void) {
-	puts(
-		"Usage: key [OPTION]... [KEYCODES]...\n"
+	puts(_("Usage: key [OPTION]... [KEYCODES]...\n"
 		"Emit key events.\n"
 		"\n"
 		"Options:\n"
@@ -56,8 +55,7 @@ static void show_help(void) {
 		"\n"
 		"Non-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n"
 		"\n"
-		"See `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
-	);
+		"See `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"));
 }
 
 
@@ -92,13 +90,13 @@ int tool_key(int argc, char **argv) {
 				/* If this option set a flag, do nothing else now. */
 				if (long_options[option_index].flag != 0)
 					break;
-				printf ("option %s", long_options[option_index].name);
+				printf (_("option %s"), long_options[option_index].name);
 				if (optarg)
-					printf (" with arg %s", optarg);
+					printf (_(" with arg %s"), optarg);
 				printf ("\n");
 				break;
 			case 'd':
-				key_delay = parse_number(optarg, 0, 60000, "delay (0..60000 ms)");
+				key_delay = parse_number(optarg, 0, 60000, _("delay (0..60000 ms)"));
 				break;
 
 			case 'h':

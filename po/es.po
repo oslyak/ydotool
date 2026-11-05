@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Spanish\nLanguage: es\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Uso: click [OPTION]... [BUTTONS]...\nHacer clic con los botones del ratón.\n\nOpciones:\n  -r, --repeat=N             Repetir toda la secuencia N veces\n  -D, --next-delay=N         Espera N milisegundos entre eventos de entrada (arriba/abajo;                                un clic completo duplica el tiempo)\n  -P, --press-release        Pulsar y soltar el botón del ratón para completar un clic (opcional)\n  -h, --help                 Mostrar esta ayuda y salir\n\nCómo especificar los botones:\n  Ahora todos los botones del ratón se representan mediante valores numéricos\n  hexadecimales, con una máscara de bits opcional para indicar si se debe omitir\n  la pulsación o la liberación del botón del ratón.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Bajar el botón del ratón\n  0x80 - Subir el botón del ratón\n  Ejemplos:\n    0x00: selecciona el botón izquierdo, pero no hace nada (puedes usarlo para implementar pausas adicionales)\n    0xC0: clic del botón izquierdo (bajar y luego subir)\n    0x41: bajar el botón derecho\n    0x82: subir el botón central\n  Puedes omitir el prefijo '0x' si lo deseas.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "opción %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " con argumento %s"
+
+msgid "repeat count"
+msgstr "número de repeticiones"
+
+msgid "delay (0..60000 ms)"
+msgstr "retardo (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Evento de clic %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Uso: key [OPTION]... [KEYCODES]...\nEmitir eventos de teclado.\n\nOpciones:\n  -d, --key-delay=N          Espera N milisegundos entre eventos de teclado\n  -h, --help                 Mostrar esta ayuda y salir\n\nComo no hay forma de saber cuántas distribuciones de teclado existen en el\nmundo, ahora usamos códigos de tecla sin procesar.\n\nSintaxis: <keycode>:<pressed>\np. ej., 28:1 28:0 significa pulsar la tecla Enter en un teclado US\nestándar.\n     (:1 indica que la tecla se baja y :0 que se suelta)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nLos valores no interpretables, como 0, aaa, l0l, solo provocan una espera.\n\nConsulta `/usr/include/linux/input-event-codes.h' para ver los códigos de tecla disponibles (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Uso: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMover el puntero del ratón o la rueda.\n\nOpciones:\n  -w, --wheel                Mover la rueda del ratón de forma relativa\n  -a, --absolute             Usar posición absoluta; no se aplica a la rueda\n  -x, --xpos                 Posición X\n  -y, --ypos                 Posición Y\n  -h, --help                 Mostrar esta ayuda y salir\n\nDebes desactivar la aceleración de velocidad del ratón para que el movimiento absoluto sea correcto."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: demasiadas coordenadas\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Los movimientos de la rueda del ratón no deben ser valores absolutos\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: se requieren dos coordenadas\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Escribe lo que quieras (CTRL-C para salir):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: leer stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Código de tecla: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin solo admite ASCII; usa pegar desde el portapapeles para texto UTF-8\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Se asigna a: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  Enviando shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  Enviando ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Uso: type [OPTION]... [STRINGS]...\nEscribir cadenas de texto.\n\nOpciones:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Espera N milisegundos entre teclas (la espera entre cada par de pulsación y liberación) (predeterminado: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Mantener cada tecla durante N milisegundos (la espera entre bajar y subir la tecla) (predeterminado: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Espera N milisegundos entre cadenas de la línea de comandos (predeterminado: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Especificar un archivo cuyo contenido se escribirá\n                              como si se hubiera pasado como argumento.\n                              La ruta también puede ser '-' para leer desde stdin\n  -e, --escape=BOOL          Activar (1) o desactivar (0) el escape\n  -h, --help                 Mostrar esta ayuda y salir\n\nEl escape está activado de forma predeterminada al escribir argumentos de la línea de comandos y desactivado al escribir desde un archivo o stdin.\nLa entrada del archivo se procesa en flujo: el ASCII válido anterior a un error posterior puede haberse escrito ya."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type solo admite ASCII; usa pegar desde el portapapeles para texto UTF-8\n"
+
+msgid "escape mode"
+msgstr "modo de escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: error: no se pudo abrir %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: error: error al leer %s: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Estos son nuestros honorables panaderos:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Uso: release-all\nLiberar todas las teclas y botones virtuales del teclado y del ratón."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all no acepta argumentos\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Uso: ydotool <cmd> <args>\nComandos disponibles:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Usa release-all para recuperar las teclas mantenidas tras cerrar un cliente a la fuerza.\n  -h, --help     Mostrar esta ayuda y salir\n  -V, --version  Mostrar información de la versión y salir\nUsa la variable de entorno YDOTOOL_SOCKET para especificar el socket del daemon."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: %s no válido: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: enviar evento de entrada"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Comando desconocido: %s\nEjecuta «ydotool help» si quieres ver la lista de comandos\n"
+
+msgid "failed to create socket"
+msgstr "no se pudo crear el socket"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: la ruta del socket es demasiado larga\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "no se pudo conectar al socket `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Comprueba si ydotoold está en ejecución.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Comprueba si el usuario actual tiene permisos suficientes para acceder al archivo del socket.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: instalar el controlador de señales"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: bloquear el directorio del socket"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Uso: ydotoold [OPTION]...\nEl daemon de ydotool.\n\nOpciones:\n  -p, --socket-path=PATH     Ruta personalizada del socket\n  -P, --socket-perm=PERM     Permisos del socket (predeterminado 0600)\n  -o, --socket-own=UID:GID   Propietario del socket\n  -s, --no-system-keys        Desactivar las teclas SysRq y de encendido/suspensión/reinicio\n  -m, --mouse-off            Desactivar el ratón (EV_REL)\n  -k, --keyboard-off         Desactivar el teclado (EV_KEY)\n  -T, --touch-on             Activar la pantalla táctil (EV_ABS)\n  -h, --help                 Mostrar esta ayuda y salir\n  -V, --version              Mostrar información de la versión\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "Error en UI_SET_EVBIT %s\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "Error en UI_SET_KEYBIT %d\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "Error en UI_SET_RELBIT %d\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "Error en UI_SET_ABSBIT %d\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "Error en UI_DEV_SETUP ioctl"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "Error en UI_DEV_CREATE ioctl"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Se recomienda ejecutar este programa como root; de lo contrario, el resultado puede variar (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "no se pudo abrir el dispositivo uinput"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Ruta del socket: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "no se pudo crear el socket para detectar conflictos del daemon"
+
+msgid "Removing old stale socket"
+msgstr "Eliminando el socket antiguo obsoleto"
+
+msgid "failed remove old stale socket"
+msgstr "no se pudo eliminar el socket antiguo obsoleto"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "error: ya hay otro ydotoold en ejecución con el mismo socket."
+
+msgid "failed to bind socket"
+msgstr "no se pudo enlazar el socket"
+
+msgid "failed to change socket permission"
+msgstr "no se pudieron cambiar los permisos del socket"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Permisos del socket: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "especificación de propiedad no válida"
+
+msgid "failed to change socket ownership"
+msgstr "no se pudo cambiar el propietario del socket"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Propiedad del socket: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "no se pudo ejecutar el comando xinput"
+
+msgid "failed to fork"
+msgstr "no se pudo crear el proceso hijo"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "no se encontró el comando xinput en `%s'; no se desactivará la aceleración del puntero del ratón"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: escribir evento de entrada"

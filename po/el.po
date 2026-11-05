@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: el\nLanguage: el\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Χρήση: click [OPTION]... [BUTTONS]...\nΚάντε κλικ με κουμπιά του ποντικιού.\n\nΕπιλογές:\n  -r, --repeat=N             Επανάληψη ολόκληρης της ακολουθίας N φορές\n  -D, --next-delay=N         Καθυστέρηση N χιλιοστών του δευτερολέπτου μεταξύ συμβάντων εισόδου (κάτω/πάνω,                                ένα πλήρες κλικ σημαίνει διπλάσιο χρόνο)\n  -P, --press-release        Πάτημα και απελευθέρωση κουμπιού ποντικιού για ολοκλήρωση κλικ (προαιρετικό)\n  -h, --help                 Εμφάνιση αυτής της βοήθειας και έξοδος\n\nΠώς ορίζονται τα κουμπιά:\n  Τώρα όλα τα κουμπιά ποντικιού αναπαρίστανται με δεκαεξαδικές αριθμητικές τιμές, με προαιρετική\nμάσκα bit για να οριστεί αν θα παραλειφθεί το πάτημα/η απελευθέρωση του ποντικιού.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Κάτω το κουμπί του ποντικιού\n  0x80 - Πάνω το κουμπί του ποντικιού\n  Παραδείγματα:\n    0x00: επιλέγει το αριστερό κουμπί, αλλά δεν κάνει τίποτα (μπορείτε να το χρησιμοποιήσετε για επιπλέον αναμονές)\n    0xC0: κλικ αριστερού κουμπιού (κάτω και μετά πάνω)\n    0x41: πάτημα δεξιού κουμπιού\n    0x82: απελευθέρωση μεσαίου κουμπιού\n  Το πρόθεμα '0x' μπορεί να παραλειφθεί αν θέλετε.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "επιλογή %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " με όρισμα %s"
+
+msgid "repeat count"
+msgstr "πλήθος επαναλήψεων"
+
+msgid "delay (0..60000 ms)"
+msgstr "καθυστέρηση (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Συμβάν κλικ %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Χρήση: key [OPTION]... [KEYCODES]...\nΠαραγωγή συμβάντων πλήκτρων.\n\nΕπιλογές:\n  -d, --key-delay=N          Καθυστέρηση N χιλιοστών του δευτερολέπτου μεταξύ συμβάντων πλήκτρων\n  -h, --help                 Εμφάνιση αυτής της βοήθειας και έξοδος\n\nΚαθώς δεν υπάρχει τρόπος να γνωρίζουμε πόσες διατάξεις πληκτρολογίου υπάρχουν στον κόσμο,\nχρησιμοποιούμε πλέον ακατέργαστους κωδικούς πλήκτρων.\n\nΣύνταξη: <keycode>:<pressed>\nπ.χ. 28:1 28:0 σημαίνει πάτημα του πλήκτρου Enter (US) σε ένα τυπικό πληκτρολόγιο ΗΠΑ.\n     (όπου :1 σημαίνει ότι το πλήκτρο είναι πατημένο και έπειτα το :0 ότι έχει απελευθερωθεί)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nΜη ερμηνεύσιμες τιμές, όπως 0, aaa, l0l, προκαλούν μόνο καθυστέρηση.\n\nΔείτε το `/usr/include/linux/input-event-codes.h' για διαθέσιμους κωδικούς πλήκτρων (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Χρήση: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nΜετακίνηση του δείκτη ή του τροχού του ποντικιού.\n\nΕπιλογές:\n  -w, --wheel                Σχετική μετακίνηση του τροχού του ποντικιού\n  -a, --absolute             Χρήση απόλυτης θέσης· δεν ισχύει για τον τροχό\n  -x, --xpos                 Θέση X\n  -y, --ypos                 Θέση Y\n  -h, --help                 Εμφάνιση αυτής της βοήθειας και έξοδος\n\nΓια σωστή απόλυτη μετακίνηση πρέπει να απενεργοποιήσετε την επιτάχυνση ταχύτητας του ποντικιού."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: πάρα πολλές συντεταγμένες\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Οι κινήσεις του τροχού του ποντικιού δεν πρέπει να είναι απόλυτες τιμές\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: απαιτούνται δύο συντεταγμένες\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Πληκτρολογήστε οτιδήποτε (CTRL-C για έξοδο):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: ανάγνωση stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Κωδικός πλήκτρου: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: το stdin υποστηρίζει μόνο ASCII· χρησιμοποιήστε επικόλληση από το πρόχειρο για κείμενο UTF-8\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Αντιστοιχεί σε: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  Αποστολή shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  Αποστολή ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Χρήση: type [OPTION]... [STRINGS]...\nΠληκτρολόγηση συμβολοσειρών.\n\nΕπιλογές:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Καθυστέρηση N χιλιοστών του δευτερολέπτου μεταξύ πλήκτρων (καθυστέρηση ανά ζεύγος πατήματος/απελευθέρωσης) (προεπιλογή: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Κράτημα κάθε πλήκτρου για N χιλιοστά του δευτερολέπτου (καθυστέρηση μεταξύ πατήματος και απελευθέρωσης) (προεπιλογή: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Καθυστέρηση N χιλιοστών του δευτερολέπτου μεταξύ συμβολοσειρών γραμμής εντολών (προεπιλογή: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Ορισμός αρχείου, του οποίου τα περιεχόμενα θα πληκτρολογηθούν σαν να είχαν δοθεί ως όρισμα.\n                               Η διαδρομή αρχείου μπορεί επίσης να είναι '-' για ανάγνωση από stdin\n  -e, --escape=BOOL          Ενεργοποίηση escape (1) ή απενεργοποίηση (0)\n  -h, --help                 Εμφάνιση αυτής της βοήθειας και έξοδος\n\nΤο escape είναι ενεργό από προεπιλογή κατά την πληκτρολόγηση ορισμάτων γραμμής εντολών και ανενεργό από προεπιλογή κατά την πληκτρολόγηση από αρχείο και stdin.\nΗ είσοδος αρχείου μεταδίδεται σταδιακά: έγκυρο ASCII πριν από μεταγενέστερο σφάλμα μπορεί να έχει ήδη πληκτρολογηθεί."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: το type υποστηρίζει μόνο ASCII· χρησιμοποιήστε επικόλληση από το πρόχειρο για κείμενο UTF-8\n"
+
+msgid "escape mode"
+msgstr "λειτουργία escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: σφάλμα: αποτυχία ανοίγματος %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: σφάλμα: αποτυχία ανάγνωσης %s: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Αυτοί είναι οι αξιότιμοι αρτοποιοί μας:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Χρήση: release-all\nΑπελευθέρωση όλων των εικονικών κουμπιών πληκτρολογίου και ποντικιού."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: το release-all δεν δέχεται ορίσματα\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Χρήση: ydotool <cmd> <args>\nΔιαθέσιμες εντολές:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Χρησιμοποιήστε το release-all για να επαναφέρετε πλήκτρα που έμειναν πατημένα μετά τον τερματισμό ενός πελάτη.\n  -h, --help     Εμφάνιση αυτής της βοήθειας και έξοδος\n  -V, --version  Εμφάνιση πληροφοριών έκδοσης και έξοδος\nΧρησιμοποιήστε τη μεταβλητή περιβάλλοντος YDOTOOL_SOCKET για να ορίσετε την υποδοχή του δαίμονα."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: μη έγκυρο %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: αποστολή συμβάντος εισόδου"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Άγνωστη εντολή: %s\nΕκτελέστε το 'ydotool help' για να δείτε τη λίστα εντολών\n"
+
+msgid "failed to create socket"
+msgstr "αποτυχία δημιουργίας socket"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: η διαδρομή socket είναι υπερβολικά μεγάλη\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "αποτυχία σύνδεσης socket `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Ελέγξτε αν εκτελείται το ydotoold.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Ελέγξτε αν ο τρέχων χρήστης έχει επαρκή δικαιώματα πρόσβασης στο αρχείο socket.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: εγκατάσταση χειριστή σήματος"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: κλείδωμα καταλόγου socket"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Χρήση: ydotoold [OPTION]...\nΟ δαίμονας ydotool.\n\nΕπιλογές:\n  -p, --socket-path=PATH     Προσαρμοσμένη διαδρομή socket\n  -P, --socket-perm=PERM     Δικαιώματα socket (προεπιλογή 0600)\n  -o, --socket-own=UID:GID   Ιδιοκτησία socket\n  -s, --no-system-keys        Απενεργοποίηση πλήκτρων SysRq και λειτουργίας/ύπνου/επανεκκίνησης\n  -m, --mouse-off            Απενεργοποίηση ποντικιού (EV_REL)\n  -k, --keyboard-off         Απενεργοποίηση πληκτρολογίου (EV_KEY)\n  -T, --touch-on             Ενεργοποίηση οθόνης αφής (EV_ABS)\n  -h, --help                 Εμφάνιση αυτής της βοήθειας και έξοδος\n  -V, --version              Εμφάνιση πληροφοριών έκδοσης\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "Αποτυχία του UI_SET_EVBIT %s\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "Αποτυχία του UI_SET_KEYBIT %d\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "Αποτυχία του UI_SET_RELBIT %d\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "Αποτυχία του UI_SET_ABSBIT %d\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "Αποτυχία του UI_DEV_SETUP ioctl"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "Αποτυχία του UI_DEV_CREATE ioctl"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Συνιστάται να εκτελέσετε αυτό το πρόγραμμα ως root, διαφορετικά η συμπεριφορά μπορεί να ποικίλλει. (YMMV)"
+
+msgid "failed to open uinput device"
+msgstr "αποτυχία ανοίγματος συσκευής uinput"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Διαδρομή socket: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "αποτυχία δημιουργίας socket για ανίχνευση σύγκρουσης δαίμονα"
+
+msgid "Removing old stale socket"
+msgstr "Αφαίρεση παλιάς ανενεργής socket"
+
+msgid "failed remove old stale socket"
+msgstr "αποτυχία αφαίρεσης παλιάς ανενεργής socket"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "σφάλμα: Εκτελείται άλλο ydotoold με την ίδια socket."
+
+msgid "failed to bind socket"
+msgstr "αποτυχία σύνδεσης socket"
+
+msgid "failed to change socket permission"
+msgstr "αποτυχία αλλαγής δικαιωμάτων socket"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Δικαιώματα socket: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "μη έγκυρος ορισμός ιδιοκτησίας"
+
+msgid "failed to change socket ownership"
+msgstr "αποτυχία αλλαγής ιδιοκτησίας socket"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Ιδιοκτησία socket: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "αποτυχία εκτέλεσης εντολής xinput"
+
+msgid "failed to fork"
+msgstr "αποτυχία δημιουργίας διεργασίας"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "Η εντολή xinput δεν βρέθηκε στο `%s', δεν απενεργοποιείται η επιτάχυνση δείκτη ποντικιού"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: εγγραφή συμβάντος εισόδου"

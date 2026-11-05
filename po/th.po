@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Thai\nLanguage: th\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Usage: click [OPTION]... [BUTTONS]...\nคลิกปุ่มเมาส์\n\nตัวเลือก:\n  -r, --repeat=N             ทำซ้ำลำดับทั้งหมด N ครั้ง\n  -D, --next-delay=N         หน่วง N มิลลิวินาทีระหว่างเหตุการณ์อินพุต (ขึ้น/ลง,                                การคลิกครบหนึ่งครั้งใช้เวลาเป็นสองเท่า)\n  -P, --press-release        กดและปล่อยปุ่มเมาส์เพื่อคลิกให้เสร็จ (ไม่บังคับ)\n  -h, --help                 แสดงวิธีใช้นี้แล้วออก\n\nวิธีระบุปุ่ม:\n  ขณะนี้ปุ่มเมาส์ทั้งหมดใช้ค่าตัวเลขฐานสิบหก โดยอาจใช้\nบิตมาสก์เพื่อระบุว่าจะละเว้นการยกขึ้น/กดลงของเมาส์หรือไม่\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - กดเมาส์ลง\n  0x80 - ยกเมาส์ขึ้น\n  ตัวอย่าง:\n    0x00: เลือกปุ่มซ้ายแต่ไม่ทำอะไร (ใช้เพื่อเพิ่มช่วงพักได้)\n    0xC0: คลิกปุ่มซ้าย (กดลงแล้วปล่อยขึ้น)\n    0x41: กดปุ่มขวาลง\n    0x82: ยกปุ่มกลางขึ้น\n  ละคำนำหน้า 0x ได้หากต้องการ\n"
+
+#, c-format
+msgid "option %s"
+msgstr "ตัวเลือก %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " พร้อมอาร์กิวเมนต์ %s"
+
+msgid "repeat count"
+msgstr "จำนวนครั้งที่ทำซ้ำ"
+
+msgid "delay (0..60000 ms)"
+msgstr "หน่วงเวลา (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "เหตุการณ์คลิก %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Usage: key [OPTION]... [KEYCODES]...\nส่งเหตุการณ์แป้นพิมพ์\n\nตัวเลือก:\n  -d, --key-delay=N          หน่วง N มิลลิวินาทีระหว่างเหตุการณ์แป้นพิมพ์\n  -h, --help                 แสดงวิธีใช้นี้แล้วออก\n\nเนื่องจากไม่อาจทราบได้ว่ามีรูปแบบแป้นพิมพ์กี่แบบในโลก\nขณะนี้เราจึงใช้รหัสแป้นพิมพ์ดิบ\n\nไวยากรณ์: <keycode>:<pressed>\nเช่น 28:1 28:0 หมายถึงการกดปุ่ม Enter บนแป้นพิมพ์ US มาตรฐาน\n     (:1 หมายถึงกดปุ่มลง และ :0 หมายถึงปล่อยปุ่ม)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nค่าที่แปลความหมายไม่ได้ เช่น 0, aaa, l0l จะทำให้เกิดเพียงการหน่วงเวลา\n\nดูรหัสปุ่มที่ใช้ได้ (KEY_*) ที่ `/usr/include/linux/input-event-codes.h'\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nย้ายตัวชี้เมาส์หรือวงล้อ\n\nตัวเลือก:\n  -w, --wheel                เลื่อนวงล้อเมาส์แบบสัมพัทธ์\n  -a, --absolute             ใช้ตำแหน่งสัมบูรณ์ ใช้กับวงล้อไม่ได้\n  -x, --xpos                 ตำแหน่ง X\n  -y, --ypos                 ตำแหน่ง Y\n  -h, --help                 แสดงวิธีใช้นี้แล้วออก\n\nต้องปิดการเร่งความเร็วเมาส์เพื่อให้การเคลื่อนที่แบบสัมบูรณ์ถูกต้อง"
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: พิกัดมากเกินไป\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "การเลื่อนวงล้อเมาส์ต้องไม่ใช้ค่าแบบสัมบูรณ์\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: ต้องระบุพิกัดสองค่า\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "พิมพ์ข้อความใดก็ได้ (CTRL-C เพื่อออก):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: อ่าน stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "รหัสปุ่ม: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin รองรับ ASCII เท่านั้น; แนะนำให้วางข้อความ UTF-8 จากคลิปบอร์ด\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  แปลงเป็น: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  กำลังส่ง shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  กำลังส่ง ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Usage: type [OPTION]... [STRINGS]...\nพิมพ์สตริง\n\nตัวเลือก:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          หน่วง N มิลลิวินาทีระหว่างปุ่ม (หน่วงระหว่างคู่กดลง/ปล่อยขึ้นแต่ละครั้ง) (ค่าเริ่มต้น: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           กดแต่ละปุ่มค้างไว้ N มิลลิวินาที (หน่วงระหว่างกดลงและปล่อยขึ้น) (ค่าเริ่มต้น: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         หน่วง N มิลลิวินาทีระหว่างสตริงบรรทัดคำสั่ง (ค่าเริ่มต้น: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            ระบุไฟล์ โดยพิมพ์เนื้อหาเสมือนส่งเป็นอาร์กิวเมนต์\n                               filepath อาจเป็น '-' เพื่ออ่านจาก stdin\n  -e, --escape=BOOL          เปิดการ escape (1) หรือปิด (0)\n  -h, --help                 แสดงวิธีใช้นี้แล้วออก\n\nเปิด Escape เป็นค่าเริ่มต้นเมื่อพิมพ์อาร์กิวเมนต์บรรทัดคำสั่ง และปิดเป็นค่าเริ่มต้นเมื่อพิมพ์จากไฟล์และ stdin\nข้อมูลจากไฟล์จะถูกอ่านเป็นสตรีม: ASCII ที่ถูกต้องก่อนเกิดข้อผิดพลาดภายหลังอาจถูกพิมพ์ไปแล้ว"
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type รองรับ ASCII เท่านั้น; แนะนำให้วางข้อความ UTF-8 จากคลิปบอร์ด\n"
+
+msgid "escape mode"
+msgstr "โหมด escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: ข้อผิดพลาด: เปิด %s ไม่สำเร็จ: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: ข้อผิดพลาด: อ่าน %s ไม่สำเร็จ: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "ผู้ทำขนมปังผู้ทรงเกียรติของเราคือ:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Usage: release-all\nปล่อยปุ่มแป้นพิมพ์และเมาส์เสมือนทั้งหมด"
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all ไม่รับอาร์กิวเมนต์\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Usage: ydotool <cmd> <args>\nคำสั่งที่ใช้ได้:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "ใช้ release-all เพื่อกู้คืนปุ่มที่ค้างหลังไคลเอนต์ถูกยุติ\n  -h, --help     แสดงวิธีใช้นี้แล้วออก\n  -V, --version  แสดงข้อมูลรุ่นแล้วออก\nใช้ตัวแปรสภาพแวดล้อม YDOTOOL_SOCKET เพื่อระบุซ็อกเก็ต daemon"
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: %s ไม่ถูกต้อง: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: ส่งเหตุการณ์อินพุต"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: คำสั่งไม่รู้จัก: %s\nเรียก 'ydotool help' หากต้องการดูรายการคำสั่ง\n"
+
+msgid "failed to create socket"
+msgstr "สร้างซ็อกเก็ตไม่สำเร็จ"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: พาธซ็อกเก็ตยาวเกินไป\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "เชื่อมต่อซ็อกเก็ต `%s' ไม่สำเร็จ: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "โปรดตรวจสอบว่า ydotoold กำลังทำงานอยู่\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "โปรดตรวจสอบว่าผู้ใช้ปัจจุบันมีสิทธิ์เพียงพอในการเข้าถึงไฟล์ซ็อกเก็ต\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: ติดตั้งตัวจัดการสัญญาณ"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: ล็อกไดเรกทอรีซ็อกเก็ต"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Usage: ydotoold [OPTION]...\nเดมอน ydotool\n\nตัวเลือก:\n  -p, --socket-path=PATH     กำหนดพาธซ็อกเก็ตเอง\n  -P, --socket-perm=PERM     สิทธิ์ซ็อกเก็ต (ค่าเริ่มต้น 0600)\n  -o, --socket-own=UID:GID   เจ้าของซ็อกเก็ต\n  -s, --no-system-keys        ปิด SysRq และปุ่มเปิด/ปิด/พัก/เริ่มระบบใหม่\n  -m, --mouse-off            ปิดเมาส์ (EV_REL)\n  -k, --keyboard-off         ปิดแป้นพิมพ์ (EV_KEY)\n  -T, --touch-on             เปิดหน้าจอสัมผัส (EV_ABS)\n  -h, --help                 แสดงวิธีใช้นี้แล้วออก\n  -V, --version              แสดงข้อมูลรุ่น\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s ล้มเหลว\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d ล้มเหลว\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d ล้มเหลว\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d ล้มเหลว\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "การเรียก ioctl UI_DEV_SETUP ล้มเหลว"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "การเรียก ioctl UI_DEV_CREATE ล้มเหลว"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "แนะนำให้เรียกใช้โปรแกรมนี้ในฐานะ root มิฉะนั้นผลลัพธ์อาจแตกต่างกัน YMMV"
+
+msgid "failed to open uinput device"
+msgstr "เปิดอุปกรณ์ uinput ไม่สำเร็จ"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "พาธซ็อกเก็ต: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "สร้างซ็อกเก็ตเพื่อตรวจจับ daemon ชนกันไม่สำเร็จ"
+
+msgid "Removing old stale socket"
+msgstr "กำลังลบซ็อกเก็ตเก่าที่ค้างอยู่"
+
+msgid "failed remove old stale socket"
+msgstr "ลบซ็อกเก็ตเก่าที่ค้างอยู่ไม่สำเร็จ"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "ข้อผิดพลาด: มี ydotoold อีกตัวทำงานโดยใช้ซ็อกเก็ตเดียวกัน"
+
+msgid "failed to bind socket"
+msgstr "ผูกซ็อกเก็ตไม่สำเร็จ"
+
+msgid "failed to change socket permission"
+msgstr "เปลี่ยนสิทธิ์ซ็อกเก็ตไม่สำเร็จ"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "สิทธิ์ซ็อกเก็ต: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "ข้อกำหนดเจ้าของไม่ถูกต้อง"
+
+msgid "failed to change socket ownership"
+msgstr "เปลี่ยนเจ้าของซ็อกเก็ตไม่สำเร็จ"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "เจ้าของซ็อกเก็ต: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "เรียกคำสั่ง xinput ไม่สำเร็จ"
+
+msgid "failed to fork"
+msgstr "สร้างโพรเซสลูกไม่สำเร็จ"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "ไม่พบคำสั่ง xinput ใน `%s' จึงไม่ปิดการเร่งความเร็วตัวชี้เมาส์"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: เขียนเหตุการณ์อินพุต"

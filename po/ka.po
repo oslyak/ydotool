@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: ka\nLanguage: ka\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "გამოყენება: click [OPTION]... [BUTTONS]...\nდაწკაპუნეთ მაუსის ღილაკებზე.\nპარამეტრები:\n  -r, --repeat=N             გაიმეორეთ მთელი მიმდევრობა N-ჯერ\n  -D, --next-delay=N         დაყოვნება N მილიწამი შეყვანის მოვლენებს შორის (ზემოთ/ქვემოთ, სრული დაწკაპუნება ორმაგ დროს ნიშნავს)\n  -P, --press-release        დააჭირეთ და გაუშვით მაუსის ღილაკი დაწკაპუნების შესასრულებლად (არასავალდებულო)\n  -h, --help                 აჩვენეთ ეს დახმარება და დაასრულეთ\n\nღილაკების მითითება:\n  ახლა მაუსის ყველა ღილაკი წარმოდგენილია თექვსმეტობითი რიცხვებით; სურვილისამებრ ნიღაბი მიუთითებს, გამოტოვდეს თუ არა მაუსის აწევა/დაწევა.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - მაუსის დაწევა\n  0x80 - მაუსის აწევა\n  მაგალითები:\n    0x00: ირჩევს მარცხენა ღილაკს, მაგრამ არაფერს აკეთებს (შეგიძლიათ დამატებითი დაყოვნებებისთვის გამოიყენოთ)\n    0xC0: მარცხენა ღილაკის დაწკაპუნება (დაწევა, შემდეგ აწევა)\n    0x41: მარჯვენა ღილაკის დაწევა\n    0x82: შუა ღილაკის აწევა\n  სურვილის შემთხვევაში '0x' პრეფიქსი შეიძლება გამოტოვოთ.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "პარამეტრი %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " არგუმენტით %s"
+
+msgid "repeat count"
+msgstr "გამეორებების რაოდენობა"
+
+msgid "delay (0..60000 ms)"
+msgstr "დაყოვნება (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "დაწკაპუნების მოვლენა %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "გამოყენება: key [OPTION]... [KEYCODES]...\nგამოაგზავნეთ კლავიშების მოვლენები.\n\nპარამეტრები:\n  -d, --key-delay=N          დაყოვნება N მილიწამი კლავიშების მოვლენებს შორის\n  -h, --help                 აჩვენეთ ეს დახმარება და დაასრულეთ\n\nმსოფლიოში კლავიატურის განლაგებების რაოდენობის ცოდნა შეუძლებელია, ამიტომ ახლა ვიყენებთ ნედლ კლავიშთა კოდებს.\n\nსინტაქსი: <keycode>:<pressed>\nმაგ., 28:1 28:0 ნიშნავს Enter ღილაკზე დაჭერას სტანდარტულ US კლავიატურაზე.\n     (:1 ნიშნავს დაჭერილ კლავიშს, ხოლო :0 — მის გაშვებას)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nარაინტერპრეტირებადი მნიშვნელობები, როგორიცაა 0, aaa, l0l, მხოლოდ დაყოვნებას გამოიწვევს.\n\nხელმისაწვდომი კლავიშთა კოდებისთვის იხილეთ `/usr/include/linux/input-event-codes.h' (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "გამოყენება: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nგადაადგილეთ მაუსის მაჩვენებელი ან ბორბალი.\n\nპარამეტრები:\n  -w, --wheel                გადაადგილეთ მაუსის ბორბალი შედარებით\n  -a, --absolute             გამოიყენეთ აბსოლუტური პოზიცია; ბორბალზე არ ვრცელდება\n  -x, --xpos                 X პოზიცია\n  -y, --ypos                 Y პოზიცია\n  -h, --help                 აჩვენეთ ეს დახმარება და დაასრულეთ\n\nაბსოლუტური გადაადგილების სისწორისთვის უნდა გამორთოთ მაუსის სიჩქარის აჩქარება."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: კოორდინატები მეტისმეტად ბევრია\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "მაუსის ბორბლის გადაადგილება აბსოლუტური მნიშვნელობა არ უნდა იყოს\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: საჭიროა ორი კოორდინატი\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "შეიყვანეთ ტექსტი (CTRL-C გასასვლელად):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: stdin-ის წაკითხვა"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "კლავიშის კოდი: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin მხარს უჭერს მხოლოდ ASCII-ს; UTF-8 ტექსტისთვის გამოიყენეთ ბუფერში ჩასმა\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  გარდაიქმნება: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  იგზავნება shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  იგზავნება ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "გამოყენება: type [OPTION]... [STRINGS]...\nაკრიფეთ სტრიქონები.\n\nპარამეტრები:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          დაყოვნება N მილიწამი კლავიშებს შორის (ყოველ დაწევა/აწევის წყვილს შორის დაყოვნება) (ნაგულისხმევი: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           თითოეული კლავიში დაჭერილი იყოს N მილიწამით (დაყოვნება კლავიშის დაწევასა და აწევას შორის) (ნაგულისხმევი: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         დაყოვნება N მილიწამი ბრძანების სტრიქონებს შორის (ნაგულისხმევი: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            მიუთითეთ ფაილი, რომლის შიგთავსიც არგუმენტად გადაცემულივით აიკრიფება.\n                               ფაილის ბილიკად შეიძლება '-' მიუთითოთ stdin-იდან წასაკითხად\n  -e, --escape=BOOL          Escape-ის ჩართვა (1) ან გამორთვა (0)\n  -h, --help                 აჩვენეთ ეს დახმარება და დაასრულეთ\n\nბრძანების სტრიქონის არგუმენტების აკრეფისას Escape ნაგულისხმევად ჩართულია, ფაილიდან და stdin-იდან აკრეფისას კი ნაგულისხმევად გამორთულია.\nფაილის შეყვანა ნაკადურად მუშავდება: მოგვიანებით შეცდომამდე არსებული სწორი ASCII შეიძლება უკვე აკრეფილი იყოს."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type მხარს უჭერს მხოლოდ ASCII-ს; UTF-8 ტექსტისთვის გამოიყენეთ ბუფერში ჩასმა\n"
+
+msgid "escape mode"
+msgstr "Escape-ის რეჟიმი"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: შეცდომა: %s ვერ გაიხსნა: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: შეცდომა: %s ვერ წაიკითხა: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "ჩვენი პატივცემული მცხობლები არიან:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "გამოყენება: release-all\nგაათავისუფლეთ ვირტუალური კლავიატურისა და მაუსის ყველა ღილაკი."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all არგუმენტებს არ იღებს\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "გამოყენება: ydotool <cmd> <args>\nხელმისაწვდომი ბრძანებები:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "გამოიყენეთ release-all, მოკლული კლიენტის შემდეგ დაჭერილი კლავიშების გასათავისუფლებლად.\n  -h, --help     აჩვენეთ ეს დახმარება და დაასრულეთ\n  -V, --version  აჩვენეთ ვერსიის ინფორმაცია და დაასრულეთ\nდემონის სოკეტის მისათითებლად გამოიყენეთ გარემოს ცვლადი YDOTOOL_SOCKET."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: არასწორი %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: შეყვანის მოვლენის გაგზავნა"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: უცნობი ბრძანება: %s\nბრძანებების სიის სანახავად გაუშვით „ydotool help“\n"
+
+msgid "failed to create socket"
+msgstr "სოკეტის შექმნა ვერ მოხერხდა"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: სოკეტის ბილიკი მეტისმეტად გრძელია\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "სოკეტთან დაკავშირება `%s': %s ვერ მოხერხდა\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "შეამოწმეთ, გაშვებულია თუ არა ydotoold.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "შეამოწმეთ, აქვს თუ არა ამჟამინდელ მომხმარებელს სოკეტის ფაილზე წვდომის საკმარისი უფლება.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: სიგნალის დამმუშავებლის დაყენება"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: სოკეტის საქაღალდის ჩაკეტვა"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "გამოყენება: ydotoold [OPTION]...\nyddotool დემონი.\n\nპარამეტრები:\n  -p, --socket-path=PATH     მორგებული სოკეტის ბილიკი\n  -P, --socket-perm=PERM     სოკეტის ნებართვა (ნაგულისხმევი 0600)\n  -o, --socket-own=UID:GID   სოკეტის მფლობელობა\n  -s, --no-system-keys        გამორთეთ SysRq და ჩართვის/ძილის/გადატვირთვის კლავიშები\n  -m, --mouse-off            გამორთეთ მაუსი (EV_REL)\n  -k, --keyboard-off         გამორთეთ კლავიატურა (EV_KEY)\n  -T, --touch-on             ჩართეთ სენსორული ეკრანი (EV_ABS)\n  -h, --help                 აჩვენეთ ეს დახმარება და დაასრულეთ\n  -V, --version              აჩვენეთ ვერსიის ინფორმაცია\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s ვერ შესრულდა\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d ვერ შესრულდა\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d ვერ შესრულდა\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d ვერ შესრულდა\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl ვერ შესრულდა"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl ვერ შესრულდა"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "გირჩევთ, ეს პროგრამა root-ის უფლებებით გაუშვათ; სხვა შემთხვევაში შედეგი შეიძლება განსხვავდებოდეს. (YMMV)"
+
+msgid "failed to open uinput device"
+msgstr "uinput მოწყობილობის გახსნა ვერ მოხერხდა"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "სოკეტის ბილიკი: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "დემონის კონფლიქტის გამოსავლენად სოკეტის შექმნა ვერ მოხერხდა"
+
+msgid "Removing old stale socket"
+msgstr "ძველი, შემორჩენილი სოკეტის წაშლა"
+
+msgid "failed remove old stale socket"
+msgstr "ძველი შემორჩენილი სოკეტის წაშლა ვერ მოხერხდა"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "შეცდომა: სხვა ydotoold იმავე სოკეტით მუშაობს."
+
+msgid "failed to bind socket"
+msgstr "სოკეტის მიბმა ვერ მოხერხდა"
+
+msgid "failed to change socket permission"
+msgstr "სოკეტის ნებართვის შეცვლა ვერ მოხერხდა"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "სოკეტის ნებართვა: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "მფლობელობის არასწორი სპეციფიკაცია"
+
+msgid "failed to change socket ownership"
+msgstr "სოკეტის მფლობელობის შეცვლა ვერ მოხერხდა"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "სოკეტის მფლობელობა: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "xinput ბრძანების გაშვება ვერ მოხერხდა"
+
+msgid "failed to fork"
+msgstr "შვილპროცესის შექმნა ვერ მოხერხდა"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "`%s'-ში xinput ბრძანება ვერ მოიძებნა; მაუსის მაჩვენებლის აჩქარება არ გამოირთვება"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: შეყვანის მოვლენის ჩაწერა"

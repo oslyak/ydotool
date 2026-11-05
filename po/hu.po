@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: hu\nLanguage: hu\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Használat: click [OPTION]... [BUTTONS]...\nKattintás az egérgombokkal.\n\nBeállítások:\n  -r, --repeat=N             A teljes sorozat ismétlése N alkalommal\n  -D, --next-delay=N         Késleltetés N ezredmásodpercig a bemeneti események között (le/fel,                                egy teljes kattintás kétszeres időt jelent)\n  -P, --press-release        Az egérgomb lenyomása és felengedése a kattintás befejezéséhez (nem kötelező)\n  -h, --help                 E súgó megjelenítése és kilépés\n\nA gombok megadása:\n  Jelenleg minden egérgombot hexadecimális számérték képvisel, opcionális\nbitmaszkkal annak megadására, hogy az egérgomb fel/le eseményét ki kell-e hagyni.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Egérgomb lenyomása\n  0x80 - Egérgomb felengedése\n  Példák:\n    0x00: a bal gombot választja, de nem csinál semmit (további várakozásokhoz használható)\n    0xC0: bal gomb kattintás (lenyomás, majd felengedés)\n    0x41: jobb gomb lenyomása\n    0x82: középső gomb felengedése\n  A '0x' előtag elhagyható.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "kapcsoló %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " %s argumentummal"
+
+msgid "repeat count"
+msgstr "ismétlések száma"
+
+msgid "delay (0..60000 ms)"
+msgstr "késleltetés (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Kattintási esemény %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Használat: key [OPTION]... [KEYCODES]...\nBillentyűesemények kibocsátása.\n\nBeállítások:\n  -d, --key-delay=N          Késleltetés N ezredmásodpercig a billentyűesemények között\n  -h, --help                 E súgó megjelenítése és kilépés\n\nMivel nem lehet tudni, hány billentyűzetkiosztás létezik a világon,\nmost nyers billentyűkódokat használunk.\n\nSzintaxis: <keycode>:<pressed>\npl. a 28:1 28:0 egy szabványos amerikai billentyűzet Enter (US) gombjának lenyomását jelenti.\n     (a :1 a lenyomott állapotot, a :0 pedig a felengedést jelöli)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nAz olyan nem értelmezhető értékek, mint a 0, aaa, l0l, csak késleltetést okoznak.\n\nAz elérhető billentyűkódokat lásd itt: `/usr/include/linux/input-event-codes.h' (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Használat: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nAz egérmutató vagy a görgő mozgatása.\n\nBeállítások:\n  -w, --wheel                Az egérgörgő relatív mozgatása\n  -a, --absolute             Abszolút pozíció használata, görgőnél nem alkalmazható\n  -x, --xpos                 X pozíció\n  -y, --ypos                 Y pozíció\n  -h, --help                 E súgó megjelenítése és kilépés\n\nA pontos abszolút mozgatáshoz ki kell kapcsolni az egér sebességgyorsítását."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: túl sok koordináta\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Az egérgörgő mozgása nem lehet abszolút érték\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: két koordináta szükséges\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Írjon be bármit (CTRL-C a kilépéshez):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: stdin olvasása"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Billentyűkód: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: az stdin csak ASCII-t támogat; UTF-8 szöveghez használja a vágólap beillesztését\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Erre képeződik le: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  shift küldése\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  ctrl küldése\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Használat: type [OPTION]... [STRINGS]...\nSzövegek begépelése.\n\nBeállítások:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Késleltetés N ezredmásodpercig a billentyűk között (az egyes lenyomás/felengedés párok közötti késleltetés) (alapértelmezett: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Minden billentyű lenyomva tartása N ezredmásodpercig (késleltetés a lenyomás és felengedés között) (alapértelmezett: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Késleltetés N ezredmásodpercig a parancssori szövegek között (alapértelmezett: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Fájl megadása; a tartalmát úgy gépeli be, mintha argumentumként adta volna meg.\n                               A fájl elérési útja '-' is lehet, ekkor stdin-ről olvas\n  -e, --escape=BOOL          Escape engedélyezése (1) vagy letiltása (0)\n  -h, --help                 E súgó megjelenítése és kilépés\n\nParancssori argumentumok begépelésekor az escape alapértelmezés szerint engedélyezett, fájl és stdin begépelésekor pedig letiltott.\nA fájlbemenet folyamatos: egy későbbi hiba előtt érvényes ASCII-adatok már begépelődhettek."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: a type csak ASCII-t támogat; UTF-8 szöveghez használja a vágólap beillesztését\n"
+
+msgid "escape mode"
+msgstr "escape mód"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: hiba: %s megnyitása sikertelen: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: hiba: %s olvasása sikertelen: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Ezek a mi tiszteletre méltó pékjeink:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Használat: release-all\nAz összes virtuális billentyűzet- és egérgomb felengedése."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: a release-all nem fogad argumentumokat\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Használat: ydotool <cmd> <args>\nElérhető parancsok:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "A release-all paranccsal felengedhetők a leállított kliens után lenyomva maradt billentyűk.\n  -h, --help     E súgó megjelenítése és kilépés\n  -V, --version  Verzióinformáció megjelenítése és kilépés\nA démon socketének megadásához használja a YDOTOOL_SOCKET környezeti változót."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: érvénytelen %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: bemeneti esemény küldése"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Ismeretlen parancs: %s\nA parancsok listájához futtassa a „ydotool help” parancsot\n"
+
+msgid "failed to create socket"
+msgstr "socket létrehozása sikertelen"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: a socket elérési útja túl hosszú\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "socketkapcsolat sikertelen `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Ellenőrizze, hogy fut-e a ydotoold.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Ellenőrizze, hogy az aktuális felhasználónak van-e megfelelő jogosultsága a socketfájl eléréséhez.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: jelkezelő telepítése"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: socketkönyvtár zárolása"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Használat: ydotoold [OPTION]...\nA ydotool démonja.\n\nBeállítások:\n  -p, --socket-path=PATH     Egyéni socketelérési út\n  -P, --socket-perm=PERM     Socket jogosultsága (alapértelmezett 0600)\n  -o, --socket-own=UID:GID   Socket tulajdonosa\n  -s, --no-system-keys        SysRq, valamint a kikapcsoló/alvó/újraindító billentyűk letiltása\n  -m, --mouse-off            Egér letiltása (EV_REL)\n  -k, --keyboard-off         Billentyűzet letiltása (EV_KEY)\n  -T, --touch-on             Érintőképernyő engedélyezése (EV_ABS)\n  -h, --help                 E súgó megjelenítése és kilépés\n  -V, --version              Verzióinformáció megjelenítése\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s sikertelen\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d sikertelen\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d sikertelen\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d sikertelen\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl sikertelen"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl sikertelen"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Javasolt ezt a programot rootként futtatni, különben a működés eltérhet. (YMMV)"
+
+msgid "failed to open uinput device"
+msgstr "uinput eszköz megnyitása sikertelen"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Socket elérési útja: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "démonütközés észlelésére szolgáló socket létrehozása sikertelen"
+
+msgid "Removing old stale socket"
+msgstr "Régi, elavult socket eltávolítása"
+
+msgid "failed remove old stale socket"
+msgstr "régi, elavult socket eltávolítása sikertelen"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "hiba: Egy másik ydotoold fut ugyanezzel a sockettel."
+
+msgid "failed to bind socket"
+msgstr "sockethez kötés sikertelen"
+
+msgid "failed to change socket permission"
+msgstr "socket jogosultságának módosítása sikertelen"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Socket jogosultsága: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "érvénytelen tulajdonos-meghatározás"
+
+msgid "failed to change socket ownership"
+msgstr "socket tulajdonosának módosítása sikertelen"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Socket tulajdonosa: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "xinput parancs futtatása sikertelen"
+
+msgid "failed to fork"
+msgstr "fork sikertelen"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "Az xinput parancs nem található itt: `%s', az egérmutató gyorsítása nincs letiltva"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: bemeneti esemény írása"

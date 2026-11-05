@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Indonesian\nLanguage: id\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "PENGGUNAAN: click [OPTION]... [BUTTONS]...\nKlik tombol mouse.\n\nOptions:\n  -r, --repeat=N             Ulangi seluruh urutan sebanyak N kali\n  -D, --next-delay=N         Jeda N milidetik di antara peristiwa input (tekan/lepas,                                satu klik penuh berarti waktu dua kali lipat)\n  -P, --press-release        Tekan lalu lepaskan tombol mouse untuk menyelesaikan klik (opsional)\n  -h, --help                 Tampilkan bantuan ini lalu keluar\n\nCara menentukan tombol:\n  Kini semua tombol mouse dinyatakan dengan nilai numerik heksadesimal, dengan\nbit mask opsional untuk menentukan apakah mouse up/down perlu dihilangkan.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse ditekan\n  0x80 - Mouse dilepas\n  Examples:\n    0x00: memilih tombol kiri, tetapi tidak melakukan apa pun (dapat digunakan untuk menambahkan jeda)\n    0xC0: klik tombol kiri (tekan lalu lepas)\n    0x41: tombol kanan ditekan\n    0x82: tombol tengah dilepas\n  Awalan '0x' boleh dihilangkan jika diinginkan.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "opsi %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " dengan argumen %s"
+
+msgid "repeat count"
+msgstr "jumlah pengulangan"
+
+msgid "delay (0..60000 ms)"
+msgstr "jeda (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Peristiwa Klik %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "PENGGUNAAN: key [OPTION]... [KEYCODES]...\nKirim peristiwa tombol.\n\nOptions:\n  -d, --key-delay=N          Jeda N milidetik di antara peristiwa tombol\n  -h, --help                 Tampilkan bantuan ini lalu keluar\n\nKarena jumlah tata letak papan ketik di dunia tidak dapat diketahui,\n kini kami menggunakan kode tombol mentah.\n\nSintaks: <keycode>:<pressed>\nmisalnya 28:1 28:0 berarti menekan tombol Enter pada papan ketik standar US.\n     (di mana :1 berarti tombol ditekan lalu :0 berarti tombol dilepas)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNilai yang tidak dapat ditafsirkan, seperti 0, aaa, l0l, hanya akan menyebabkan jeda.\n\nLihat `/usr/include/linux/input-event-codes.h' untuk kode tombol yang tersedia (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "PENGGUNAAN: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nPindahkan penunjuk mouse atau roda.\n\nOptions:\n  -w, --wheel                Gerakkan roda mouse secara relatif\n  -a, --absolute             Gunakan posisi absolut, tidak berlaku untuk roda\n  -x, --xpos                 Posisi X\n  -y, --ypos                 Posisi Y\n  -h, --help                 Tampilkan bantuan ini lalu keluar\n\nAnda perlu menonaktifkan akselerasi kecepatan mouse agar gerakan absolut tepat."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: terlalu banyak koordinat\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Gerakan roda mouse tidak boleh berupa nilai absolut\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: diperlukan dua koordinat\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Ketik apa saja (CTRL-C untuk keluar):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: membaca stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Kode tombol: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin hanya mendukung ASCII; gunakan tempel clipboard untuk teks UTF-8\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Dipetakan ke: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  Mengirim shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  Mengirim ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "PENGGUNAAN: type [OPTION]... [STRINGS]...\nKetik string.\n\nOptions:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Jeda N milidetik di antara tombol (jeda antara setiap pasangan tekan/lepas) (default: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Tahan setiap tombol selama N milidetik (jeda antara tombol ditekan dan dilepas) (default: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Jeda N milidetik di antara string baris perintah (default: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Tentukan file yang isinya akan diketik seolah-olah diberikan sebagai argumen.\n                               Jalur file juga dapat berupa '-' untuk membaca dari stdin\n  -e, --escape=BOOL          Aktifkan (1) atau nonaktifkan (0) escape\n  -h, --help                 Tampilkan bantuan ini lalu keluar\n\nEscape aktif secara default saat mengetik argumen baris perintah, dan nonaktif secara default saat mengetik dari file dan stdin.\nInput file dialirkan: ASCII yang valid sebelum kesalahan berikutnya mungkin sudah terketik."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type hanya mendukung ASCII; gunakan tempel clipboard untuk teks UTF-8\n"
+
+msgid "escape mode"
+msgstr "mode escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: kesalahan: gagal membuka %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: kesalahan: pembacaan %s failed: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Berikut para pembuat roti terhormat kami:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "PENGGUNAAN: release-all\nLepaskan semua tombol papan ketik dan mouse virtual."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all tidak menerima argumen\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "PENGGUNAAN: ydotool <cmd> <args>\nPerintah yang tersedia:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Gunakan release-all untuk melepaskan tombol yang tertahan setelah klien dihentikan paksa.\n  -h, --help     Tampilkan bantuan ini lalu keluar\n  -V, --version  Tampilkan informasi versi lalu keluar\nGunakan variabel lingkungan YDOTOOL_SOCKET untuk menentukan soket daemon."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: tidak valid %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: mengirim peristiwa input"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Perintah tidak dikenal: %s\nJalankan 'ydotool help' untuk melihat daftar perintah\n"
+
+msgid "failed to create socket"
+msgstr "gagal membuat soket"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: jalur soket terlalu panjang\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "gagal menyambungkan ke soket `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Periksa apakah ydotoold sedang berjalan.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Periksa apakah pengguna saat ini memiliki izin yang cukup untuk mengakses file soket.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: memasang pengelola sinyal"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: mengunci direktori soket"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "PENGGUNAAN: ydotoold [OPTION]...\nDaemon ydotool.\n\nOptions:\n  -p, --socket-path=PATH     Jalur soket khusus\n  -P, --socket-perm=PERM     Izin soket (default 0600)\n  -o, --socket-own=UID:GID   Kepemilikan soket\n  -s, --no-system-keys        Nonaktifkan tombol SysRq dan tombol daya/tidur/mulai ulang\n  -m, --mouse-off            Nonaktifkan mouse (EV_REL)\n  -k, --keyboard-off         Nonaktifkan papan ketik (EV_KEY)\n  -T, --touch-on             Aktifkan layar sentuh (EV_ABS)\n  -h, --help                 Tampilkan bantuan ini lalu keluar\n  -V, --version              Tampilkan informasi versi\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s failed\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d failed\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d failed\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d failed\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl gagal"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl gagal"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Disarankan menjalankan program ini sebagai root; hasilnya mungkin berbeda jika tidak (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "gagal membuka perangkat uinput"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Jalur soket: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "gagal membuat soket untuk mendeteksi konflik daemon"
+
+msgid "Removing old stale socket"
+msgstr "Menghapus soket lama yang tertinggal"
+
+msgid "failed remove old stale socket"
+msgstr "gagal menghapus soket lama yang tertinggal"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "kesalahan: ydotoold lain sedang berjalan dengan soket yang sama."
+
+msgid "failed to bind socket"
+msgstr "gagal mengikat soket"
+
+msgid "failed to change socket permission"
+msgstr "gagal mengubah izin soket"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Izin soket: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "spesifikasi kepemilikan tidak valid"
+
+msgid "failed to change socket ownership"
+msgstr "gagal mengubah kepemilikan soket"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Kepemilikan soket: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "gagal menjalankan perintah xinput"
+
+msgid "failed to fork"
+msgstr "gagal membuat proses turunan"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "perintah xinput tidak ditemukan di `%s', akselerasi penunjuk mouse tidak dinonaktifkan"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: menulis peristiwa input"

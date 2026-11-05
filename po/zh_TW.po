@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Chinese (Traditional)\nLanguage: zh_TW\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "用法: click [OPTION]... [BUTTONS]...\n點擊滑鼠按鈕。\n\n選項:\n  -r, --repeat=N             将整个序列重複 N 次\n  -D, --next-delay=N         输入事件之間延遲 N 毫秒（按下/放開，完整点击的延遲为两倍）\n  -P, --press-release        按下并释放鼠标按钮以完成一次点击（可选）\n  -h, --help                 显示此帮助并離開\n\n按钮指定方法:\n  现在所有鼠标按钮都用十六进制数值表示，可选用位掩码指定是否省略滑鼠按下/放開事件。\n  0x00 - LEFT（左鍵）\n  0x01 - RIGHT（右鍵）\n  0x02 - MIDDLE（中鍵）\n  0x03 - SIDE（側鍵）\n  0x04 - EXTR（額外鍵）\n  0x05 - FORWARD（前進鍵）\n  0x06 - BACK（後退鍵）\n  0x07 - TASK（任務鍵）\n  0x40 - 滑鼠按下\n  0x80 - 滑鼠放開\n  示例:\n    0x00: 选择左鍵，但不执行任何操作（可用来实现额外等待）\n    0xC0: 左鍵单击（先按下再放開）\n    0x41: 按下右鍵\n    0x82: 放開中鍵\n  如有需要，可省略“0x”前缀。\n"
+
+#, c-format
+msgid "option %s"
+msgstr "選項 %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " 參數为 %s"
+
+msgid "repeat count"
+msgstr "重複次"
+
+msgid "delay (0..60000 ms)"
+msgstr "延遲（0..60000 毫秒）"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "點擊事件 %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "用法: key [OPTION]... [KEYCODES]...\n送出按鍵事件。\n\n選項:\n  -d, --key-delay=N          按鍵事件之間延遲 N 毫秒\n  -h, --help                 显示此帮助并離開\n\n由于无法知道世界上有多少种鍵盤配置，\n现在使用原始按鍵碼。\n\n语法: <keycode>:<pressed>\n例如，28:1 28:0 表示在 US 标准美式鍵盤上按下 Enter 键。\n     （:1 表示按鍵按下，:0 表示按鍵釋放）     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\n無法解析的值（如 0、aaa、l0l）只会导致延遲。\n\n可用按鍵碼（KEY_*）请参见 `/usr/include/linux/input-event-codes.h'。\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "用法: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\n移動滑鼠指標或滾輪。\n\n選項:\n  -w, --wheel                相對移動滑鼠滾輪\n  -a, --absolute             使用絕對位置；不適用於滾輪\n  -x, --xpos                 X 座標\n  -y, --ypos                 Y 座標\n  -h, --help                 显示此帮助并離開\n\n若要正確進行絕對移動，請停用滑鼠速度加速。"
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: 座標过多\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "滑鼠滾輪移動不能使用絕對值\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: 必须提供两个座標\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "輸入任意內容（CTRL-C 離開）：\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: 讀取 stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "按鍵碼: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin 僅支援 ASCII；UTF-8 文本請使用剪貼簿貼上\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  對應為: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  正在傳送 shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  正在傳送 ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "用法: type [OPTION]... [STRINGS]...\n輸入字串。\n\n選項:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          按键之間延遲 N 毫秒（每组按下/放開之間的延遲）（預設值: %d）\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           每個按键維持 N 毫秒（按下到放開之間的延遲）（預設值: %d）\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         命令行字符串之間延遲 N 毫秒（預設值: %d）\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            指定一個檔案，其內容會如同以參數傳入般輸入。\n                               檔案路徑也可以是 '-'，表示從 stdin 讀取\n  -e, --escape=BOOL          啟用 (1) 或停用 (0) 跳脫\n  -h, --help                 显示此帮助并離開\n\n输入命令行參數时預設啟用跳脫；从文件和 stdin 输入时預設停用跳脫。\n檔案輸入採用串流處理：後續發生錯誤前有效的 ASCII 內容可能已經輸入。"
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type 僅支援 ASCII；UTF-8 文本請使用剪貼簿貼上\n"
+
+msgid "escape mode"
+msgstr "跳脫模式"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: 錯誤：無法開啟 %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: 錯誤：讀取 %s 失敗: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "這些是我們敬重的烘焙師：\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "用法: release-all\n释放所有虚拟鍵盤和鼠标按钮。"
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all 不接受參數\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "用法: ydotool <cmd> <args>\n可用命令:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "使用 release-all 可在用戶端遭強制終止後釋放仍按住的按鍵。\n  -h, --help     显示此帮助并離開\n  -V, --version  顯示版本資訊并離開\n使用環境變數 YDOTOOL_SOCKET 指定常駐程式通訊端。"
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: 無效的 %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: 傳送輸入事件"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: 未知命令: %s\n執行 'ydotool help' 可查看命令清單\n"
+
+msgid "failed to create socket"
+msgstr "创建通訊端失敗"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: 通訊端路徑過長\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "连接通訊端 `%s' 失敗: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "請檢查 ydotoold 是否正在執行。\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "請檢查目前使用者是否有足夠權限存取通訊端文件。\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: 安裝訊號處理常式"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: 锁定通訊端目录"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "用法: ydotoold [OPTION]...\nydotool 常駐程式。\n\n選項:\n  -p, --socket-path=PATH     自訂通訊端路径\n  -P, --socket-perm=PERM     通訊端權限（預設 0600）\n  -o, --socket-own=UID:GID   通訊端擁有權\n  -s, --no-system-keys        停用 SysRq 和电源/睡眠/重启键\n  -m, --mouse-off            停用鼠标 (EV_REL)\n  -k, --keyboard-off         停用鍵盤 (EV_KEY)\n  -T, --touch-on             啟用触摸屏 (EV_ABS)\n  -h, --help                 显示此帮助并離開\n  -V, --version              顯示版本資訊\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s 失敗\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d 失敗\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d 失敗\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d 失敗\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl 失敗"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl 失敗"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "建議以 root 身分執行此程式，否則結果可能因環境而異（YMMV）。"
+
+msgid "failed to open uinput device"
+msgstr "開啟 uinput 裝置失敗"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "通訊端路径: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "创建用于检测常駐程式冲突的通訊端失敗"
+
+msgid "Removing old stale socket"
+msgstr "正在移除旧的残留通訊端"
+
+msgid "failed remove old stale socket"
+msgstr "移除旧的残留通訊端失敗"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "錯誤：另一个 ydotoold 正在使用同一个通訊端執行。"
+
+msgid "failed to bind socket"
+msgstr "绑定通訊端失敗"
+
+msgid "failed to change socket permission"
+msgstr "更改通訊端權限失敗"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "通訊端權限: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "擁有權指定無效"
+
+msgid "failed to change socket ownership"
+msgstr "更改通訊端擁有權失敗"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "通訊端擁有權: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "執行 xinput 命令失敗"
+
+msgid "failed to fork"
+msgstr "fork 失敗"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "在 `%s' 中找不到 xinput 命令，未停用鼠标指针加速"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: 寫入輸入事件"

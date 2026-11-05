@@ -80,22 +80,22 @@ static void configure_terminal(void) {
 int tool_stdin([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
     configure_terminal(); // Set terminal to raw mode
 
-    printf("Type anything (CTRL-C to exit):\n");
+    printf(_("Type anything (CTRL-C to exit):\n"));
 
     while (1) {
 		char buffer[4] = {0};
 		ssize_t count = read(STDIN_FILENO, buffer, 1);
 		if (count == 0) return 0;
 		if (count < 0) {
-			perror("ydotool: read stdin");
+			perror(_("ydotool: read stdin"));
 			return 2;
 		}
 
-		printf("Key code: %d %d %d\n", buffer[0], buffer[1], buffer[2]);
+		printf(_("Key code: %d %d %d\n"), buffer[0], buffer[1], buffer[2]);
 
 		unsigned char c = (unsigned char)buffer[0];
 		if (c >= sizeof(ascii2keycode_map) / sizeof(ascii2keycode_map[0])) {
-			fputs("ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n", stderr);
+			fputs(_("ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"), stderr);
 			return 2;
 		}
 
@@ -116,7 +116,7 @@ int tool_stdin([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
 		}
 
 		if (kdef == -1) continue; // Skip unsupported characters
-		printf("  Maps to: %d\n", kdef);
+		printf(_("  Maps to: %d\n"), kdef);
 
 		uint16_t kc = kdef & 0xffff; // Extract keycode
 		bool isUppercase = (kdef & FLAG_UPPERCASE) != 0;
@@ -124,11 +124,11 @@ int tool_stdin([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
 
 		// Emit key events
 		if (isUppercase) {
-		printf("  Sending shift\n");
+		printf(_("  Sending shift\n"));
 			uinput_emit(EV_KEY, KEY_LEFTSHIFT, 1, true); // Press shift for uppercase
 		}
 		if (isCtrl) {
-			printf("  Sending ctrl\n");
+			printf(_("  Sending ctrl\n"));
 			uinput_emit(EV_KEY, KEY_LEFTCTRL, 1, true); // Press ctrl
 			}
 			uinput_emit(EV_KEY, kc, 1, true); // Key down

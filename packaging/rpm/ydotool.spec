@@ -7,6 +7,7 @@ URL:            https://github.com/oslyak/ydotool
 Source0:        %{name}-%{version}.tar.gz
 BuildRequires:  cmake >= 3.22
 BuildRequires:  gcc >= 14
+BuildRequires:  gettext
 BuildRequires:  make
 BuildRequires:  scdoc
 BuildRequires:  systemd-rpm-macros
@@ -93,6 +94,7 @@ fi
 %{_datadir}/doc/%{name}/SOURCE_REVISION
 %{_mandir}/man1/ydotool.1.gz
 %{_mandir}/man8/ydotoold.8.gz
+%{_datadir}/locale/*/LC_MESSAGES/ydotool.mo
 
 %changelog
 * Thu Nov 05 2026 PosBit <anton@sirius.if.ua> - 1.0.11-1

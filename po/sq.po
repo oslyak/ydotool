@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Albanian\nLanguage: sq\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Përdorimi: click [OPTION]... [BUTTONS]...\nKlikon butonat e miut.\n\nOpsionet:\n  -r, --repeat=N             Përsërit të gjithë sekuencën N herë\n  -D, --next-delay=N         Pret N milisekonda mes ngjarjeve të hyrjes (lart/poshtë;                                një klikim i plotë zgjat dyfish)\n  -P, --press-release        Shtyp dhe lëshon butonin e miut për të përfunduar klikimin (opsionale)\n  -h, --help                 Shfaq këtë ndihmë dhe del\n\nSi të specifikohen butonat:\n  Tani të gjithë butonat e miut paraqiten me vlera numerike heksadecimale, me një maskë bitësh opsionale\npër të përcaktuar nëse duhet hequr ngjarja lart/poshtë e miut.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Shtypja e butonit të miut\n  0x80 - Lëshimi i butonit të miut\n  Shembuj:\n    0x00: zgjedh butonin e majtë, por nuk bën asgjë (mund ta përdorni për të zbatuar pritje shtesë)\n    0xC0: klikim i butonit të majtë (shtypje pastaj lëshim)\n    0x41: shtyp butonin e djathtë\n    0x82: lëshon butonin e mesit\n  Parashtesa '0x' mund të hiqet nëse dëshironi.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "opsioni %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " me argumentin %s"
+
+msgid "repeat count"
+msgstr "numri i përsëritjeve"
+
+msgid "delay (0..60000 ms)"
+msgstr "vonesa (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Ngjarja e klikimit %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Përdorimi: key [OPTION]... [KEYCODES]...\nGjeneron ngjarje tastesh.\n\nOpsionet:\n  -d, --key-delay=N          Pret N milisekonda mes ngjarjeve të tasteve\n  -h, --help                 Shfaq këtë ndihmë dhe del\n\nMeqë nuk ka mënyrë për të ditur sa variante tastierash ka në botë,\ntani përdorim kode të papërpunuara tastesh.\n\nSintaksa: <keycode>:<pressed>\np.sh. 28:1 28:0 do të thotë shtypja e tastit Enter në një tastierë standarde US.\n     (ku :1 tregon shtypjen e tastit dhe më pas :0 tregon lëshimin e tij)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nVlera të painterpretueshme, si 0, aaa, l0l, shkaktojnë vetëm një vonesë.\n\nPër kodet e disponueshme të tasteve (KEY_*), shihni `/usr/include/linux/input-event-codes.h'\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Përdorimi: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nLëviz treguesin ose rrotën e miut.\n\nOpsionet:\n  -w, --wheel                Lëviz rrotën e miut në mënyrë relative\n  -a, --absolute             Përdor pozicion absolut; nuk zbatohet për rrotën\n  -x, --xpos                 Pozicioni X\n  -y, --ypos                 Pozicioni Y\n  -h, --help                 Shfaq këtë ndihmë dhe del\n\nPër lëvizje të saktë absolute, duhet të çaktivizoni përshpejtimin e miut."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: shumë koordinata\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Lëvizjet e rrotës së miut nuk duhet të jenë vlera absolute\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: kërkohen dy koordinata\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Shkruani diçka (CTRL-C për të dalë):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: gabim gjatë leximit të stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Kodi i tastit: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin mbështet vetëm ASCII; përdorni ngjitjen nga clipboard për tekst UTF-8\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Përputhet me: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  Po dërgohet shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  Po dërgohet ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Përdorimi: type [OPTION]... [STRINGS]...\nShkruan vargjet e tekstit.\n\nOpsionet:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Pret N milisekonda mes tasteve (vonesa mes çdo çifti shtypje/lëshim) (parazgjedhja: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Mban çdo tast të shtypur për N milisekonda (vonesa mes shtypjes dhe lëshimit) (parazgjedhja: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Pret N milisekonda mes vargjeve të linjës së komandës (parazgjedhja: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Përcakton skedarin, përmbajtja e të cilit do të shkruhet sikur të ishte dhënë si argument.\n                               Rruga e skedarit mund të jetë edhe '-' për të lexuar nga stdin\n  -e, --escape=BOOL          Aktivizon (1) ose çaktivizon (0) Escape\n  -h, --help                 Shfaq këtë ndihmë dhe del\n\nEscape është aktivizuar si parazgjedhje kur shkruhen argumentet e linjës së komandës dhe çaktivizuar si parazgjedhje kur shkruhet nga skedari dhe stdin.\nHyrja nga skedari përpunohet si rrjedhë: ASCII e vlefshme para një gabimi të mëvonshëm mund të jetë shkruar tashmë."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type mbështet vetëm ASCII; përdorni ngjitjen nga clipboard për tekst UTF-8\n"
+
+msgid "escape mode"
+msgstr "modaliteti escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: gabim: hapja e %s dështoi: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: gabim: leximi i %s dështoi: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Këta janë kontribuesit tanë të nderuar:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Përdorimi: release-all\nLëshon të gjithë butonat virtualë të tastierës dhe miut."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all nuk merr argumente\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Përdorimi: ydotool <cmd> <args>\nKomandat e disponueshme:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Përdorni release-all për të liruar tastet e mbajtura pas përfundimit të detyruar të klientit.\n  -h, --help     Shfaq këtë ndihmë dhe del\n  -V, --version  Shfaq informacionin e versionit dhe del\nPërdorni variablën e mjedisit YDOTOOL_SOCKET për të përcaktuar soketin e daemon-it."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: %s e pavlefshme: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: gabim gjatë dërgimit të ngjarjes së hyrjes"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Komandë e panjohur: %s\nEkzekutoni 'ydotool help' për listën e komandave\n"
+
+msgid "failed to create socket"
+msgstr "krijimi i soketit dështoi"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: shtegu i soketit është tepër i gjatë\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "lidhja me soketin `%s' dështoi: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Kontrolloni nëse ydotoold po ekzekutohet.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Kontrolloni nëse përdoruesi aktual ka leje të mjaftueshme për të hyrë te skedari i soketit.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: instalimi i trajtuesit të sinjalit dështoi"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: kyçja e drejtorisë së soketit dështoi"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Përdorimi: ydotoold [OPTION]...\nDaemon-i ydotool.\n\nOpsionet:\n  -p, --socket-path=PATH     Shtegu i personalizuar i soketit\n  -P, --socket-perm=PERM     Leja e soketit (parazgjedhja 0600)\n  -o, --socket-own=UID:GID   Pronësia e soketit\n  -s, --no-system-keys        Çaktivizon tastet SysRq dhe të energjisë/gjumit/rinisjes\n  -m, --mouse-off            Çaktivizon miun (EV_REL)\n  -k, --keyboard-off         Çaktivizon tastierën (EV_KEY)\n  -T, --touch-on             Aktivizon ekranin me prekje (EV_ABS)\n  -h, --help                 Shfaq këtë ndihmë dhe del\n  -V, --version              Shfaq informacionin e versionit\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s dështoi\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d dështoi\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d dështoi\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d dështoi\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl dështoi"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl dështoi"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Këshillohet ta ekzekutoni këtë program si root; përndryshe rezultati mund të ndryshojë (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "hapja e pajisjes uinput dështoi"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Shtegu i soketit: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "krijimi i soketit për zbulimin e konfliktit të daemon-it dështoi"
+
+msgid "Removing old stale socket"
+msgstr "Po hiqet soketi i vjetër dhe i mbetur"
+
+msgid "failed remove old stale socket"
+msgstr "heqja e soketit të vjetër dështoi"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "gabim: Një tjetër ydotoold po ekzekutohet me të njëjtin soket."
+
+msgid "failed to bind socket"
+msgstr "lidhja e soketit dështoi"
+
+msgid "failed to change socket permission"
+msgstr "ndryshimi i lejes së soketit dështoi"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Leja e soketit: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "specifikim i pavlefshëm i pronësisë"
+
+msgid "failed to change socket ownership"
+msgstr "ndryshimi i pronësisë së soketit dështoi"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Pronësia e soketit: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "ekzekutimi i komandës xinput dështoi"
+
+msgid "failed to fork"
+msgstr "fork dështoi"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "komanda xinput nuk u gjet në `%s'; përshpejtimi i treguesit të miut nuk çaktivizohet"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: gabim gjatë shkrimit të ngjarjes së hyrjes"

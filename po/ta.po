@@ -1,0 +1,235 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ydotool\n"
+"Report-Msgid-Bugs-To: anton@sirius.if.ua\n"
+"POT-Creation-Date: 2026-11-06 02:48+0700\n"
+"PO-Revision-Date: 2026-11-06 00:00+0000\n"
+"Last-Translator: ydotool translation tooling <anton@sirius.if.ua>\n"
+"Language-Team: Tamil\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Usage: click [OPTION]... [BUTTONS]...\nசுட்டி பொத்தான்களைச் சொடுக்கவும்.\n\nவிருப்பங்கள்:\n  -r, --repeat=N             முழு வரிசையையும் N முறை மீண்டும் செய்\n  -D, --next-delay=N         உள்ளீட்டு நிகழ்வுகளுக்கு இடையே N மில்லிவிநாடிகள் தாமதம் (கீழ்/மேல்,                                முழுச் சொடுக்குக்கு இரட்டிப்பு நேரம்)\n  -P, --press-release        சொடுக்கை முடிக்க சுட்டி பொத்தானை அழுத்தி விடுவி (விருப்பத்தேர்வு)\n  -h, --help                 இந்த உதவியைக் காட்டி வெளியேறு\n\nபொத்தான்களைக் குறிப்பிடுவது எப்படி:\n  இப்போது அனைத்து சுட்டி பொத்தான்களும் பதினாறும அடிப்படை எண் மதிப்புகளால் குறிக்கப்படுகின்றன; விருப்பமாக\nசுட்டி கீழ்/மேல் நிகழ்வைத் தவிர்க்க வேண்டுமா எனக் குறிப்பிட பிட்மாஸ்க் பயன்படுத்தலாம்.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - சுட்டி கீழே\n  0x80 - சுட்டி மேலே\n  எடுத்துக்காட்டுகள்:\n    0x00: இடது பொத்தானைத் தேர்ந்தெடுக்கும், ஆனால் எதுவும் செய்யாது (கூடுதல் இடைநிறுத்தங்களை உருவாக்க இதைப் பயன்படுத்தலாம்)\n    0xC0: இடது பொத்தான் சொடுக்கம் (கீழே பின்னர் மேலே)\n    0x41: வலது பொத்தான் கீழே\n    0x82: நடு பொத்தான் மேலே\n  விரும்பினால் '0x' முன்னொட்டை விடலாம்.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "%s விருப்பம்"
+
+#, c-format
+msgid " with arg %s"
+msgstr "; மதிப்பு %s"
+
+msgid "repeat count"
+msgstr "மீள்செயல் எண்ணிக்கை"
+
+msgid "delay (0..60000 ms)"
+msgstr "தாமதம் (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "சொடுக்கல் நிகழ்வு %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Usage: key [OPTION]... [KEYCODES]...\nவிசை நிகழ்வுகளை உருவாக்கு.\n\nவிருப்பங்கள்:\n  -d, --key-delay=N          விசை நிகழ்வுகளுக்கு இடையே N மில்லிவிநாடிகள் தாமதம்\n  -h, --help                 இந்த உதவியைக் காட்டி வெளியேறு\n\nஉலகில் எத்தனை விசைப்பலகை அமைப்புகள் உள்ளன என்பதை அறிய வழியில்லாததால்,\nஇப்போது நேரடி விசைக் குறியீடுகளைப் பயன்படுத்துகிறோம்.\n\nதொடரமைப்பு: <keycode>:<pressed>\nஎ.கா. 28:1 28:0 என்பது நிலையான US விசைப்பலகையில் Enter விசையை அழுத்துவதைக் குறிக்கும்.\n     (:1 என்பது விசை கீழே அழுத்தப்பட்டிருப்பதையும், :0 என்பது விசை விடுவிக்கப்படுவதையும் குறிக்கும்)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\n0, aaa, l0l போன்ற புரிந்துகொள்ள முடியாத மதிப்புகள் தாமதத்தை மட்டுமே ஏற்படுத்தும்.\n\nகிடைக்கும் விசைக் குறியீடுகளுக்கு `/usr/include/linux/input-event-codes.h' ஐப் பார்க்கவும் (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nசுட்டி சுட்டிக்காட்டி அல்லது உருளையை நகர்த்து.\n\nவிருப்பங்கள்:\n  -w, --wheel                சுட்டி உருளையை சார்பாக நகர்த்து\n  -a, --absolute             முழுமையான நிலையைப் பயன்படுத்து; உருளைக்குப் பொருந்தாது\n  -x, --xpos                 X நிலை\n  -y, --ypos                 Y நிலை\n  -h, --help                 இந்த உதவியைக் காட்டி வெளியேறு\n\nமுழுமையான நகர்வு சரியாக இருக்க சுட்டி வேக முடுக்கத்தை முடக்க வேண்டும்."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: ஆயத்தொலைவுகள் அதிகம்\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "சுட்டி உருளை நகர்வுகள் முழுமையான மதிப்புகளாக இருக்கக் கூடாது\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: இரண்டு ஆயத்தொலைவுகள் தேவை\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "எதையாவது தட்டச்சு செய்யவும் (வெளியேற CTRL-C):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: stdin-ஐப் படிக்கவும்"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "விசைக் குறியீடு: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin ASCII-ஐ மட்டுமே ஆதரிக்கும்; UTF-8 உரைக்கு கிளிப்போர்டிலிருந்து ஒட்டவும்\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  இதற்கு பொருந்துகிறது: %d\n"
+
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  shift விசையை அனுப்புகிறது\n"
+
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  ctrl விசையை அனுப்புகிறது\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Usage: type [OPTION]... [STRINGS]...\nஉரைச்சரங்களைத் தட்டச்சு செய்.\n\nவிருப்பங்கள்:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          விசைகளுக்கு இடையே N மில்லிவிநாடிகள் தாமதம் (ஒவ்வொரு விசை அழுத்தம்/விடுவிப்பு ஜோடிக்கும் இடையிலான தாமதம்) (இயல்புநிலை: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           ஒவ்வொரு விசையையும் N மில்லிவிநாடிகள் அழுத்தியபடி வைத்திரு (விசை அழுத்தத்துக்கும் விடுவிப்புக்கும் இடையிலான தாமதம்) (இயல்புநிலை: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         கட்டளை வரி உரைச்சரங்களுக்கு இடையே N மில்லிவிநாடிகள் தாமதம் (இயல்புநிலை: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            ஒரு கோப்பைக் குறிப்பிடவும்; அதன் உள்ளடக்கம் வாதமாக வழங்கியதைப் போலத் தட்டச்சு செய்யப்படும்.\n                               stdin-இலிருந்து படிக்க கோப்புப் பாதையாக '-' ஐயும் குறிப்பிடலாம்\n  -e, --escape=BOOL          Escape-ஐ இயக்கு (1) அல்லது முடக்கு (0)\n  -h, --help                 இந்த உதவியைக் காட்டி வெளியேறு\n\nகட்டளை வரி வாதங்களைத் தட்டச்சு செய்யும்போது Escape இயல்பாக இயக்கப்படும்; கோப்பு மற்றும் stdin-இலிருந்து தட்டச்சு செய்யும்போது இயல்பாக முடக்கப்படும்.\nகோப்பு உள்ளீடு தொடரோட்டமாகப் படிக்கப்படும்: பின்னர் பிழை ஏற்பட்டாலும் அதற்கு முந்தைய சரியான ASCII ஏற்கெனவே தட்டச்சாகியிருக்கலாம்."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type ASCII-ஐ மட்டுமே ஆதரிக்கும்; UTF-8 உரைக்கு கிளிப்போர்டிலிருந்து ஒட்டவும்\n"
+
+msgid "escape mode"
+msgstr "Escape முறை"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: பிழை: %s-ஐத் திறக்க முடியவில்லை: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: பிழை: %s-ஐப் படிக்க முடியவில்லை: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "எங்கள் மதிப்பிற்குரிய பங்களிப்பாளர்கள்:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Usage: release-all\nமெய்நிகர் விசைப்பலகை மற்றும் சுட்டியின் அனைத்து பொத்தான்களையும் விடுவி."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all கட்டளை எந்த வாதங்களையும் ஏற்காது\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Usage: ydotool <cmd> <args>\nகிடைக்கும் கட்டளைகள்:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "கிளையன்ட் செயல்முறை நிறுத்தப்பட்ட பிறகு அழுத்திய நிலையில் உள்ள விசைகளை மீட்க release-all ஐப் பயன்படுத்தவும்.\n  -h, --help     இந்த உதவியைக் காட்டி வெளியேறு\n  -V, --version  பதிப்பு விவரத்தைக் காட்டி வெளியேறு\nடீமன் சாக்கெட்டைக் குறிப்பிட YDOTOOL_SOCKET சூழல் மாறியைப் பயன்படுத்தவும்."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: தவறான %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: உள்ளீட்டு நிகழ்வை அனுப்பு"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: தெரியாத கட்டளை: %s\nகட்டளைப் பட்டியல் வேண்டுமானால் 'ydotool help' ஐ இயக்கவும்\n"
+
+msgid "failed to create socket"
+msgstr "சாக்கெட்டை உருவாக்க முடியவில்லை"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: சாக்கெட் பாதை மிக நீளமாக உள்ளது\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "`%s' சாக்கெட்டுடன் இணைக்க முடியவில்லை: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "ydotoold இயங்குகிறதா எனச் சரிபார்க்கவும்.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "தற்போதைய பயனருக்கு சாக்கெட் கோப்பை அணுகப் போதிய அனுமதி உள்ளதா எனச் சரிபார்க்கவும்.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: சிக்னல் கையாளியை நிறுவு"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: சாக்கெட் கோப்பகத்தைப் பூட்டு"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Usage: ydotoold [OPTION]...\nydotool டீமன்.\n\nவிருப்பங்கள்:\n  -p, --socket-path=PATH     தனிப்பயன் சாக்கெட் பாதை\n  -P, --socket-perm=PERM     சாக்கெட் அனுமதி (இயல்புநிலை 0600)\n  -o, --socket-own=UID:GID   சாக்கெட் உரிமையாளர்\n  -s, --no-system-keys        SysRq மற்றும் மின்சாரம்/உறக்கம்/மறுதொடக்கம் விசைகளை முடக்கு\n  -m, --mouse-off            சுட்டியை முடக்கு (EV_REL)\n  -k, --keyboard-off         விசைப்பலகையை முடக்கு (EV_KEY)\n  -T, --touch-on             தொடுதிரையை இயக்கு (EV_ABS)\n  -h, --help                 இந்த உதவியைக் காட்டி வெளியேறு\n  -V, --version              பதிப்பு விவரத்தைக் காட்டு\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s தோல்வியடைந்தது\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d தோல்வியடைந்தது\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d தோல்வியடைந்தது\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d தோல்வியடைந்தது\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl தோல்வியடைந்தது"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl தோல்வியடைந்தது"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "இந்த நிரலை root ஆக இயக்குவது பரிந்துரைக்கப்படுகிறது; இல்லையெனில் முடிவு மாறுபடலாம் (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "uinput சாதனத்தைத் திறக்க முடியவில்லை"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "சாக்கெட் பாதை: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "டீமன் மோதலைக் கண்டறிய சாக்கெட்டை உருவாக்க முடியவில்லை"
+
+msgid "Removing old stale socket"
+msgstr "பழைய செயலற்ற சாக்கெட் அகற்றப்படுகிறது"
+
+msgid "failed remove old stale socket"
+msgstr "பழைய செயலற்ற சாக்கெட்டை அகற்ற முடியவில்லை"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "பிழை: அதே சாக்கெட்டுடன் மற்றொரு ydotoold இயங்குகிறது."
+
+msgid "failed to bind socket"
+msgstr "சாக்கெட்டுடன் இணைக்க முடியவில்லை"
+
+msgid "failed to change socket permission"
+msgstr "சாக்கெட் அனுமதியை மாற்ற முடியவில்லை"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "சாக்கெட் அனுமதி: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "உரிமையாளர் விவரக்குறிப்பு தவறானது"
+
+msgid "failed to change socket ownership"
+msgstr "சாக்கெட் உரிமையை மாற்ற முடியவில்லை"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "சாக்கெட் உரிமை: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "xinput கட்டளையை இயக்க முடியவில்லை"
+
+msgid "failed to fork"
+msgstr "செயல்முறையைப் பிரிக்க முடியவில்லை"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "`%s' இல் xinput கட்டளை கிடைக்கவில்லை; சுட்டிக்காட்டி முடுக்கம் முடக்கப்படாது"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: உள்ளீட்டு நிகழ்வை எழுது"

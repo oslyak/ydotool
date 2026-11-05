@@ -8,14 +8,14 @@ if [ "$1" = configure ]; then
     done
     systemd-sysusers /usr/lib/sysusers.d/ydotool.conf
     if [ -d /run/systemd/system ] && [ -e /var/lib/ydotool/units-initialized ]; then
-        systemctl stop ydotool-autosetup.path ydotool-autosetup.service
+        deb-systemd-invoke stop ydotool-autosetup.path ydotool-autosetup.service
     fi
     for directory in /etc/systemd/system /run/systemd/system; do
         [ -d "$directory" ] || continue
         find "$directory" -type l \( -name 'ydotoold@*.service' -o -name 'ydotool-autosetup.*' \) -print | while IFS= read -r link; do
             case "$(readlink "$link")" in
                 /usr/lib/systemd/system/ydotoold@.service|/lib/systemd/system/ydotoold@.service)
-                    if [ -d /run/systemd/system ]; then systemctl stop "${link##*/}"; fi
+                    if [ -d /run/systemd/system ]; then deb-systemd-invoke stop "${link##*/}"; fi
                     rm -- "$link"
                     ;;
                 /usr/lib/systemd/system/ydotool-autosetup.*|/lib/systemd/system/ydotool-autosetup.*)

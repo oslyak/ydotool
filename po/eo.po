@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: eo\nLanguage: eo\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Uzado: click [OPTION]... [BUTTONS]...\nAlklaku musbutonojn.\n\nOpcioj:\n  -r, --repeat=N             Ripeti la tutan sekvencon N fojojn\n  -D, --next-delay=N         Atendu N milisekundojn inter eniraj eventoj (premi/levi,                                kompleta alklako daŭras duoble)\n  -P, --press-release        Premu kaj liberigu musbutonon por kompletigi alklakon (nedeviga)\n  -h, --help                 Montru ĉi tiun helpon kaj eliru\n\nKiel specifi butonojn:\n  Nun ĉiuj musbutonoj estas prezentataj per deksesumaj nombraj valoroj, kun nedeviga bitmasko por indiki ĉu ellasi musbutonan premadon aŭ levadon.\n  0x00 - LEFT (MALDEKSTRA)\n  0x01 - RIGHT (DEKSTRA)\n  0x02 - MIDDLE (MEZA)\n  0x03 - SIDE (FLANKA)\n  0x04 - EXTR (EKSTRA)\n  0x05 - FORWARD (ANTAŬEN)\n  0x06 - BACK (MALANTAŬEN)\n  0x07 - TASK (TASKO)\n  0x40 - Musbutono premita\n  0x80 - Musbutono levita\n  Ekzemploj:\n    0x00: elektas maldekstran butonon, sed faras nenion (vi povas uzi tion por aldoni paŭzojn)\n    0xC0: maldekstra musklako (premi poste levi)\n    0x41: dekstra butono premita\n    0x82: meza butono levita\n  La prefikso '0x' povas esti ellasita.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "opcio %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " kun argumento %s"
+
+msgid "repeat count"
+msgstr "ripetnombro"
+
+msgid "delay (0..60000 ms)"
+msgstr "prokrasto (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Alklaka evento %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Uzado: key [OPTION]... [KEYCODES]...\nSendu klav-eventojn.\n\nOpcioj:\n  -d, --key-delay=N          Atendu N milisekundojn inter klav-eventoj\n  -h, --help                 Montru ĉi tiun helpon kaj eliru\n\nĈar ne eblas scii kiom da klavararanĝoj ekzistas en la mondo, ni nun uzas krudajn klavkodojn.\n\nSintakso: <keycode>:<pressed>\nEkzemple, 28:1 28:0 signifas premi la Enter-klavon ĉe norma usona klavaro. (US)\n     (kie :1 signifas, ke la klavo estas premita, kaj :0 ke ĝi estas liberigita)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNeinterpreteblaj valoroj, kiel 0, aaa, l0l, kaŭzos nur prokraston.\n\nVidu `/usr/include/linux/input-event-codes.h' por disponeblaj klavkodoj (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Uzado: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMovu musmontrilon aŭ radon.\n\nOpcioj:\n  -w, --wheel                Movu musradon relative\n  -a, --absolute             Uzu absolutan pozicion; ne aplikebla al rado\n  -x, --xpos                 X-pozicio\n  -y, --ypos                 Y-pozicio\n  -h, --help                 Montru ĉi tiun helpon kaj eliru\n\nVi devas malŝalti musrapidan akceladon por ĝusta absoluta movo."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: tro multaj koordinatoj\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Musradmovoj ne povas esti absolutaj valoroj\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: necesas du koordinatoj\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Tajpu ion ajn (CTRL-C por eliri):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: legi stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Klavkodo: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin subtenas nur ASCII; uzu tondujan algluon por UTF-8-teksto\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Mapas al: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  Sendas majuskligan klavon\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  Sendas kontrolklavon\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Uzado: type [OPTION]... [STRINGS]...\nTajpu ĉenojn.\n\nOpcioj:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Atendu N milisekundojn inter klavoj (prokrasto inter ĉiu prem/lev-paro) (defaŭlte: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Tenu ĉiun klavon N milisekundojn (prokrasto inter premado kaj levado) (defaŭlte: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Atendu N milisekundojn inter komandliniaj ĉenoj (defaŭlte: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Specifu dosieron, kies enhavo estos tajpata kvazaŭ ĝi estus argumento.\n                               La dosiera vojo povas ankaŭ esti '-' por legi de stdin\n  -e, --escape=BOOL          Ebligu (1) aŭ malebligu (0) eskapinterpretadon\n  -h, --help                 Montru ĉi tiun helpon kaj eliru\n\nEskapinterpretado estas defaŭlte ebligita por komandliniaj argumentoj kaj defaŭlte malebligita dum legado el dosiero kaj stdin.\nDosierenigo estas laŭflua: valida ASCII antaŭ posta eraro eble jam estis tajpita."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type subtenas nur ASCII; uzu tondujan algluon por UTF-8-teksto\n"
+
+msgid "escape mode"
+msgstr "eskapreĝimo"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: error: malsukcesis malfermi %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: error: legado de %s malsukcesis: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Jen niaj honoraj bakistoj:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Uzado: release-all\nLiberigu ĉiujn virtualajn klavarajn kaj musbutonojn."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all ne akceptas argumentojn\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Uzado: ydotool <cmd> <args>\nDisponeblaj komandoj:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Uzu release-all por liberigi tenatajn klavojn post perforte haltigita kliento.\n  -h, --help     Montru ĉi tiun helpon kaj eliru\n  -V, --version  Montru versiinformojn kaj eliru\nUzu la mediovariablon YDOTOOL_SOCKET por specifi la daemon-socketon."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: nevalida %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: sendi eniran eventon"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Nekonata komando: %s\nRulu 'ydotool help' por vidi la liston de komandoj\n"
+
+msgid "failed to create socket"
+msgstr "malsukcesis krei socketon"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: socketa vojo estas tro longa\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "malsukcesis konekti al socketo `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Kontrolu ĉu ydotoold funkcias.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Kontrolu ĉu la nuna uzanto havas sufiĉajn permesojn por aliri la socket-dosieron.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: instali signal-traktilon"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: ŝlosi socket-dosierujon"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Uzado: ydotoold [OPTION]...\nLa ydotool-demono.\n\nOpcioj:\n  -p, --socket-path=PATH     Propra socketa vojo\n  -P, --socket-perm=PERM     Socketaj permesoj (defaŭlte 0600)\n  -o, --socket-own=UID:GID   Socketa posedanto\n  -s, --no-system-keys        Malebligu SysRq kaj ŝaltajn/dormigajn/restartigajn klavojn\n  -m, --mouse-off            Malebligu muson (EV_REL)\n  -k, --keyboard-off         Malebligu klavaron (EV_KEY)\n  -T, --touch-on             Ebligu tuŝekranon (EV_ABS)\n  -h, --help                 Montru ĉi tiun helpon kaj eliru\n  -V, --version              Montru versiinformojn\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s malsukcesis\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d malsukcesis\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d malsukcesis\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d malsukcesis\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl malsukcesis"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl malsukcesis"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Oni konsilas ruli ĉi tiun programon kiel root; alie la rezulto dependas de via sistemo. (YMMV)"
+
+msgid "failed to open uinput device"
+msgstr "malsukcesis malfermi uinput-aparaton"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Socketa vojo: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "malsukcesis krei socketon por detekti daemon-konflikton"
+
+msgid "Removing old stale socket"
+msgstr "Forigante malnovan malnoviĝintan socketon"
+
+msgid "failed remove old stale socket"
+msgstr "malsukcesis forigi malnovan malnoviĝintan socketon"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "eraro: alia ydotoold jam funkcias per la sama socketo."
+
+msgid "failed to bind socket"
+msgstr "malsukcesis ligi socketon"
+
+msgid "failed to change socket permission"
+msgstr "malsukcesis ŝanĝi socketajn permesojn"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Socketaj permesoj: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "nevalida posedantospecifo"
+
+msgid "failed to change socket ownership"
+msgstr "malsukcesis ŝanĝi socketan posedanton"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Socketa posedanto: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "malsukcesis ruli xinput-komandon"
+
+msgid "failed to fork"
+msgstr "malsukcesis krei filan procezon"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "xinput-komando ne trovita en `%s'; musa montrila akcelado ne estos malŝaltita"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: skribi eniran eventon"

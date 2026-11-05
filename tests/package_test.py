@@ -97,9 +97,9 @@ if name == "deb-systemd-helper":
     def test_upgrade_migrates_only_package_owned_legacy_instances(self):
         result, calls = self.run_hook("postinst", "configure", old_version="1.0.7+upstream.708e96f", legacy=True)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("systemctl stop ydotool-autosetup.path ydotool-autosetup.service", calls)
-        self.assertIn("systemctl stop ydotoold@operators.service", calls)
-        self.assertNotIn("systemctl stop ydotoold@custom.service", calls)
+        self.assertIn("deb-systemd-invoke stop ydotool-autosetup.path ydotool-autosetup.service", calls)
+        self.assertIn("deb-systemd-invoke stop ydotoold@operators.service", calls)
+        self.assertNotIn("deb-systemd-invoke stop ydotoold@custom.service", calls)
         self.assertEqual({p.name for p in self.enabled_links}, {"ydotoold.service", "ydotoold@custom.service"})
 
     def test_hooks_work_without_a_running_systemd_manager(self):

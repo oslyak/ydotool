@@ -13,3 +13,6 @@ build/*
 /.build/
 /dist/
 !/Makefile
+
+__pycache__/
+*.po~

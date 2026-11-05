@@ -1,0 +1,237 @@
+# Bulgarian translations for ydotool.
+msgid ""
+msgstr ""
+"Project-Id-Version: ydotool 1.0.11\n"
+"Report-Msgid-Bugs-To: anton@sirius.if.ua\n"
+"POT-Creation-Date: 2026-11-06 02:52+0700\n"
+"PO-Revision-Date: 2026-11-06 00:00+0000\n"
+"Last-Translator: ydotool translation tooling <anton@sirius.if.ua>\n"
+"Language-Team: Bulgarian\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Употреба: click [OPTION]... [BUTTONS]...\nЩракване с бутоните на мишката.\n\nОпции:\n  -r, --repeat=N             Повтаря цялата последователност N пъти\n  -D, --next-delay=N         Изчакване N милисекунди между входните събития (натискане/отпускане,                                пълното щракване удвоява времето)\n  -P, --press-release        Натиска и отпуска бутона на мишката за щракване (по избор)\n  -h, --help                 Показва тази помощ и излиза\n\nЗадаване на бутони:\n  Всички бутони на мишката се представят с шестнадесетични числови стойности и незадължителна\nбитова маска, указваща дали натискането или отпускането на бутона да се пропусне.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Натискане на бутона на мишката\n  0x80 - Отпускане на бутона на мишката\n  Примери:\n    0x00: избира левия бутон, но не прави нищо (може да се използва за допълнителни паузи)\n    0xC0: щракване с левия бутон (натискане, после отпускане)\n    0x41: натискане на десния бутон\n    0x82: отпускане на средния бутон\n  Префиксът '0x' може да бъде пропуснат.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "опция %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " с аргумент %s"
+
+msgid "repeat count"
+msgstr "брой повторения"
+
+msgid "delay (0..60000 ms)"
+msgstr "забавяне (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Събитие на щракване %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Употреба: key [OPTION]... [KEYCODES]...\nИзпращане на събития от клавиши.\n\nОпции:\n  -d, --key-delay=N          Изчакване N милисекунди между събитията от клавиши\n  -h, --help                 Показва тази помощ и излиза\n\nТъй като не е възможно да се знае колко клавиатурни подредби има по света,\nвече използваме директно кодовете на клавишите.\n\nСинтаксис: <keycode>:<pressed>\nнапр. 28:1 28:0 означава натискане на Enter на стандартна US клавиатура.\n     (:1 означава, че клавишът е натиснат, а :0 — че е отпуснат)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nНеразбираеми стойности като 0, aaa, l0l само ще причинят забавяне.\n\nВижте `/usr/include/linux/input-event-codes.h' за наличните кодове (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Употреба: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nПреместване на показалеца или колелцето на мишката.\n\nОпции:\n  -w, --wheel                Относително завъртане на колелцето на мишката\n  -a, --absolute             Използване на абсолютна позиция; не важи за колелцето\n  -x, --xpos                 Позиция по X\n  -y, --ypos                 Позиция по Y\n  -h, --help                 Показва тази помощ и излиза\n\nЗа правилно абсолютно преместване трябва да изключите ускорението на мишката."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: твърде много координати\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Преместванията на колелцето на мишката не трябва да са абсолютни стойности\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: необходими са две координати\n"
+
+#, c-format
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Въведете каквото и да е (CTRL-C за изход):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: четене от stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Код на клавиша: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin поддържа само ASCII; за UTF-8 текст поставете от клипборда\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Съответства на: %d\n"
+
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  Изпращане на shift\n"
+
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  Изпращане на ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Употреба: type [OPTION]... [STRINGS]...\nВъвеждане на текстови низове.\n\nОпции:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Изчакване N милисекунди между клавишите (между всяка двойка натискане/отпускане) (по подразбиране: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Задържане на всеки клавиш N милисекунди (между натискането и отпускането) (по подразбиране: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Изчакване N милисекунди между низовете от командния ред (по подразбиране: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Посочва файл, чието съдържание ще бъде въведено като аргумент.\n                               Пътят може да е и '-' за четене от stdin\n  -e, --escape=BOOL          Включване (1) или изключване (0) на escape обработката\n  -h, --help                 Показва тази помощ и излиза\n\nEscape обработката е включена по подразбиране за аргументи от командния ред и изключена за файл и stdin.\nВходът от файл се обработва поточно: валидният ASCII текст преди последваща грешка може вече да е бил въведен."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type поддържа само ASCII; за UTF-8 текст поставете от клипборда\n"
+
+msgid "escape mode"
+msgstr "режим escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: грешка: неуспешно отваряне на %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: грешка: неуспешно четене на %s: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Това са нашите уважавани създатели:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Употреба: release-all\nОтпуска всички виртуални клавиши и бутони на мишката."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all не приема аргументи\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Употреба: ydotool <cmd> <args>\nНалични команди:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Използвайте release-all, за да освободите задържани клавиши след прекратен клиент.\n  -h, --help     Показва тази помощ и излиза\n  -V, --version  Показва информацията за версията и излиза\nИзползвайте променливата на средата YDOTOOL_SOCKET, за да зададете сокета на демона."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: невалидно %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: изпращане на входно събитие"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Непозната команда: %s\nИзпълнете 'ydotool help', за да видите списъка с команди\n"
+
+msgid "failed to create socket"
+msgstr "неуспешно създаване на сокет"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: пътят до сокета е твърде дълъг\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "неуспешно свързване със сокета `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Проверете дали ydotoold работи.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Проверете дали текущият потребител има достатъчни права за достъп до файла на сокета.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: инсталиране на обработчик на сигнал"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: заключване на директорията на сокета"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Употреба: ydotoold [OPTION]...\nДемонът ydotool.\n\nОпции:\n  -p, --socket-path=PATH     Потребителски път до сокета\n  -P, --socket-perm=PERM     Права за сокета (по подразбиране 0600)\n  -o, --socket-own=UID:GID   Собственик на сокета\n  -s, --no-system-keys        Изключване на клавишите SysRq и за захранване/заспиване/рестартиране\n  -m, --mouse-off            Изключване на мишката (EV_REL)\n  -k, --keyboard-off         Изключване на клавиатурата (EV_KEY)\n  -T, --touch-on             Включване на сензорния екран (EV_ABS)\n  -h, --help                 Показва тази помощ и излиза\n  -V, --version              Показва информацията за версията\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s: неуспешна операция\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d: неуспешна операция\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d: неуспешна операция\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d: неуспешна операция\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "операцията ioctl UI_DEV_SETUP е неуспешна"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "операцията ioctl UI_DEV_CREATE е неуспешна"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Препоръчва се да изпълните тази програма като root; иначе резултатите може да варират (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "неуспешно отваряне на устройството uinput"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Път до сокета: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "неуспешно създаване на сокет за откриване на конфликт между демони"
+
+msgid "Removing old stale socket"
+msgstr "Премахване на стар невалиден сокет"
+
+msgid "failed remove old stale socket"
+msgstr "неуспешно премахване на стария невалиден сокет"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "грешка: друг ydotoold работи със същия сокет."
+
+msgid "failed to bind socket"
+msgstr "неуспешно обвързване със сокета"
+
+msgid "failed to change socket permission"
+msgstr "неуспешна промяна на правата за сокета"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Права за сокета: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "невалидно задаване на собствеността"
+
+msgid "failed to change socket ownership"
+msgstr "неуспешна промяна на собственика на сокета"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Собственост на сокета: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "неуспешно изпълнение на командата xinput"
+
+msgid "failed to fork"
+msgstr "неуспешно създаване на процес чрез fork"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "командата xinput не е намерена в `%s', ускорението на показалеца на мишката няма да бъде изключено"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: запис на входно събитие"

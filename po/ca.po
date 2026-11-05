@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: ca\nLanguage: ca\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Ús: click [OPTION]... [BUTTONS]...\nFes clic amb els botons del ratolí.\n\nOpcions:\n  -r, --repeat=N             Repeteix tota la seqüència N vegades\n  -D, --next-delay=N         Espera N mil·lisegons entre esdeveniments d’entrada (amunt/avall; cada clic complet duplica el temps)\n  -P, --press-release        Prem i deixa anar el botó del ratolí per completar un clic (opcional)\n  -h, --help                 Mostra aquesta ajuda i surt\n\nCom especificar els botons:\n  Tots els botons del ratolí es representen amb valors numèrics hexadecimals i una màscara de bits opcional per ometre l’acció de pujar o baixar.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Botó del ratolí avall\n  0x80 - Botó del ratolí amunt\n  Exemples:\n    0x00: tria el botó esquerre, però no fa res (serveix per afegir pauses)\n    0xC0: clic esquerre (avall i després amunt)\n    0x41: botó dret avall\n    0x82: botó del mig amunt\n  Es pot ometre el prefix «0x».\n"
+
+#, c-format
+msgid "option %s"
+msgstr "opció %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " amb l’argument %s"
+
+msgid "repeat count"
+msgstr "nombre de repeticions"
+
+msgid "delay (0..60000 ms)"
+msgstr "retard (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Esdeveniment de clic %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Ús: key [OPTION]... [KEYCODES]...\nEmet esdeveniments de tecla.\n\nOpcions:\n  -d, --key-delay=N          Espera N mil·lisegons entre esdeveniments de tecla\n  -h, --help                 Mostra aquesta ajuda i surt\n\nCom que no es poden conèixer tots els dissenys de teclat del món, ara fem servir codis de tecla en brut.\n\nSintaxi: <keycode>:<pressed>\nPer exemple, 28:1 28:0 vol dir prémer Retorn en un teclat estàndard dels EUA (US).\n     (:1 indica tecla premuda i :0 tecla alliberada)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - «LOL»\n\nEls valors no interpretables, com ara 0, aaa, l0l, només provoquen una pausa.\n\nConsulteu `/usr/include/linux/input-event-codes.h' per als codis de tecla disponibles (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Ús: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMou el punter del ratolí o la roda.\n\nOpcions:\n  -w, --wheel                Mou la roda relativament\n  -a, --absolute             Usa una posició absoluta; no s’aplica a la roda\n  -x, --xpos                 Posició X\n  -y, --ypos                 Posició Y\n  -h, --help                 Mostra aquesta ajuda i surt\n\nDesactiveu l’acceleració del ratolí perquè el moviment absolut sigui correcte."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: massa coordenades\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Els moviments de la roda no poden ser valors absoluts\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: calen dues coordenades\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Escriu qualsevol cosa (CTRL-C per sortir):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: lectura de stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Codi de tecla: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin només admet ASCII; enganxa el text UTF-8 des del porta-retalls\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Es tradueix a: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  S’envia shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  S’envia ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Ús: type [OPTION]... [STRINGS]...\nEscriu cadenes de text.\n\nOpcions:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Espera N mil·lisegons entre tecles (retard entre cada parell de pulsació/alliberament) (per defecte: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Manté cada tecla premuda N mil·lisegons (retard entre pulsació i alliberament) (per defecte: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Espera N mil·lisegons entre cadenes de la línia d’ordres (per defecte: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Especifica un fitxer i n’escriu el contingut com si fos un argument.\n                               El camí també pot ser '-' per llegir de stdin\n  -e, --escape=BOOL          Activa (1) o desactiva (0) l’escapament\n  -h, --help                 Mostra aquesta ajuda i surt\n\nL’escapament està activat per defecte per als arguments de la línia d’ordres i desactivat per defecte per a fitxer i stdin.\nL’entrada del fitxer es processa en flux: potser ja s’hauran escrit caràcters ASCII vàlids abans d’un error posterior."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type només admet ASCII; enganxa el text UTF-8 des del porta-retalls\n"
+
+msgid "escape mode"
+msgstr "mode d’escapament"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: error: no s’ha pogut obrir %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: error: ha fallat la lectura de %s: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Aquests són els nostres honorables forners:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Ús: release-all\nAllibera tots els botons virtuals del teclat i del ratolí."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all no accepta arguments\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Ús: ydotool <cmd> <args>\nOrdres disponibles:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Fes servir release-all per recuperar les tecles premudes després de tancar un client a la força.\n  -h, --help     Mostra aquesta ajuda i surt\n  -V, --version  Mostra la informació de versió i surt\nFes servir la variable d’entorn YDOTOOL_SOCKET per indicar el sòcol del dimoni."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: %s no vàlid: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: enviament de l’esdeveniment d’entrada"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: ordre desconeguda: %s\nExecuta «ydotool help» per obtenir la llista d’ordres\n"
+
+msgid "failed to create socket"
+msgstr "no s’ha pogut crear el sòcol"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: el camí del sòcol és massa llarg\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "no s’ha pogut connectar al sòcol `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Comprova si ydotoold està en execució.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Comprova si l’usuari actual té prou permisos per accedir al fitxer del sòcol.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: instal·lació del gestor de senyals"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: bloqueig del directori del sòcol"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Ús: ydotoold [OPTION]...\nEl dimoni ydotool.\n\nOpcions:\n  -p, --socket-path=PATH     Camí personalitzat del sòcol\n  -P, --socket-perm=PERM     Permisos del sòcol (per defecte 0600)\n  -o, --socket-own=UID:GID   Propietari del sòcol\n  -s, --no-system-keys        Desactiva SysRq i les tecles d’engegada/repòs/reinici\n  -m, --mouse-off            Desactiva el ratolí (EV_REL)\n  -k, --keyboard-off         Desactiva el teclat (EV_KEY)\n  -T, --touch-on             Activa la pantalla tàctil (EV_ABS)\n  -h, --help                 Mostra aquesta ajuda i surt\n  -V, --version              Mostra la informació de versió\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "Ha fallat UI_SET_EVBIT %s\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "Ha fallat UI_SET_KEYBIT %d\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "Ha fallat UI_SET_RELBIT %d\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "Ha fallat UI_SET_ABSBIT %d\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "Ha fallat UI_DEV_SETUP ioctl"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "Ha fallat UI_DEV_CREATE ioctl"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Es recomana executar aquest programa com a root; altrament, el resultat pot variar. (YMMV)"
+
+msgid "failed to open uinput device"
+msgstr "no s’ha pogut obrir el dispositiu uinput"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Camí del sòcol: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "no s’ha pogut crear el sòcol per detectar col·lisions del dimoni"
+
+msgid "Removing old stale socket"
+msgstr "S’elimina el sòcol antic obsolet"
+
+msgid "failed remove old stale socket"
+msgstr "no s’ha pogut eliminar el sòcol antic obsolet"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "error: ja hi ha un altre ydotoold en execució amb el mateix sòcol."
+
+msgid "failed to bind socket"
+msgstr "no s’ha pogut associar el sòcol"
+
+msgid "failed to change socket permission"
+msgstr "no s’han pogut canviar els permisos del sòcol"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Permisos del sòcol: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "especificació de propietari no vàlida"
+
+msgid "failed to change socket ownership"
+msgstr "no s’ha pogut canviar el propietari del sòcol"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Propietat del sòcol: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "no s’ha pogut executar l’ordre xinput"
+
+msgid "failed to fork"
+msgstr "no s’ha pogut crear un procés fill"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "no s’ha trobat l’ordre xinput a `%s'; no es desactivarà l’acceleració del punter del ratolí"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: escriptura de l’esdeveniment d’entrada"

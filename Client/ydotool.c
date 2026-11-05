@@ -61,12 +61,11 @@ static int tool_debug(int argc, char **argv) {
 }
 
 static int tool_bakers([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
-	puts("These are our honorable bakers:\n"
+	puts(_("These are our honorable bakers:\n"
 	     "\n"
 	     "Dustin Van Tate Testa\n"
 	     "Elliot Wolk\n"
-	     "tofik\n"
-	);
+	     "tofik\n"));
 
 	return 0;
 }
@@ -74,10 +73,10 @@ static int tool_bakers([[maybe_unused]] int argc, [[maybe_unused]] char **argv) 
 static int tool_release_all(int argc, char **argv) {
 	if (argc > 1) {
 		if (argc == 2 && (!strcmp(argv[1], "--help") || !strcmp(argv[1], "-h"))) {
-			puts("Usage: release-all\nRelease all virtual keyboard and mouse buttons.");
+			puts(_("Usage: release-all\nRelease all virtual keyboard and mouse buttons."));
 			return 0;
 		}
-		fputs("ydotool: release-all takes no arguments\n", stderr);
+		fputs(_("ydotool: release-all takes no arguments\n"), stderr);
 		return 2;
 	}
 	for (int code = 1; code < KEY_CNT; code++) uinput_emit(EV_KEY, code, 0, false);
@@ -99,17 +98,17 @@ static const struct tool_def tool_list[] = {
 static constexpr size_t tool_count = sizeof(tool_list) / sizeof(tool_list[0]);
 
 static void show_help(void) {
-	puts("Usage: ydotool <cmd> <args>\n"
-	     "Available commands:");
+	puts(_("Usage: ydotool <cmd> <args>\n"
+	     "Available commands:"));
 
 	for (size_t i=0; i<tool_count; i++) {
 		printf("  %s\n", tool_list[i].name);
 	}
 
-	puts("Use release-all to recover held keys after a killed client.\n"
+	puts(_("Use release-all to recover held keys after a killed client.\n"
 	     "  -h, --help     Display this help and exit\n"
 	     "  -V, --version  Display version information and exit\n"
-	     "Use environment variable YDOTOOL_SOCKET to specify daemon socket.");
+	     "Use environment variable YDOTOOL_SOCKET to specify daemon socket."));
 }
 
 static volatile sig_atomic_t pressed_keys[KEY_CNT];
@@ -119,7 +118,7 @@ long parse_number(const char *text, long minimum, long maximum, const char *name
 	errno = 0;
 	long value = strtol(text, &end, 10);
 	if (errno || end == text || *end || value < minimum || value > maximum) {
-		fprintf(stderr, "ydotool: invalid %s: %s\n", name, text);
+		fprintf(stderr, _("ydotool: invalid %s: %s\n"), name, text);
 		exit(2);
 	}
 	return value;
@@ -152,7 +151,7 @@ static void send_event(const struct input_event *event) {
 		result = send(fd_daemon_socket, event, sizeof(*event), MSG_NOSIGNAL);
 	} while (result < 0 && errno == EINTR);
 	if (result != sizeof(*event)) {
-		perror("ydotool: send input event");
+		perror(_("ydotool: send input event"));
 		uinput_release_keys();
 		exit(2);
 	}
@@ -172,6 +171,7 @@ void uinput_emit(uint16_t type, uint16_t code, int32_t val, bool syn_report) {
 }
 
 int main(int argc, char **argv) {
+	ydotool_init_locale();
 	if (argc < 2 || strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "help") == 0) {
 		show_help();
 		return 0;
@@ -190,15 +190,14 @@ int main(int argc, char **argv) {
 	}
 
 	if (!tool_main) {
-		fprintf(stderr, "ydotool: Unknown command: %s\n"
-		       "Run 'ydotool help' if you want a command list\n", argv[1]);
+		fprintf(stderr, _("ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"), argv[1]);
 		return 1;
 	}
 
 	fd_daemon_socket = socket(AF_UNIX, SOCK_DGRAM | SOCK_CLOEXEC, 0);
 
 	if (fd_daemon_socket < 0) {
-		perror("failed to create socket");
+		perror(_("failed to create socket"));
 		exit(2);
 	}
 
@@ -217,7 +216,7 @@ int main(int argc, char **argv) {
 	const char *requested = env_ys && *env_ys ? env_ys : "/run/ydotoold/socket";
 	const char *fallback = env_ys && *env_ys ? nullptr : upstream_socket;
 	if (snprintf(sa.sun_path, sizeof(sa.sun_path), "%s", requested) >= sizeof(sa.sun_path)) {
-		fputs("ydotool: socket path is too long\n", stderr);
+		fputs(_("ydotool: socket path is too long\n"), stderr);
 		return 2;
 	}
 	int connected = connect(fd_daemon_socket, (const struct sockaddr *)&sa, sizeof(sa));
@@ -228,16 +227,16 @@ int main(int argc, char **argv) {
 
 	if (connected) {
 		int err = errno;
-		fprintf(stderr, "failed to connect socket `%s': %s\n", sa.sun_path, strerror(err));
+		fprintf(stderr, _("failed to connect socket `%s': %s\n"), sa.sun_path, strerror(err));
 
 		switch (err) {
 			case ENOENT:
 			case ECONNREFUSED:
-				fputs("Please check if ydotoold is running.\n", stderr);
+				fputs(_("Please check if ydotoold is running.\n"), stderr);
 				break;
 			case EACCES:
 			case EPERM:
-				fputs("Please check if the current user has sufficient permissions to access the socket file.\n", stderr);
+				fputs(_("Please check if the current user has sufficient permissions to access the socket file.\n"), stderr);
 				break;
 		}
 
@@ -249,7 +248,7 @@ int main(int argc, char **argv) {
 	sigaddset(&action.sa_mask, SIGINT);
 	sigaddset(&action.sa_mask, SIGTERM);
 	if (sigaction(SIGINT, &action, nullptr) || sigaction(SIGTERM, &action, nullptr)) {
-		perror("ydotool: install signal handler");
+		perror(_("ydotool: install signal handler"));
 		return 2;
 	}
 	char directory[sizeof(sa.sun_path)];
@@ -263,7 +262,7 @@ int main(int argc, char **argv) {
 	// Cooperating clients keep one complete command together, including signal cleanup.
 	int lock_fd = open(directory, O_RDONLY | O_DIRECTORY | O_CLOEXEC);
 	if (lock_fd < 0 || flock(lock_fd, LOCK_EX)) {
-		perror("ydotool: lock socket directory");
+		perror(_("ydotool: lock socket directory"));
 		return 2;
 	}
 	return tool_main(argc-1, argv+1);

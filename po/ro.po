@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Romanian\nLanguage: ro\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Utilizare: click [OPTION]... [BUTTONS]...\nFaceți clic pe butoanele mouse-ului.\n\nOpțiuni:\n  -r, --repeat=N             Repetați întreaga secvență de N ori\n  -D, --next-delay=N         Întârziere de N milisecunde între evenimentele de intrare (apăsare/eliberare,                                un clic complet înseamnă timpul dublu)\n  -P, --press-release        Apăsați și eliberați butonul mouse-ului pentru a încheia clicul (opțional)\n  -h, --help                 Afișați acest ajutor și ieșiți\n\nCum se specifică butoanele:\n  Toate butoanele mouse-ului sunt reprezentate acum prin valori numerice hexazecimale, cu o mască de biți\nopțională pentru a specifica dacă apăsarea/eliberarea mouse-ului trebuie omisă.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Apăsare mouse\n  0x80 - Eliberare mouse\n  Exemple:\n    0x00: selectează butonul stâng, dar nu face nimic (îl puteți folosi pentru pauze suplimentare)\n    0xC0: clic pe butonul stâng (apăsare apoi eliberare)\n    0x41: apăsare buton drept\n    0x82: eliberare buton mijlociu\n  Prefixul '0x' poate fi omis dacă doriți.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "opțiunea %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " cu argumentul %s"
+
+msgid "repeat count"
+msgstr "numărul de repetări"
+
+msgid "delay (0..60000 ms)"
+msgstr "întârziere (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Eveniment clic %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Utilizare: key [OPTION]... [KEYCODES]...\nEmiteți evenimente de tastă.\n\nOpțiuni:\n  -d, --key-delay=N          Întârziere de N milisecunde între evenimentele de tastă\n  -h, --help                 Afișați acest ajutor și ieșiți\n\nDeoarece nu există nicio modalitate de a ști câte aranjamente de tastatură există în lume,\nfolosim acum coduri brute de taste.\n\nSintaxă: <keycode>:<pressed>\nde ex. 28:1 28:0 înseamnă apăsarea tastei Enter pe o tastatură standard US.\n     (unde :1 pentru apăsat înseamnă că tasta este apăsată, iar :0 că este eliberată)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nValorile neinterpretabile, precum 0, aaa, l0l, vor produce doar o întârziere.\n\nConsultați `/usr/include/linux/input-event-codes.h' pentru codurile de taste disponibile (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Utilizare: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nDeplasați indicatorul mouse-ului sau rotița.\n\nOpțiuni:\n  -w, --wheel                Deplasați relativ rotița mouse-ului\n  -a, --absolute             Folosiți poziția absolută; nu se aplică rotiței\n  -x, --xpos                 Poziția X\n  -y, --ypos                 Poziția Y\n  -h, --help                 Afișați acest ajutor și ieșiți\n\nTrebuie să dezactivați accelerarea vitezei mouse-ului pentru mișcarea absolută corectă."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: prea multe coordonate\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Mișcările rotiței mouse-ului nu trebuie să fie valori absolute\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: sunt necesare două coordonate\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Introduceți orice (CTRL-C pentru ieșire):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: citire stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Cod tastă: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin acceptă numai ASCII; folosiți lipirea din clipboard pentru text UTF-8\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Se mapează la: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  Se trimite shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  Se trimite ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Utilizare: type [OPTION]... [STRINGS]...\nTastați șiruri.\n\nOpțiuni:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Întârziere de N milisecunde între taste (întârzierea dintre fiecare pereche apăsare/eliberare) (implicit: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Țineți fiecare tastă apăsată N milisecunde (întârzierea dintre apăsarea și eliberarea tastei) (implicit: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Întârziere de N milisecunde între șirurile din linia de comandă (implicit: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Specificați un fișier al cărui conținut va fi tastat ca și cum ar fi fost transmis ca argument.\n                               Calea fișierului poate fi și '-' pentru citirea din stdin\n  -e, --escape=BOOL          Activați (1) sau dezactivați (0) modul escape\n  -h, --help                 Afișați acest ajutor și ieșiți\n\nModul escape este activat implicit la tastarea argumentelor din linia de comandă și dezactivat implicit la tastarea din fișier și stdin.\nIntrarea din fișier este transmisă în flux: textul ASCII valid dinaintea unei erori ulterioare poate fi deja tastat."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type acceptă numai ASCII; folosiți lipirea din clipboard pentru text UTF-8\n"
+
+msgid "escape mode"
+msgstr "modul escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: eroare: deschiderea %s a eșuat: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: eroare: citirea %s a eșuat: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Aceștia sunt brutarii noștri respectați:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Utilizare: release-all\nEliberează toate tastele și butoanele virtuale ale mouse-ului."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all nu acceptă argumente\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Utilizare: ydotool <cmd> <args>\nComenzi disponibile:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Folosiți release-all pentru a elibera tastele apăsate după terminarea forțată a unui client.\n  -h, --help     Afișați acest ajutor și ieșiți\n  -V, --version  Afișați informațiile despre versiune și ieșiți\nFolosiți variabila de mediu YDOTOOL_SOCKET pentru a specifica socketul daemonului."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: %s nevalid: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: trimiterea evenimentului de intrare"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: comandă necunoscută: %s\nRulați 'ydotool help' pentru lista comenzilor\n"
+
+msgid "failed to create socket"
+msgstr "crearea socketului a eșuat"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: calea socketului este prea lungă\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "conectarea la socketul `%s' a eșuat: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Verificați dacă ydotoold rulează.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Verificați dacă utilizatorul curent are permisiuni suficiente pentru a accesa fișierul socket.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: instalarea gestionarului de semnale"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: blocarea directorului socketului"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Utilizare: ydotoold [OPTION]...\nDaemonul ydotool.\n\nOpțiuni:\n  -p, --socket-path=PATH     Calea personalizată a socketului\n  -P, --socket-perm=PERM     Permisiunile socketului (implicit 0600)\n  -o, --socket-own=UID:GID   Proprietarul socketului\n  -s, --no-system-keys        Dezactivați tastele SysRq și tastele de alimentare/suspendare/repornire\n  -m, --mouse-off            Dezactivați mouse-ul (EV_REL)\n  -k, --keyboard-off         Dezactivați tastatura (EV_KEY)\n  -T, --touch-on             Activați ecranul tactil (EV_ABS)\n  -h, --help                 Afișați acest ajutor și ieșiți\n  -V, --version              Afișați informațiile despre versiune\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s a eșuat\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d a eșuat\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d a eșuat\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d a eșuat\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "apelul ioctl UI_DEV_SETUP a eșuat"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "apelul ioctl UI_DEV_CREATE a eșuat"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Este recomandat să rulați acest program ca root; altfel, YMMV."
+
+msgid "failed to open uinput device"
+msgstr "deschiderea dispozitivului uinput a eșuat"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Calea socketului: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "crearea socketului pentru detectarea unei instanțe duplicate a daemonului a eșuat"
+
+msgid "Removing old stale socket"
+msgstr "Se elimină socketul vechi rămas"
+
+msgid "failed remove old stale socket"
+msgstr "eliminarea socketului vechi rămas a eșuat"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "eroare: rulează deja un alt ydotoold cu același socket."
+
+msgid "failed to bind socket"
+msgstr "asocierea socketului a eșuat"
+
+msgid "failed to change socket permission"
+msgstr "modificarea permisiunilor socketului a eșuat"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Permisiunea socketului: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "specificație de proprietar nevalidă"
+
+msgid "failed to change socket ownership"
+msgstr "modificarea proprietarului socketului a eșuat"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Proprietatea socketului: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "rularea comenzii xinput a eșuat"
+
+msgid "failed to fork"
+msgstr "fork a eșuat"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "comanda xinput nu a fost găsită în `%s', accelerarea indicatorului mouse-ului nu va fi dezactivată"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: scrierea evenimentului de intrare"

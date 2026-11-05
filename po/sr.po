@@ -1,0 +1,235 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ydotool\n"
+"Report-Msgid-Bugs-To: anton@sirius.if.ua\n"
+"POT-Creation-Date: 2026-11-06 02:52+0700\n"
+"PO-Revision-Date: 2026-11-06 00:00+0000\n"
+"Last-Translator: ydotool translation tooling <anton@sirius.if.ua>\n"
+"Language-Team: Serbian\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Upotreba: click [OPTION]... [BUTTONS]...\nKliknite tastere miša.\n\nOpcije:\n  -r, --repeat=N             Ponovite ceo niz N puta\n  -D, --next-delay=N         Pauza od N milisekundi između ulaznih događaja (pritisak/otpuštanje,                                ceo klik znači dvostruko vreme)\n  -P, --press-release        Pritisnite i otpustite taster miša da biste dovršili klik (opciono)\n  -h, --help                 Prikažite ovu pomoć i izađite\n\nNavođenje tastera:\n  Svi tasteri miša predstavljeni su heksadecimalnim brojčanim vrednostima, uz opcionalnu\nmasku bitova koja određuje da li treba izostaviti pritisak ili otpuštanje miša.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Pritisak miša\n  0x80 - Otpuštanje miša\n  Primeri:\n    0x00: bira levi taster, ali ne radi ništa (ovo možete koristiti za dodatne pauze)\n    0xC0: klik levim tasterom (pritisak pa otpuštanje)\n    0x41: pritisak desnog tastera\n    0x82: otpuštanje srednjeg tastera\n  Prefiks '0x' može se izostaviti.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "opcija %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " sa argumentom %s"
+
+msgid "repeat count"
+msgstr "broj ponavljanja"
+
+msgid "delay (0..60000 ms)"
+msgstr "kašnjenje (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Događaj klika %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Upotreba: key [OPTION]... [KEYCODES]...\nGeneriše događaje tastera.\n\nOpcije:\n  -d, --key-delay=N          Pauza od N milisekundi između događaja tastera\n  -h, --help                 Prikažite ovu pomoć i izađite\n\nPošto nije moguće znati koliko rasporeda tastature postoji u svetu,\nsada koristimo sirove kodove tastera.\n\nSintaksa: <keycode>:<pressed>\nna primer, 28:1 28:0 znači pritisak na taster Enter na standardnoj tastaturi US.\n     (:1 označava pritisnut taster, a zatim :0 njegovo otpuštanje)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nVrednosti koje se ne mogu protumačiti, kao što su 0, aaa, l0l, izazvaće samo pauzu.\n\nPogledajte `/usr/include/linux/input-event-codes.h' za dostupne kodove tastera (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Upotreba: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nPomera pokazivač miša ili točkić.\n\nOpcije:\n  -w, --wheel                Relativno pomera točkić miša\n  -a, --absolute             Koristi apsolutni položaj; ne važi za točkić\n  -x, --xpos                 X položaj\n  -y, --ypos                 Y položaj\n  -h, --help                 Prikažite ovu pomoć i izađite\n\nZa ispravno apsolutno pomeranje potrebno je isključiti ubrzanje miša."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: previše koordinata\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Pomeranja točkića miša ne smeju biti apsolutne vrednosti\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: potrebne su dve koordinate\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Unesite bilo šta (CTRL-C za izlaz):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: čitanje sa stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Kod tastera: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin podržava samo ASCII; za UTF-8 tekst koristite lepljenje iz ostave\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Preslikava se na: %d\n"
+
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  Šalje se shift\n"
+
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  Šalje se ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Upotreba: type [OPTION]... [STRINGS]...\nUnosi tekstualne nizove.\n\nOpcije:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Pauza od N milisekundi između tastera (pauza između svakog para pritiska i otpuštanja) (podrazumevano: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Drži svaki taster N milisekundi (vreme između pritiska i otpuštanja) (podrazumevano: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Pauza od N milisekundi između nizova iz komandne linije (podrazumevano: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Navedite datoteku čiji će sadržaj biti unet kao da je prosleđen kao argument.\n                               Putanja datoteke može biti i '-' za čitanje sa stdin\n  -e, --escape=BOOL          Uključuje (1) ili isključuje (0) escape obradu\n  -h, --help                 Prikažite ovu pomoć i izađite\n\nEscape obrada je podrazumevano uključena za argumente komandne linije, a isključena za unos iz datoteke i stdin.\nUlaz iz datoteke obrađuje se kao tok: ispravan ASCII sadržaj pre kasnije greške možda je već unet."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type podržava samo ASCII; za UTF-8 tekst koristite lepljenje iz ostave\n"
+
+msgid "escape mode"
+msgstr "escape režim"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: greška: nije moguće otvoriti %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: greška: čitanje %s nije uspelo: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Zahvaljujemo našim uvaženim autorima:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Upotreba: release-all\nOtpusti sve virtuelne tastere tastature i miša."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all ne prima argumente\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Upotreba: ydotool <cmd> <args>\nDostupne komande:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Koristite release-all da otpustite zadržane tastere nakon nasilno prekinutog klijenta.\n  -h, --help     Prikažite ovu pomoć i izađite\n  -V, --version  Prikažite podatke o verziji i izađite\nZa navođenje soketa demona koristite promenljivu okruženja YDOTOOL_SOCKET."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: neispravno %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: slanje ulaznog događaja"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Nepoznata komanda: %s\nPokrenite 'ydotool help' da biste dobili spisak komandi\n"
+
+msgid "failed to create socket"
+msgstr "pravljenje soketa nije uspelo"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: putanja soketa je preduga\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "povezivanje sa soketom `%s' nije uspelo: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Proverite da li je ydotoold pokrenut.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Proverite da li trenutni korisnik ima dovoljna ovlašćenja za pristup datoteci soketa.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: instaliranje obrađivača signala"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: zaključavanje direktorijuma soketa"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Upotreba: ydotoold [OPTION]...\nDemon ydotool.\n\nOpcije:\n  -p, --socket-path=PATH     Prilagođena putanja soketa\n  -P, --socket-perm=PERM     Dozvole soketa (podrazumevano 0600)\n  -o, --socket-own=UID:GID   Vlasništvo nad soketom\n  -s, --no-system-keys        Onemogući SysRq i tastere za napajanje/spavanje/ponovno pokretanje\n  -m, --mouse-off            Onemogući miš (EV_REL)\n  -k, --keyboard-off         Onemogući tastaturu (EV_KEY)\n  -T, --touch-on             Omogući ekran osetljiv na dodir (EV_ABS)\n  -h, --help                 Prikaži ovu pomoć i izađi\n  -V, --version              Prikaži podatke o verziji\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s nije uspeo\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d nije uspeo\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d nije uspeo\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d nije uspeo\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl nije uspeo"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl nije uspeo"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Preporučuje se da ovaj program pokrenete kao root; u suprotnom rezultati mogu varirati (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "otvaranje uinput uređaja nije uspelo"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Putanja soketa: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "pravljenje soketa za otkrivanje sukoba demona nije uspelo"
+
+msgid "Removing old stale socket"
+msgstr "Uklanja se stari zaostali soket"
+
+msgid "failed remove old stale socket"
+msgstr "uklanjanje starog zaostalog soketa nije uspelo"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "greška: drugi ydotoold je pokrenut sa istim soketom."
+
+msgid "failed to bind socket"
+msgstr "povezivanje soketa nije uspelo"
+
+msgid "failed to change socket permission"
+msgstr "promena dozvola soketa nije uspela"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Dozvole soketa: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "neispravna specifikacija vlasništva"
+
+msgid "failed to change socket ownership"
+msgstr "promena vlasništva nad soketom nije uspela"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Vlasništvo soketa: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "pokretanje komande xinput nije uspelo"
+
+msgid "failed to fork"
+msgstr "fork operacija nije uspela"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "komanda xinput nije pronađena u `%s'; ubrzanje pokazivača miša neće biti isključeno"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: upis ulaznog događaja"

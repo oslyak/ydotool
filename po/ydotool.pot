@@ -1,0 +1,427 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the ydotool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ydotool 1.0.11\n"
+"Report-Msgid-Bugs-To: anton@sirius.if.ua\n"
+"POT-Creation-Date: 2026-11-06 02:52+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: Client/tool_click.c:40
+msgid ""
+"Usage: click [OPTION]... [BUTTONS]...\n"
+"Click mouse buttons.\n"
+"\n"
+"Options:\n"
+"  -r, --repeat=N             Repeat entire sequence N times\n"
+"  -D, --next-delay=N         Delay N milliseconds between input events (up/"
+"down,                                a complete click means doubled time)\n"
+"  -P, --press-release        Press & release mouse button to complete a "
+"click, (optional)\n"
+"  -h, --help                 Display this help and exit\n"
+"\n"
+"How to specify buttons:\n"
+"  Now all mouse buttons are represented using hexadecimal numeric values, "
+"with an optional\n"
+"bit mask to specify if mouse up/down needs to be omitted.\n"
+"  0x00 - LEFT\n"
+"  0x01 - RIGHT\n"
+"  0x02 - MIDDLE\n"
+"  0x03 - SIDE\n"
+"  0x04 - EXTR\n"
+"  0x05 - FORWARD\n"
+"  0x06 - BACK\n"
+"  0x07 - TASK\n"
+"  0x40 - Mouse down\n"
+"  0x80 - Mouse up\n"
+"  Examples:\n"
+"    0x00: chooses left button, but does nothing (you can use this to "
+"implement extra sleeps)\n"
+"    0xC0: left button click (down then up)\n"
+"    0x41: right button down\n"
+"    0x82: middle button up\n"
+"  The '0x' prefix can be omitted if you want.\n"
+msgstr ""
+
+#: Client/tool_click.c:106 Client/tool_key.c:93 Client/tool_mousemove.c:91
+#: Client/tool_type.c:216 Daemon/ydotoold.c:223
+#, c-format
+msgid "option %s"
+msgstr ""
+
+#: Client/tool_click.c:108 Client/tool_key.c:95 Client/tool_mousemove.c:93
+#: Client/tool_type.c:218 Daemon/ydotoold.c:225
+#, c-format
+msgid " with arg %s"
+msgstr ""
+
+#: Client/tool_click.c:112
+msgid "repeat count"
+msgstr ""
+
+#: Client/tool_click.c:116 Client/tool_key.c:99 Client/tool_type.c:222
+#: Client/tool_type.c:226 Client/tool_type.c:230
+msgid "delay (0..60000 ms)"
+msgstr ""
+
+#: Client/tool_click.c:146
+#, c-format
+msgid "Click Event %d\n"
+msgstr ""
+
+#: Client/tool_key.c:41
+msgid ""
+"Usage: key [OPTION]... [KEYCODES]...\n"
+"Emit key events.\n"
+"\n"
+"Options:\n"
+"  -d, --key-delay=N          Delay N milliseconds between key events\n"
+"  -h, --help                 Display this help and exit\n"
+"\n"
+"Since there's no way to know how many keyboard layouts are there in the "
+"world,\n"
+"we're using raw keycodes now.\n"
+"\n"
+"Syntax: <keycode>:<pressed>\n"
+"e.g. 28:1 28:0 means pressing on the Enter button on a standard US "
+"keyboard.\n"
+"     (where :1 for pressed means the key is down and then :0 means the key "
+"is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n"
+"\n"
+"Non-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n"
+"\n"
+"See `/usr/include/linux/input-event-codes.h' for available key codes "
+"(KEY_*).\n"
+msgstr ""
+
+#: Client/tool_mousemove.c:40
+msgid ""
+"Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\n"
+"Move mouse pointer or wheel.\n"
+"\n"
+"Options:\n"
+"  -w, --wheel                Move mouse wheel relatively\n"
+"  -a, --absolute             Use absolute position, not applicable to wheel\n"
+"  -x, --xpos                 X position\n"
+"  -y, --ypos                 Y position\n"
+"  -h, --help                 Display this help and exit\n"
+"\n"
+"You need to disable mouse speed acceleration for correct absolute movement."
+msgstr ""
+
+#: Client/tool_mousemove.c:109 Client/tool_mousemove.c:117
+#: Client/tool_mousemove.c:137
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr ""
+
+#: Client/tool_mousemove.c:147
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr ""
+
+#: Client/tool_mousemove.c:164
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr ""
+
+#: Client/tool_stdin.c:83
+#, c-format
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr ""
+
+#: Client/tool_stdin.c:90
+msgid "ydotool: read stdin"
+msgstr ""
+
+#: Client/tool_stdin.c:94
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr ""
+
+#: Client/tool_stdin.c:98
+msgid ""
+"ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr ""
+
+#: Client/tool_stdin.c:119
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr ""
+
+#: Client/tool_stdin.c:127
+#, c-format
+msgid "  Sending shift\n"
+msgstr ""
+
+#: Client/tool_stdin.c:131
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr ""
+
+#: Client/tool_type.c:81
+msgid ""
+"Usage: type [OPTION]... [STRINGS]...\n"
+"Type strings.\n"
+"\n"
+"Options:"
+msgstr ""
+
+#: Client/tool_type.c:86
+#, c-format
+msgid ""
+"  -d, --key-delay=N          Delay N milliseconds between keys (the delay "
+"between every key down/up pair) (default: %d)\n"
+msgstr ""
+
+#: Client/tool_type.c:89
+#, c-format
+msgid ""
+"  -H, --key-hold=N           Hold each key for N milliseconds (the delay "
+"between key down and up) (default: %d)\n"
+msgstr ""
+
+#: Client/tool_type.c:92
+#, c-format
+msgid ""
+"  -D, --next-delay=N         Delay N milliseconds between command line "
+"strings (default: %d)\n"
+msgstr ""
+
+#: Client/tool_type.c:95
+msgid ""
+"  -f, --file=PATH            Specify a file, the contents of which will be "
+"be typed as if passed as an argument.\n"
+"                               The filepath may also be '-' to read from "
+"stdin\n"
+"  -e, --escape=BOOL          Escape enable (1) or disable (0)\n"
+"  -h, --help                 Display this help and exit\n"
+"\n"
+"Escape is enabled by default when typing command line arguments, and "
+"disabled by default when typing from file and stdin.\n"
+"File input is streamed: valid ASCII before a later error may already have "
+"been typed."
+msgstr ""
+
+#: Client/tool_type.c:108 Client/tool_type.c:295
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr ""
+
+#: Client/tool_type.c:243
+msgid "escape mode"
+msgstr ""
+
+#: Client/tool_type.c:264
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr ""
+
+#: Client/tool_type.c:281
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr ""
+
+#: Client/ydotool.c:64
+msgid ""
+"These are our honorable bakers:\n"
+"\n"
+"Dustin Van Tate Testa\n"
+"Elliot Wolk\n"
+"tofik\n"
+msgstr ""
+
+#: Client/ydotool.c:76
+msgid ""
+"Usage: release-all\n"
+"Release all virtual keyboard and mouse buttons."
+msgstr ""
+
+#: Client/ydotool.c:79
+msgid "ydotool: release-all takes no arguments\n"
+msgstr ""
+
+#: Client/ydotool.c:101
+msgid ""
+"Usage: ydotool <cmd> <args>\n"
+"Available commands:"
+msgstr ""
+
+#: Client/ydotool.c:108
+msgid ""
+"Use release-all to recover held keys after a killed client.\n"
+"  -h, --help     Display this help and exit\n"
+"  -V, --version  Display version information and exit\n"
+"Use environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr ""
+
+#: Client/ydotool.c:121
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr ""
+
+#: Client/ydotool.c:154
+msgid "ydotool: send input event"
+msgstr ""
+
+#: Client/ydotool.c:193
+#, c-format
+msgid ""
+"ydotool: Unknown command: %s\n"
+"Run 'ydotool help' if you want a command list\n"
+msgstr ""
+
+#: Client/ydotool.c:200 Daemon/ydotoold.c:322
+msgid "failed to create socket"
+msgstr ""
+
+#: Client/ydotool.c:219
+msgid "ydotool: socket path is too long\n"
+msgstr ""
+
+#: Client/ydotool.c:230
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr ""
+
+#: Client/ydotool.c:235
+msgid "Please check if ydotoold is running.\n"
+msgstr ""
+
+#: Client/ydotool.c:239
+msgid ""
+"Please check if the current user has sufficient permissions to access the "
+"socket file.\n"
+msgstr ""
+
+#: Client/ydotool.c:251
+msgid "ydotool: install signal handler"
+msgstr ""
+
+#: Client/ydotool.c:265
+msgid "ydotool: lock socket directory"
+msgstr ""
+
+#: Daemon/ydotoold.c:86
+msgid ""
+"Usage: ydotoold [OPTION]...\n"
+"The ydotool Daemon.\n"
+"\n"
+"Options:\n"
+"  -p, --socket-path=PATH     Custom socket path\n"
+"  -P, --socket-perm=PERM     Socket permission (default 0600)\n"
+"  -o, --socket-own=UID:GID   Socket ownership\n"
+"  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n"
+"  -m, --mouse-off            Disable mouse (EV_REL)\n"
+"  -k, --keyboard-off         Disable keyboard (EV_KEY)\n"
+"  -T, --touch-on             Enable touchscreen (EV_ABS)\n"
+"  -h, --help                 Display this help and exit\n"
+"  -V, --version              Show version information\n"
+msgstr ""
+
+#: Daemon/ydotoold.c:115 Daemon/ydotoold.c:131 Daemon/ydotoold.c:146
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr ""
+
+#: Daemon/ydotoold.c:123
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr ""
+
+#: Daemon/ydotoold.c:138
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr ""
+
+#: Daemon/ydotoold.c:154
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr ""
+
+#: Daemon/ydotoold.c:171
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr ""
+
+#: Daemon/ydotoold.c:176
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr ""
+
+#: Daemon/ydotoold.c:275
+msgid "You're advised to run this program as root, or YMMV."
+msgstr ""
+
+#: Daemon/ydotoold.c:281
+msgid "failed to open uinput device"
+msgstr ""
+
+#: Daemon/ydotoold.c:285
+#, c-format
+msgid "Socket path: %s\n"
+msgstr ""
+
+#: Daemon/ydotoold.c:294
+msgid "failed to create socket for daemon collision detection"
+msgstr ""
+
+#: Daemon/ydotoold.c:307
+msgid "Removing old stale socket"
+msgstr ""
+
+#: Daemon/ydotoold.c:310
+msgid "failed remove old stale socket"
+msgstr ""
+
+#: Daemon/ydotoold.c:314
+msgid "error: Another ydotoold is running with the same socket."
+msgstr ""
+
+#: Daemon/ydotoold.c:333
+msgid "failed to bind socket"
+msgstr ""
+
+#: Daemon/ydotoold.c:339
+msgid "failed to change socket permission"
+msgstr ""
+
+#: Daemon/ydotoold.c:343
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr ""
+
+#: Daemon/ydotoold.c:349
+msgid "invalid ownership specification"
+msgstr ""
+
+#: Daemon/ydotoold.c:359
+msgid "failed to change socket ownership"
+msgstr ""
+
+#: Daemon/ydotoold.c:363
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr ""
+
+#: Daemon/ydotoold.c:379
+msgid "failed to run xinput command"
+msgstr ""
+
+#: Daemon/ydotoold.c:382
+msgid "failed to fork"
+msgstr ""
+
+#: Daemon/ydotoold.c:387
+#, c-format
+msgid ""
+"xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr ""
+
+#: Daemon/ydotoold.c:403
+msgid "ydotoold: write input event"
+msgstr ""

@@ -1,0 +1,223 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool 1.0.11\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:52+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Telugu\nLanguage: te\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Usage: click [OPTION]... [BUTTONS]...\nమౌస్ బటన్లను నొక్కండి.\n\nఎంపికలు:\n  -r, --repeat=N             మొత్తం క్రమాన్ని N సార్లు పునరావృతం చేయండి\n  -D, --next-delay=N         ఇన్‌పుట్ సంఘటనల మధ్య N మిల్లీసెకన్ల విరామం (నొక్కడం/విడుదల; పూర్తి క్లిక్‌కు రెండింతల సమయం పడుతుంది)\n  -P, --press-release        క్లిక్ పూర్తి చేయడానికి మౌస్ బటన్‌ను నొక్కి విడుదల చేయండి (ఐచ్ఛికం)\n  -h, --help                 ఈ సహాయాన్ని చూపించి నిష్క్రమించండి\n\nబటన్లను పేర్కొనే విధానం:\n  ప్రస్తుతం అన్ని మౌస్ బటన్లు హెక్సాడెసిమల్ సంఖ్యా విలువలతో సూచించబడతాయి; మౌస్ నొక్కడం/విడుదలను వదిలేయాలా అని తెలిపే ఐచ్ఛిక బిట్ మాస్క్ ఉంటుంది.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - మౌస్ నొక్కడం\n  0x80 - మౌస్ విడుదల\n  ఉదాహరణలు:\n    0x00: ఎడమ బటన్‌ను ఎంచుకుంటుంది, కానీ ఏమీ చేయదు (అదనపు విరామాల కోసం దీన్ని ఉపయోగించవచ్చు)\n    0xC0: ఎడమ బటన్ క్లిక్ (నొక్కి, తరువాత విడుదల)\n    0x41: కుడి బటన్ నొక్కడం\n    0x82: మధ్య బటన్ విడుదల\n  కావాలంటే '0x' ఉపసర్గను వదిలేయవచ్చు.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "ఎంపిక %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " ఆర్గ్యుమెంట్ %s తో"
+
+msgid "repeat count"
+msgstr "పునరావృతాల సంఖ్య"
+
+msgid "delay (0..60000 ms)"
+msgstr "విరామం (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "క్లిక్ సంఘటన %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Usage: key [OPTION]... [KEYCODES]...\nకీ సంఘటనలను పంపండి.\n\nఎంపికలు:\n  -d, --key-delay=N          కీ సంఘటనల మధ్య N మిల్లీసెకన్ల విరామం\n  -h, --help                 ఈ సహాయాన్ని చూపించి నిష్క్రమించండి\n\nప్రపంచంలో ఎన్ని కీబోర్డ్ లేఅవుట్లు ఉన్నాయో తెలుసుకునే మార్గం లేనందున,\nఇప్పుడు ముడి కీకోడ్‌లను ఉపయోగిస్తున్నాము.\n\nసింటాక్స్: <keycode>:<pressed>\nఉదా. 28:1 28:0 అనేది ప్రామాణిక US కీబోర్డ్‌లో Enter బటన్‌ను నొక్కడాన్ని సూచిస్తుంది.\n     (:1 అంటే కీ నొక్కబడుతుంది; తరువాత :0 అంటే కీ విడుదలవుతుంది)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\n0, aaa, l0l వంటి అర్థం చేసుకోలేని విలువలు కేవలం విరామాన్ని మాత్రమే కలిగిస్తాయి.\n\nఅందుబాటులో ఉన్న కీకోడ్‌ల (KEY_*) కోసం `/usr/include/linux/input-event-codes.h' చూడండి.\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nమౌస్ పాయింటర్ లేదా చక్రాన్ని కదిలించండి.\n\nఎంపికలు:\n  -w, --wheel                మౌస్ చక్రాన్ని సాపేక్షంగా కదిలించండి\n  -a, --absolute             సంపూర్ణ స్థానాన్ని ఉపయోగించండి; చక్రానికి వర్తించదు\n  -x, --xpos                 X స్థానం\n  -y, --ypos                 Y స్థానం\n  -h, --help                 ఈ సహాయాన్ని చూపించి నిష్క్రమించండి\n\nసంపూర్ణ కదలిక సరిగ్గా ఉండటానికి మౌస్ వేగ త్వరణాన్ని నిలిపివేయాలి."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: కోఆర్డినేట్లు చాలా ఎక్కువగా ఉన్నాయి\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "మౌస్ చక్ర కదలికలు సంపూర్ణ విలువలుగా ఉండకూడదు\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: రెండు కోఆర్డినేట్లు అవసరం\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "ఏదైనా టైప్ చేయండి (నిష్క్రమించడానికి CTRL-C):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: stdin చదవండి"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "కీకోడ్: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin ASCII మాత్రమే మద్దతిస్తుంది; UTF-8 పాఠ్యం కోసం క్లిప్‌బోర్డ్ పేస్ట్ ఉపయోగించండి\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  దీనికి మ్యాప్ అవుతుంది: %d\n"
+
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  shift పంపుతోంది\n"
+
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  ctrl పంపుతోంది\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Usage: type [OPTION]... [STRINGS]...\nస్ట్రింగ్‌లను టైప్ చేయండి.\n\nఎంపికలు:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          కీల మధ్య N మిల్లీసెకన్ల విరామం (ప్రతి కీ నొక్కడం/విడుదల జంట మధ్య విరామం) (డిఫాల్ట్: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           ప్రతి కీని N మిల్లీసెకన్ల పాటు నొక్కి ఉంచండి (కీ నొక్కడం, విడుదల మధ్య విరామం) (డిఫాల్ట్: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         కమాండ్ లైన్ స్ట్రింగ్‌ల మధ్య N మిల్లీసెకన్ల విరామం (డిఫాల్ట్: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            ఫైల్‌ను పేర్కొనండి; దాని విషయాన్ని ఆర్గ్యుమెంట్‌గా ఇచ్చినట్లుగా టైప్ చేస్తుంది.\n                               stdin నుంచి చదవడానికి ఫైల్ మార్గం '-' కూడా కావచ్చు\n  -e, --escape=BOOL          Escape ను ప్రారంభించండి (1) లేదా నిలిపివేయండి (0)\n  -h, --help                 ఈ సహాయాన్ని చూపించి నిష్క్రమించండి\n\nకమాండ్ లైన్ ఆర్గ్యుమెంట్లను టైప్ చేసేటప్పుడు Escape డిఫాల్ట్‌గా ప్రారంభమవుతుంది; ఫైల్ మరియు stdin నుంచి టైప్ చేసేటప్పుడు డిఫాల్ట్‌గా నిలిపివేయబడుతుంది.\nఫైల్ ఇన్‌పుట్ స్ట్రీమ్‌గా చదవబడుతుంది: తరువాతి లోపం వచ్చేలోపు చెల్లుబాటు అయ్యే ASCII ఇప్పటికే టైప్ అయి ఉండవచ్చు."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type ASCII మాత్రమే మద్దతిస్తుంది; UTF-8 పాఠ్యం కోసం క్లిప్‌బోర్డ్ పేస్ట్ ఉపయోగించండి\n"
+
+msgid "escape mode"
+msgstr "escape విధానం"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: లోపం: %s తెరవడం విఫలమైంది: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: లోపం: %s చదవడం విఫలమైంది: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "మా గౌరవనీయమైన రూపకర్తలు వీరు:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Usage: release-all\nఅన్ని వర్చువల్ కీబోర్డ్ మరియు మౌస్ బటన్లను విడుదల చేయండి."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all కు ఆర్గ్యుమెంట్లు ఉండవు\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Usage: ydotool <cmd> <args>\nఅందుబాటులో ఉన్న ఆదేశాలు:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "క్లయింట్ బలవంతంగా ఆపివేయబడిన తరువాత నొక్కి ఉన్న కీలను విడిపించడానికి release-all ఉపయోగించండి.\n  -h, --help     ఈ సహాయాన్ని చూపించి నిష్క్రమించండి\n  -V, --version  సంచిక సమాచారాన్ని చూపించి నిష్క్రమించండి\nడీమన్ సాకెట్‌ను పేర్కొనడానికి YDOTOOL_SOCKET వాతావరణ చరరాశిని ఉపయోగించండి."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: చెల్లని %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: ఇన్‌పుట్ సంఘటనను పంపండి"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: తెలియని ఆదేశం: %s\nఆదేశాల జాబితా కావాలంటే 'ydotool help' నడపండి\n"
+
+msgid "failed to create socket"
+msgstr "సాకెట్ సృష్టించడం విఫలమైంది"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: సాకెట్ మార్గం చాలా పొడవుగా ఉంది\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "`%s' సాకెట్‌కు కనెక్ట్ కావడం విఫలమైంది: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "ydotoold నడుస్తోందో లేదో తనిఖీ చేయండి.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "ప్రస్తుత వినియోగదారుకు సాకెట్ ఫైల్‌ను యాక్సెస్ చేయడానికి తగిన అనుమతులు ఉన్నాయో తనిఖీ చేయండి.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: సిగ్నల్ హ్యాండ్లర్‌ను ఇన్‌స్టాల్ చేయండి"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: సాకెట్ డైరెక్టరీని లాక్ చేయండి"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Usage: ydotoold [OPTION]...\nydotool డీమన్.\n\nఎంపికలు:\n  -p, --socket-path=PATH     అనుకూల సాకెట్ మార్గం\n  -P, --socket-perm=PERM     సాకెట్ అనుమతి (డిఫాల్ట్ 0600)\n  -o, --socket-own=UID:GID   సాకెట్ యాజమాన్యం\n  -s, --no-system-keys        SysRq మరియు పవర్/నిద్ర/పునఃప్రారంభ కీలను నిలిపివేయండి\n  -m, --mouse-off            మౌస్‌ను నిలిపివేయండి (EV_REL)\n  -k, --keyboard-off         కీబోర్డ్‌ను నిలిపివేయండి (EV_KEY)\n  -T, --touch-on             టచ్‌స్క్రీన్‌ను ప్రారంభించండి (EV_ABS)\n  -h, --help                 ఈ సహాయాన్ని చూపించి నిష్క్రమించండి\n  -V, --version              సంచిక సమాచారాన్ని చూపించండి\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s విఫలమైంది\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d విఫలమైంది\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d విఫలమైంది\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d విఫలమైంది\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl విఫలమైంది"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl విఫలమైంది"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "ఈ ప్రోగ్రామ్‌ను root గా నడపాలని సూచిస్తున్నాము; లేకపోతే ఫలితాలు మారవచ్చు (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "uinput పరికరాన్ని తెరవడం విఫలమైంది"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "సాకెట్ మార్గం: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "డీమన్ ఘర్షణ గుర్తింపు కోసం సాకెట్ సృష్టించడం విఫలమైంది"
+
+msgid "Removing old stale socket"
+msgstr "పాత పనికిరాని సాకెట్‌ను తొలగిస్తోంది"
+
+msgid "failed remove old stale socket"
+msgstr "పాత పనికిరాని సాకెట్‌ను తొలగించడం విఫలమైంది"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "లోపం: అదే సాకెట్‌తో మరో ydotoold నడుస్తోంది."
+
+msgid "failed to bind socket"
+msgstr "సాకెట్‌ను బైండ్ చేయడం విఫలమైంది"
+
+msgid "failed to change socket permission"
+msgstr "సాకెట్ అనుమతిని మార్చడం విఫలమైంది"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "సాకెట్ అనుమతి: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "యాజమాన్య నిర్దేశం చెల్లదు"
+
+msgid "failed to change socket ownership"
+msgstr "సాకెట్ యాజమాన్యాన్ని మార్చడం విఫలమైంది"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "సాకెట్ యాజమాన్యం: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "xinput ఆదేశాన్ని నడపడం విఫలమైంది"
+
+msgid "failed to fork"
+msgstr "fork చేయడం విఫలమైంది"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "`%s' లో xinput ఆదేశం కనబడలేదు; మౌస్ పాయింటర్ త్వరణాన్ని నిలిపివేయడం లేదు"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: ఇన్‌పుట్ సంఘటనను రాయండి"

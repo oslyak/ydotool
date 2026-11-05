@@ -1,0 +1,236 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ydotool 1.0.11\n"
+"Report-Msgid-Bugs-To: anton@sirius.if.ua\n"
+"POT-Creation-Date: 2026-11-06 02:52+0700\n"
+"PO-Revision-Date: 2026-11-06 00:00+0000\n"
+"Last-Translator: ydotool translation tooling <anton@sirius.if.ua>\n"
+"Language-Team: Icelandic\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Notkun: click [OPTION]... [BUTTONS]...\nSmelltu á músarhnappa.\n\nValkostir:\n  -r, --repeat=N             Endurtaktu alla rununa N sinnum\n  -D, --next-delay=N         Bið N millisekúndur milli inntakstilvika (niður/upp,                                fullur smellur þýðir tvöfaldan tíma)\n  -P, --press-release        Ýttu á og slepptu músarhnappi til að ljúka smelli (valfrjálst)\n  -h, --help                 Sýndu þessa hjálp og hættu\n\nTilgreining hnappa:\n  Nú eru allir músarhnappar táknaðir með sextándastöfum, með valfrjálsri\nbitamasku til að tilgreina hvort sleppa eigi músarhreyfingu niður/upp.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Músarhnappur niður\n  0x80 - Músarhnappur upp\n  Dæmi:\n    0x00: velur vinstri hnapp en gerir ekkert (þetta má nota til að innleiða viðbótarbið)\n    0xC0: smellur með vinstri hnappi (niður og síðan upp)\n    0x41: hægri hnappur niður\n    0x82: miðhnappur upp\n  Forskeytinu '0x' má sleppa ef þess er óskað.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "valkostur %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " með viðfangi %s"
+
+msgid "repeat count"
+msgstr "fjöldi endurtekninga"
+
+msgid "delay (0..60000 ms)"
+msgstr "bið (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Smelltilvik %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Notkun: key [OPTION]... [KEYCODES]...\nSendu lyklatilvik.\n\nValkostir:\n  -d, --key-delay=N          Bið N millisekúndur milli lyklatilvika\n  -h, --help                 Sýndu þessa hjálp og hættu\n\nÞar sem ekki er hægt að vita hversu margar lyklaborðsuppsetningar eru til í heiminum,\nnotum við nú hrá lyklakóðagildi.\n\nSetningafræði: <keycode>:<pressed>\nt.d. merkir 28:1 28:0 að ýta á Enter á venjulegu US-lyklaborði.\n     (:1 merkir að ýtt sé á takkann og :0 síðan að honum sé sleppt)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nÓtúlkanleg gildi, svo sem 0, aaa og l0l, valda aðeins bið.\n\nSjá tiltæka lyklakóða (KEY_*) í `/usr/include/linux/input-event-codes.h'.\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Notkun: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nFærðu músarbendil eða hjól.\n\nValkostir:\n  -w, --wheel                Færðu músarhjól hlutfallslega\n  -a, --absolute             Notaðu algilda staðsetningu; á ekki við um hjól\n  -x, --xpos                 X-staðsetning\n  -y, --ypos                 Y-staðsetning\n  -h, --help                 Sýndu þessa hjálp og hættu\n\nSlökkva þarf á hraðaukningu músar til að algild færsla verði rétt."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: of mörg hnit\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Færslur músarhjóls mega ekki vera algild gildi\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: þarf tvö hnit\n"
+
+#, c-format
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Sláðu inn hvað sem er (CTRL-C til að hætta):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: lesa stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Lyklakóði: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin styður aðeins ASCII; límdu UTF-8-texta úr klippiborði\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Samsvarar: %d\n"
+
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  Sendi shift\n"
+
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  Sendi ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Notkun: type [OPTION]... [STRINGS]...\nSláðu inn strengi.\n\nValkostir:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Bið N millisekúndur milli lykla (bið milli hvers niður/upp-lyklapars) (sjálfgefið: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Haltu hverjum lykli niðri í N millisekúndur (bið milli niður- og upp-tilvika) (sjálfgefið: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Bið N millisekúndur milli strengja á skipanalínu (sjálfgefið: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Tilgreindu skrá; innihald hennar verður slegið inn eins og það væri gefið sem viðfang.\n                               Skráarslóðin getur einnig verið '-' til að lesa úr stdin\n  -e, --escape=BOOL          Virkja Escape (1) eða slökkva á því (0)\n  -h, --help                 Sýndu þessa hjálp og hættu\n\nEscape er sjálfgefið virkt þegar skipanalínurök eru slegin inn en óvirkt við lestur úr skrá og stdin.\nSkráin er lesin sem straumur: gildum ASCII-stöfum kann þegar að hafa verið slegið inn áður en villa kemur síðar."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type styður aðeins ASCII; límdu UTF-8-texta úr klippiborði\n"
+
+msgid "escape mode"
+msgstr "Escape-hamur"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: villa: tókst ekki að opna %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: villa: lestur %s mistókst: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Þetta eru heiðursbakstrarar okkar:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Notkun: release-all\nSlepptu öllum sýndarhnöppum lyklaborðs og músar."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all tekur engin viðföng\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Notkun: ydotool <cmd> <args>\nTiltækar skipanir:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Notaðu release-all til að losa fasta lykla eftir að biðlara hefur verið lokað með afli.\n  -h, --help     Sýndu þessa hjálp og hættu\n  -V, --version  Sýndu útgáfuupplýsingar og hættu\nNotaðu umhverfisbreytuna YDOTOOL_SOCKET til að tilgreina socket þjónsins."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: ógilt %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: senda inntakstilvik"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Óþekkt skipun: %s\nKeyrðu 'ydotool help' til að fá skipanalista\n"
+
+msgid "failed to create socket"
+msgstr "mistókst að búa til socket"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: socket-slóðin er of löng\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "mistókst að tengjast socket `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Athugaðu hvort ydotoold sé í gangi.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Athugaðu hvort núverandi notandi hafi nægar heimildir til að fá aðgang að socket-skránni.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: setja upp merkjameðhöndlun"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: læsa socket-möppu"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Notkun: ydotoold [OPTION]...\nydotool-þjónninn.\n\nValkostir:\n  -p, --socket-path=PATH     Sérsniðin socket-slóð\n  -P, --socket-perm=PERM     Socket-heimild (sjálfgefið 0600)\n  -o, --socket-own=UID:GID   Socket-eignarhald\n  -s, --no-system-keys        Slökkva á SysRq- og afl-, svefn- og endurræsingarlyklum\n  -m, --mouse-off            Slökkva á mús (EV_REL)\n  -k, --keyboard-off         Slökkva á lyklaborði (EV_KEY)\n  -T, --touch-on             Virkja snertiskjá (EV_ABS)\n  -h, --help                 Sýna þessa hjálp og hætta\n  -V, --version              Sýna útgáfuupplýsingar\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s mistókst\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d mistókst\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d mistókst\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d mistókst\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl mistókst"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl mistókst"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Ráðlagt er að keyra þetta forrit sem root; annars getur árangur verið breytilegur (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "mistókst að opna uinput-tæki"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Socket-slóð: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "mistókst að búa til socket til að greina árekstur þjóns"
+
+msgid "Removing old stale socket"
+msgstr "Fjarlægi gamlan úreltan socket"
+
+msgid "failed remove old stale socket"
+msgstr "mistókst að fjarlægja gamlan úreltan socket"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "villa: Annar ydotoold er í gangi með sama socket."
+
+msgid "failed to bind socket"
+msgstr "mistókst að binda socket"
+
+msgid "failed to change socket permission"
+msgstr "mistókst að breyta heimildum socket"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Socket-heimild: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "ógild tilgreining eignarhalds"
+
+msgid "failed to change socket ownership"
+msgstr "mistókst að breyta eignarhaldi socket"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Socket-eigandi: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "mistókst að keyra xinput-skipun"
+
+msgid "failed to fork"
+msgstr "mistókst að búa til undirferli"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "xinput-skipun fannst ekki í `%s'; slökki ekki á hröðun músarbendils"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: skrifa inntakstilvik"

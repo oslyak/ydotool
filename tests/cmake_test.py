@@ -28,6 +28,7 @@ class InstallTests(unittest.TestCase):
                     result = subprocess.run(command, env={**os.environ, 'DESTDIR': str(stage)}, capture_output=True, text=True)
                     self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
                 self.assertTrue((stage / 'opt/ydotool/bin/ydotool').is_file())
+                self.assertTrue((stage / 'opt/ydotool/share/locale/en/LC_MESSAGES/ydotool.mo').is_file())
                 if kind == 'openrc':
                     script = stage / 'opt/ydotool/etc/init.d/ydotoold'
                     self.assertTrue(os.access(script, os.X_OK))

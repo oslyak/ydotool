@@ -37,8 +37,7 @@
 #include "ydotool.h"
 
 static void show_help(void) {
-	puts(
-		"Usage: click [OPTION]... [BUTTONS]...\n"
+	puts(_("Usage: click [OPTION]... [BUTTONS]...\n"
 		"Click mouse buttons.\n"
 		"\n"
 		"Options:\n"
@@ -66,8 +65,7 @@ static void show_help(void) {
 		"    0xC0: left button click (down then up)\n"
 		"    0x41: right button down\n"
 		"    0x82: middle button up\n"
-		"  The '0x' prefix can be omitted if you want.\n"
-	);
+		"  The '0x' prefix can be omitted if you want.\n"));
 }
 
 int tool_click(int argc, char **argv) {
@@ -105,17 +103,17 @@ int tool_click(int argc, char **argv) {
 				/* If this option set a flag, do nothing else now. */
 				if (long_options[option_index].flag != 0)
 					break;
-				printf ("option %s", long_options[option_index].name);
+				printf (_("option %s"), long_options[option_index].name);
 				if (optarg)
-					printf (" with arg %s", optarg);
+					printf (_(" with arg %s"), optarg);
 				printf ("\n");
 				break;
 			case 'r':
-				repeats = parse_number(optarg, 0, 1000000, "repeat count");
+				repeats = parse_number(optarg, 0, 1000000, _("repeat count"));
 				break;
 
 			case 'D':
-				next_delay_ms = parse_number(optarg, 0, 60000, "delay (0..60000 ms)");
+				next_delay_ms = parse_number(optarg, 0, 60000, _("delay (0..60000 ms)"));
 				break;
 			
 			case 'P':
@@ -145,7 +143,7 @@ int tool_click(int argc, char **argv) {
 				int keycode = (key & 0xf) | 0x110;
 
 				if (press_release) {
-					printf("Click Event %d\n", i);
+					printf(_("Click Event %d\n"), i);
 					uinput_emit(EV_KEY, keycode, 1, true);
 					uinput_emit(EV_KEY, keycode, 0, true);
 					usleep(next_delay_ms * 1000);

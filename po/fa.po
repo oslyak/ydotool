@@ -1,0 +1,224 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Persian\nLanguage: fa\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "استفاده: click [OPTION]... [BUTTONS]...\nدکمه‌های ماوس را کلیک می‌کند.\n\nگزینه‌ها:\n  -r, --repeat=N             کل توالی را N بار تکرار می‌کند\n  -D, --next-delay=N         بین رویدادهای ورودی N میلی‌ثانیه تأخیر می‌دهد (بالا/پایین،                                یک کلیک کامل دو برابر زمان می‌برد)\n  -P, --press-release        برای کامل کردن کلیک، دکمهٔ ماوس را فشار داده و رها می‌کند (اختیاری)\n  -h, --help                 این راهنما را نمایش می‌دهد و خارج می‌شود\n\nنحوهٔ مشخص کردن دکمه‌ها:\n  اکنون همهٔ دکمه‌های ماوس با مقادیر عددی شانزده‌شانزدهی نمایش داده می‌شوند و می‌توان یک\nماسک بیت اختیاری برای تعیین حذف رویداد بالا/پایین ماوس مشخص کرد.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - پایین رفتن ماوس\n  0x80 - بالا آمدن ماوس\n  نمونه‌ها:\n    0x00: دکمهٔ چپ را انتخاب می‌کند اما کاری انجام نمی‌دهد (برای اجرای مکث‌های اضافی قابل استفاده است)\n    0xC0: کلیک دکمهٔ چپ (پایین و سپس بالا)\n    0x41: پایین رفتن دکمهٔ راست\n    0x82: بالا آمدن دکمهٔ میانی\n  در صورت تمایل می‌توان پیشوند '0x' را حذف کرد.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "گزینهٔ %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " با آرگومان %s"
+
+msgid "repeat count"
+msgstr "تعداد تکرار"
+
+msgid "delay (0..60000 ms)"
+msgstr "تأخیر (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "رویداد کلیک %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "استفاده: key [OPTION]... [KEYCODES]...\nرویدادهای کلید را ارسال می‌کند.\n\nگزینه‌ها:\n  -d, --key-delay=N          بین رویدادهای کلید N میلی‌ثانیه تأخیر می‌دهد\n  -h, --help                 این راهنما را نمایش می‌دهد و خارج می‌شود\n\nاز آنجا که دانستن تعداد چیدمان‌های صفحه‌کلید در جهان ممکن نیست،\nاکنون از کدهای خام کلید استفاده می‌کنیم.\n\nنحو: <keycode>:<pressed>\nبرای نمونه 28:1 28:0 یعنی فشردن کلید Enter در یک صفحه‌کلید استاندارد US.\n     (که در آن :1 یعنی کلید پایین می‌رود و سپس :0 یعنی کلید رها می‌شود)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nمقادیر غیرقابل‌تفسیر، مانند 0، aaa، l0l، فقط باعث تأخیر می‌شوند.\n\nبرای کدهای کلید موجود (KEY_*)، به `/usr/include/linux/input-event-codes.h' مراجعه کنید.\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "استفاده: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nنشانگر یا چرخ ماوس را حرکت می‌دهد.\n\nگزینه‌ها:\n  -w, --wheel                چرخ ماوس را به‌صورت نسبی حرکت می‌دهد\n  -a, --absolute             از موقعیت مطلق استفاده می‌کند؛ برای چرخ کاربرد ندارد\n  -x, --xpos                 موقعیت X\n  -y, --ypos                 موقعیت Y\n  -h, --help                 این راهنما را نمایش می‌دهد و خارج می‌شود\n\nبرای حرکت مطلق درست، باید شتاب سرعت ماوس را غیرفعال کنید."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: مختصات بیش از حد است\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "حرکت‌های چرخ ماوس نباید مقدار مطلق باشند\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: دو مختصات لازم است\n"
+
+#, c-format
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "هر چیزی تایپ کنید (برای خروج CTRL-C):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: خواندن stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "کد کلید: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin فقط ASCII را پشتیبانی می‌کند؛ برای متن UTF-8 از چسباندن clipboard استفاده کنید\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  نگاشت به: %d\n"
+
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  ارسال shift\n"
+
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  ارسال ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "استفاده: type [OPTION]... [STRINGS]...\nرشته‌ها را تایپ می‌کند.\n\nگزینه‌ها:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          بین کلیدها N میلی‌ثانیه تأخیر (تأخیر میان هر جفت پایین/بالای کلید) (پیش‌فرض: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           هر کلید را N میلی‌ثانیه نگه می‌دارد (تأخیر میان پایین و بالای کلید) (پیش‌فرض: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         بین رشته‌های خط فرمان N میلی‌ثانیه تأخیر (پیش‌فرض: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            فایلی را مشخص می‌کند که محتوایش گویی به‌عنوان آرگومان داده شده تایپ می‌شود.\n                               مسیر فایل می‌تواند برای خواندن از stdin برابر '-' باشد\n  -e, --escape=BOOL          فعال‌سازی Escape (1) یا غیرفعال‌سازی آن (0)\n  -h, --help                 این راهنما را نمایش می‌دهد و خارج می‌شود\n\nهنگام تایپ آرگومان‌های خط فرمان، Escape به‌طور پیش‌فرض فعال است؛ هنگام تایپ از فایل و stdin، به‌طور پیش‌فرض غیرفعال است.\nورودی فایل به‌صورت جریانی خوانده می‌شود: ممکن است ASCII معتبر پیش از خطای بعدی از قبل تایپ شده باشد."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type فقط ASCII را پشتیبانی می‌کند؛ برای متن UTF-8 از چسباندن clipboard استفاده کنید\n"
+
+msgid "escape mode"
+msgstr "حالت Escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: خطا: باز کردن %s ناموفق بود: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: خطا: خواندن %s ناموفق بود: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "این‌ها نانوایان ارجمند ما هستند:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "استفاده: release-all\nهمهٔ دکمه‌های مجازی صفحه‌کلید و ماوس را رها می‌کند."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all آرگومانی نمی‌گیرد\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "استفاده: ydotool <cmd> <args>\nفرمان‌های موجود:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "برای آزاد کردن کلیدهای نگه‌داشته‌شده پس از متوقف شدن کلاینت، از release-all استفاده کنید.\n  -h, --help     این راهنما را نمایش می‌دهد و خارج می‌شود\n  -V, --version  اطلاعات نسخه را نمایش می‌دهد و خارج می‌شود\nبرای مشخص کردن سوکت دیمون از متغیر محیطی YDOTOOL_SOCKET استفاده کنید."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: %s نامعتبر است: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: ارسال رویداد ورودی"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: فرمان ناشناخته: %s\nبرای دیدن فهرست فرمان‌ها، 'ydotool help' را اجرا کنید\n"
+
+msgid "failed to create socket"
+msgstr "ایجاد سوکت ناموفق بود"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: مسیر سوکت بیش از حد طولانی است\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "اتصال به سوکت `%s' ناموفق بود: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "بررسی کنید که ydotoold در حال اجرا باشد.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "بررسی کنید که کاربر فعلی مجوز کافی برای دسترسی به فایل سوکت داشته باشد.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: نصب گردانندهٔ سیگنال"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: قفل کردن پوشهٔ سوکت"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "استفاده: ydotoold [OPTION]...\nدیمون ydotool.\n\nگزینه‌ها:\n  -p, --socket-path=PATH     مسیر سفارشی سوکت\n  -P, --socket-perm=PERM     مجوز سوکت (پیش‌فرض 0600)\n  -o, --socket-own=UID:GID   مالکیت سوکت\n  -s, --no-system-keys        کلیدهای SysRq و خاموشی/خواب/راه‌اندازی مجدد را غیرفعال می‌کند\n  -m, --mouse-off            ماوس را غیرفعال می‌کند (EV_REL)\n  -k, --keyboard-off         صفحه‌کلید را غیرفعال می‌کند (EV_KEY)\n  -T, --touch-on             صفحه‌نمایش لمسی را فعال می‌کند (EV_ABS)\n  -h, --help                 این راهنما را نمایش می‌دهد و خارج می‌شود\n  -V, --version              اطلاعات نسخه را نمایش می‌دهد\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s ناموفق بود\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d ناموفق بود\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d ناموفق بود\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d ناموفق بود\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "ioctl مربوط به UI_DEV_SETUP ناموفق بود"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "ioctl مربوط به UI_DEV_CREATE ناموفق بود"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "توصیه می‌شود این برنامه را به‌عنوان root اجرا کنید؛ در غیر این صورت نتیجه ممکن است متفاوت باشد (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "باز کردن دستگاه uinput ناموفق بود"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "مسیر سوکت: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "ایجاد سوکت برای تشخیص برخورد دیمون ناموفق بود"
+
+msgid "Removing old stale socket"
+msgstr "در حال حذف سوکت قدیمی و بلااستفاده"
+
+msgid "failed remove old stale socket"
+msgstr "حذف سوکت قدیمی و بلااستفاده ناموفق بود"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "خطا: یک ydotoold دیگر با همین سوکت در حال اجراست."
+
+msgid "failed to bind socket"
+msgstr "اتصال سوکت ناموفق بود"
+
+msgid "failed to change socket permission"
+msgstr "تغییر مجوز سوکت ناموفق بود"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "مجوز سوکت: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "مشخصات مالکیت نامعتبر است"
+
+msgid "failed to change socket ownership"
+msgstr "تغییر مالکیت سوکت ناموفق بود"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "مالکیت سوکت: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "اجرای فرمان xinput ناموفق بود"
+
+msgid "failed to fork"
+msgstr "ایجاد فرایند فرزند ناموفق بود"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "فرمان xinput در `%s' پیدا نشد؛ شتاب نشانگر ماوس غیرفعال نمی‌شود"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: نوشتن رویداد ورودی"

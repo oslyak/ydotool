@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Latvian\nLanguage: lv\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Usage: click [OPTION]... [BUTTONS]...\nNoklikšķināt ar peles pogām.\n\nOpcijas:\n  -r, --repeat=N             Atkārtot visu secību N reizes\n  -D, --next-delay=N         Pauze N milisekundes starp ievades notikumiem (uz augšu/leju,                                pilnam klikšķim nepieciešams divreiz ilgāks laiks)\n  -P, --press-release        Nospiest un atlaist peles pogu, lai pabeigtu klikšķi (neobligāti)\n  -h, --help                 Parādīt šo palīdzību un iziet\n\nKā norādīt pogas:\n  Tagad visas peles pogas tiek attēlotas ar heksadecimālām skaitliskām vērtībām; pēc izvēles var izmantot\nbitu masku, lai norādītu, vai izlaist peles pacelšanu/nolaišanu.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Peles nospiešana lejup\n  0x80 - Peles atlaišana augšup\n  Piemēri:\n    0x00: izvēlas kreiso pogu, bet neko nedara (var izmantot papildu pauzēm)\n    0xC0: kreisās pogas klikšķis (nospiešana un atlaišana)\n    0x41: nospiest labo pogu\n    0x82: atlaist vidējo pogu\n  Ja vēlaties, prefiksu 0x var izlaist\n"
+
+#, c-format
+msgid "option %s"
+msgstr "opcija %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " ar argumentu %s"
+
+msgid "repeat count"
+msgstr "atkārtojumu skaits"
+
+msgid "delay (0..60000 ms)"
+msgstr "aizkave (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Klikšķa notikums %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Usage: key [OPTION]... [KEYCODES]...\nIzvadīt taustiņu notikumus.\n\nOpcijas:\n  -d, --key-delay=N          Pauze N milisekundes starp taustiņu notikumiem\n  -h, --help                 Parādīt šo palīdzību un iziet\n\nTā kā nav iespējams zināt, cik tastatūras izkārtojumu ir pasaulē,\npašlaik izmantojam neapstrādātus taustiņu kodus.\n\nSintakse: <keycode>:<pressed>\npiem., 28:1 28:0 nozīmē standarta US tastatūras Enter taustiņa nospiešanu.\n     (:1 nozīmē nospiestu taustiņu, bet :0 — atlaistu)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNeinterpretējamas vērtības, piemēram, 0, aaa, l0l, tikai izraisa aizkavi.\n\nPieejamos taustiņu kodus (KEY_*) skatiet `/usr/include/linux/input-event-codes.h'\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nPārvietot peles rādītāju vai ritenīti.\n\nOpcijas:\n  -w, --wheel                Relatīvi pārvietot peles ritenīti\n  -a, --absolute             Izmantot absolūtu pozīciju; neattiecas uz ritenīti\n  -x, --xpos                 X pozīcija\n  -y, --ypos                 Y pozīcija\n  -h, --help                 Parādīt šo palīdzību un iziet\n\nPareizai absolūtai kustībai jāatspējo peles ātruma paātrinājums."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: pārāk daudz koordinātu\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Peles ritenīša kustības nedrīkst būt absolūtas vērtības\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: nepieciešamas divas koordinātas\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Ievadiet jebko (CTRL-C, lai izietu):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: nolasīt stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Taustiņa kods: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin atbalsta tikai ASCII; UTF-8 tekstam ieteicams ielīmēt no starpliktuves\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Atbilst: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  Sūta shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  Sūta ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Usage: type [OPTION]... [STRINGS]...\nIevadīt virknes.\n\nOpcijas:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Pauze N milisekundes starp taustiņiem (aizkave starp katru nospiešanas/atlaišanas pāri) (noklusējums: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Turēt katru taustiņu nospiestu N milisekundes (aizkave starp nospiešanu un atlaišanu) (noklusējums: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Pauze N milisekundes starp komandrindas virknēm (noklusējums: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Norādīt failu, kura saturs tiks ievadīts tā, it kā tas būtu padots kā arguments.\n                               filepath var būt arī '-', lai lasītu no stdin\n  -e, --escape=BOOL          Ieslēgt (1) vai izslēgt (0) escape apstrādi\n  -h, --help                 Parādīt šo palīdzību un iziet\n\nEscape pēc noklusējuma ir ieslēgts, ievadot komandrindas argumentus, un izslēgts, ievadot no faila un stdin.\nFaila ievade tiek straumēta: derīgs ASCII, kas nolasīts pirms vēlākas kļūdas, jau var būt ievadīts."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type atbalsta tikai ASCII; UTF-8 tekstam ieteicams ielīmēt no starpliktuves\n"
+
+msgid "escape mode"
+msgstr "escape režīms"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: kļūda: neizdevās atvērt %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: kļūda: neizdevās nolasīt %s: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Mūsu godājamie maiznieki:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Usage: release-all\nAtlaist visus virtuālās tastatūras un peles taustiņus."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all nepieņem argumentus\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Usage: ydotool <cmd> <args>\nPieejamās komandas:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Izmantojiet release-all, lai atbrīvotu nospiestos taustiņus pēc klienta piespiedu apturēšanas.\n  -h, --help     Parādīt šo palīdzību un iziet\n  -V, --version  Parādīt versijas informāciju un iziet\nIzmantojiet vides mainīgo YDOTOOL_SOCKET, lai norādītu daemon ligzdu."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: nederīgs %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: nosūtīt ievades notikumu"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: nezināma komanda: %s\nPalaidiet 'ydotool help', lai skatītu komandu sarakstu\n"
+
+msgid "failed to create socket"
+msgstr "neizdevās izveidot ligzdu"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: ligzdas ceļš ir pārāk garš\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "neizdevās izveidot savienojumu ar ligzdu `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Lūdzu, pārbaudiet, vai ydotoold darbojas.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Lūdzu, pārbaudiet, vai pašreizējam lietotājam ir pietiekamas atļaujas piekļūt ligzdas failam.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: instalēt signālu apdarinātāju"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: bloķēt ligzdas direktoriju"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Usage: ydotoold [OPTION]...\nydotool dēmons.\n\nOpcijas:\n  -p, --socket-path=PATH     Pielāgots ligzdas ceļš\n  -P, --socket-perm=PERM     Ligzdas atļaujas (noklusējums 0600)\n  -o, --socket-own=UID:GID   Ligzdas īpašnieks\n  -s, --no-system-keys        Atspējot SysRq un ieslēgšanas/miega/pārstartēšanas taustiņus\n  -m, --mouse-off            Atspējot peli (EV_REL)\n  -k, --keyboard-off         Atspējot tastatūru (EV_KEY)\n  -T, --touch-on             Iespējot skārienekrānu (EV_ABS)\n  -h, --help                 Parādīt šo palīdzību un iziet\n  -V, --version              Rādīt versijas informāciju\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s neizdevās\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d neizdevās\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d neizdevās\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d neizdevās\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "ioctl UI_DEV_SETUP neizdevās"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "ioctl UI_DEV_CREATE neizdevās"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Ieteicams palaist šo programmu kā root; citādi rezultāts var atšķirties. YMMV"
+
+msgid "failed to open uinput device"
+msgstr "neizdevās atvērt uinput ierīci"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Ligzdas ceļš: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "neizdevās izveidot ligzdu dēmona sadursmes noteikšanai"
+
+msgid "Removing old stale socket"
+msgstr "Noņem veco novecojušo ligzdu"
+
+msgid "failed remove old stale socket"
+msgstr "neizdevās noņemt veco novecojušo ligzdu"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "Kļūda: darbojas cits ydotoold ar to pašu ligzdu."
+
+msgid "failed to bind socket"
+msgstr "neizdevās piesaistīt ligzdu"
+
+msgid "failed to change socket permission"
+msgstr "neizdevās mainīt ligzdas atļaujas"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Ligzdas atļaujas: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "nederīga īpašnieka specifikācija"
+
+msgid "failed to change socket ownership"
+msgstr "neizdevās mainīt ligzdas īpašnieku"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Ligzdas īpašnieks: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "neizdevās palaist xinput komandu"
+
+msgid "failed to fork"
+msgstr "neizdevās izveidot procesu"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "komanda xinput nav atrasta `%s'; peles rādītāja paātrinājums netiks atspējots"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: rakstīt ievades notikumu"

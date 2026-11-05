@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: ar\nLanguage: ar\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "الاستخدام: click [OPTION]... [BUTTONS]...\nانقر أزرار الفأرة.\n\nالخيارات:\n  -r, --repeat=N             كرر التسلسل كاملاً N مرة\n  -D, --next-delay=N         انتظر N مللي ثانية بين أحداث الإدخال (ضغط/\n                             رفع؛ النقر الكامل يستغرق ضعف المدة)\n  -P, --press-release        اضغط زر الفأرة ثم ارفعه لإكمال النقرة (اختياري)\n  -h, --help                 اعرض هذه المساعدة ثم اخرج\n\nكيفية تحديد الأزرار:\n  تُمثّل جميع أزرار الفأرة الآن بقيم رقمية سداسية عشرية، مع قناع بتات اختياري\n  لتحديد ما إذا كان ينبغي حذف حدث رفع الزر أو ضغطه.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - ضغط زر الفأرة\n  0x80 - رفع زر الفأرة\n  أمثلة:\n    0x00: يختار الزر الأيسر دون تنفيذ شيء (يمكن استخدامه لإضافة فترات انتظار)\n    0xC0: نقرة بالزر الأيسر (ضغط ثم رفع)\n    0x41: ضغط الزر الأيمن\n    0x82: رفع الزر الأوسط\n  يمكنك حذف البادئة '0x' إذا أردت.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "الخيار %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " مع الوسيط %s"
+
+msgid "repeat count"
+msgstr "عدد مرات التكرار"
+
+msgid "delay (0..60000 ms)"
+msgstr "التأخير (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "حدث النقرة %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "الاستخدام: key [OPTION]... [KEYCODES]...\nأصدر أحداث لوحة المفاتيح.\n\nالخيارات:\n  -d, --key-delay=N          انتظر N مللي ثانية بين أحداث المفاتيح\n  -h, --help                 اعرض هذه المساعدة ثم اخرج\n\nبما أنه لا توجد طريقة لمعرفة عدد تخطيطات لوحة المفاتيح في العالم،\nنستخدم الآن رموز المفاتيح الخام.\n\nالصيغة: <keycode>:<pressed>\nمثلاً، 28:1 28:0 تعني ضغط زر Enter (US) على لوحة مفاتيح أمريكية قياسية.\n     (تعني :1 أن المفتاح مضغوط، ثم تعني :0 أنه مرفوع)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nالقيم التي لا يمكن تفسيرها، مثل 0 وaaa وl0l، لا تسبب إلا تأخيراً.\n\nراجع `/usr/include/linux/input-event-codes.h' لرموز المفاتيح المتاحة (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "الاستخدام: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nحرّك مؤشر الفأرة أو عجلة التمرير.\n\nالخيارات:\n  -w, --wheel                حرّك عجلة الفأرة نسبياً\n  -a, --absolute             استخدم موضعاً مطلقاً؛ لا ينطبق ذلك على العجلة\n  -x, --xpos                 موضع X\n  -y, --ypos                 موضع Y\n  -h, --help                 اعرض هذه المساعدة ثم اخرج\n\nيجب تعطيل تسريع سرعة الفأرة للحصول على حركة مطلقة صحيحة."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: إحداثيات أكثر من اللازم\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "يجب ألا تكون حركة عجلة الفأرة بقيم مطلقة\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: يلزم تحديد إحداثيين\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "اكتب أي شيء (CTRL-C للخروج):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: قراءة stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "رمز المفتاح: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: يدعم stdin محارف ASCII فقط؛ استخدم لصق الحافظة للنص UTF-8\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  يُحوّل إلى: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  إرسال shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  إرسال ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "الاستخدام: type [OPTION]... [STRINGS]...\nاكتب سلاسل نصية.\n\nالخيارات:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          التأخير بالمللي ثانية بين المفاتيح (بين كل زوج ضغط/رفع) (الافتراضي: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           أبقِ كل مفتاح مضغوطاً N مللي ثانية (التأخير بين الضغط والرفع) (الافتراضي: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         التأخير بالمللي ثانية بين سلاسل سطر الأوامر (الافتراضي: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            حدد ملفاً واكتب محتواه كما لو أُمرر كوسيط.\n                             يمكن أن يكون مسار الملف '-' للقراءة من stdin\n  -e, --escape=BOOL          فعّل Escape (1) أو عطّله (0)\n  -h, --help                 اعرض هذه المساعدة ثم اخرج\n\nيكون Escape مفعّلاً افتراضياً عند الكتابة من وسائط سطر الأوامر، ومعطّلاً افتراضياً عند الكتابة من ملف أو stdin.\nتُقرأ بيانات الملف على شكل تدفق: قد تكون محارف ASCII الصحيحة قبل خطأ لاحق قد كُتبت بالفعل."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: يدعم type محارف ASCII فقط؛ استخدم لصق الحافظة للنص UTF-8\n"
+
+msgid "escape mode"
+msgstr "وضع Escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: خطأ: تعذر فتح %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: خطأ: فشلت قراءة %s: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "هؤلاء خبازونا الأفاضل:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "الاستخدام: release-all\nارفع كل أزرار لوحة المفاتيح والفأرة الافتراضية."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: لا يقبل release-all أي وسيطات\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "الاستخدام: ydotool <cmd> <args>\nالأوامر المتاحة:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "استخدم release-all لاستعادة المفاتيح التي بقيت مضغوطة بعد إنهاء العميل بالقوة.\n  -h, --help     اعرض هذه المساعدة ثم اخرج\n  -V, --version  اعرض معلومات الإصدار ثم اخرج\nاستخدم متغير البيئة YDOTOOL_SOCKET لتحديد مقبس البرنامج الخفي."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: قيمة %s غير صالحة: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: إرسال حدث إدخال"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: أمر غير معروف: %s\nشغّل 'ydotool help' إذا أردت قائمة الأوامر\n"
+
+msgid "failed to create socket"
+msgstr "فشل إنشاء المقبس"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: مسار المقبس طويل جداً\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "فشل الاتصال بالمقبس `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "يرجى التحقق مما إذا كان ydotoold قيد التشغيل.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "يرجى التحقق من أن المستخدم الحالي يملك أذونات كافية للوصول إلى ملف المقبس.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: تثبيت معالج الإشارة"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: قفل مجلد المقبس"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "الاستخدام: ydotoold [OPTION]...\nالبرنامج الخفي ydotool.\n\nالخيارات:\n  -p, --socket-path=PATH     مسار مخصص للمقبس\n  -P, --socket-perm=PERM     أذونات المقبس (الافتراضي 0600)\n  -o, --socket-own=UID:GID   مالك المقبس\n  -s, --no-system-keys        عطّل مفاتيح SysRq والطاقة/السكون/إعادة التشغيل\n  -m, --mouse-off            عطّل الفأرة (EV_REL)\n  -k, --keyboard-off         عطّل لوحة المفاتيح (EV_KEY)\n  -T, --touch-on             فعّل شاشة اللمس (EV_ABS)\n  -h, --help                 اعرض هذه المساعدة ثم اخرج\n  -V, --version              اعرض معلومات الإصدار\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "فشل UI_SET_EVBIT %s\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "فشل UI_SET_KEYBIT %d\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "فشل UI_SET_RELBIT %d\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "فشل UI_SET_ABSBIT %d\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "فشل UI_DEV_SETUP ioctl"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "فشل UI_DEV_CREATE ioctl"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "يُنصح بتشغيل هذا البرنامج بصلاحيات root، وإلا فقد تختلف النتائج. (YMMV)"
+
+msgid "failed to open uinput device"
+msgstr "فشل فتح جهاز uinput"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "مسار المقبس: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "فشل إنشاء مقبس لاكتشاف تعارض البرنامج الخفي"
+
+msgid "Removing old stale socket"
+msgstr "إزالة المقبس القديم المتروك"
+
+msgid "failed remove old stale socket"
+msgstr "فشلت إزالة المقبس القديم المتروك"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "خطأ: يوجد ydotoold آخر يعمل بالمقبس نفسه."
+
+msgid "failed to bind socket"
+msgstr "فشل ربط المقبس"
+
+msgid "failed to change socket permission"
+msgstr "فشل تغيير أذونات المقبس"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "أذونات المقبس: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "مواصفات الملكية غير صالحة"
+
+msgid "failed to change socket ownership"
+msgstr "فشل تغيير مالك المقبس"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "ملكية المقبس: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "فشل تشغيل أمر xinput"
+
+msgid "failed to fork"
+msgstr "فشل إنشاء عملية فرعية"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "أمر xinput غير موجود في `%s'، لن يتم تعطيل تسريع مؤشر الفأرة"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: كتابة حدث إدخال"

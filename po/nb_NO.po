@@ -1,0 +1,236 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ydotool 1.0.11\n"
+"Report-Msgid-Bugs-To: anton@sirius.if.ua\n"
+"POT-Creation-Date: 2026-11-06 02:52+0700\n"
+"PO-Revision-Date: 2026-11-06 00:00+0000\n"
+"Last-Translator: ydotool translation tooling <anton@sirius.if.ua>\n"
+"Language-Team: Norwegian Bokmål\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Bruk: click [OPTION]... [BUTTONS]...\nKlikk med museknapper.\n\nValg:\n  -r, --repeat=N             Gjenta hele sekvensen N ganger\n  -D, --next-delay=N         Vent N millisekunder mellom inndatahendelser (ned/opp,                                et fullstendig klikk betyr dobbelt tid)\n  -P, --press-release        Trykk og slipp museknappen for å fullføre et klikk (valgfritt)\n  -h, --help                 Vis denne hjelpen og avslutt\n\nSlik angir du knapper:\n  Alle museknapper representeres nå med heksadesimale tallverdier, med en valgfri\nbitmaske som angir om museknapp opp/ned skal utelates.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Museknapp ned\n  0x80 - Museknapp opp\n  Eksempler:\n    0x00: velger venstre knapp, men gjør ingenting (dette kan brukes til å legge inn ekstra pauser)\n    0xC0: klikk med venstre knapp (ned og deretter opp)\n    0x41: høyre museknapp ned\n    0x82: midtre museknapp opp\n  Prefikset '0x' kan utelates om du vil.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "valg %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " med argument %s"
+
+msgid "repeat count"
+msgstr "antall gjentakelser"
+
+msgid "delay (0..60000 ms)"
+msgstr "forsinkelse (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Klikkhendelse %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Bruk: key [OPTION]... [KEYCODES]...\nSend tastetrykkhendelser.\n\nValg:\n  -d, --key-delay=N          Vent N millisekunder mellom tastetrykkhendelser\n  -h, --help                 Vis denne hjelpen og avslutt\n\nSiden det ikke er mulig å vite hvor mange tastaturoppsett som finnes i verden,\nbruker vi rå tastekoder nå.\n\nSyntaks: <keycode>:<pressed>\nf.eks. betyr 28:1 28:0 å trykke på Enter-tasten på et standard US-tastatur.\n     (der :1 for trykket betyr at tasten er nede, og :0 betyr at tasten slippes)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nVerdier som ikke kan tolkes, som 0, aaa, l0l, fører bare til en forsinkelse.\n\nSe `/usr/include/linux/input-event-codes.h' for tilgjengelige tastekoder (KEY_*).\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Bruk: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nFlytt musepekeren eller rullehjulet.\n\nValg:\n  -w, --wheel                Flytt rullehjulet relativt\n  -a, --absolute             Bruk absolutt posisjon; gjelder ikke rullehjulet\n  -x, --xpos                 X-posisjon\n  -y, --ypos                 Y-posisjon\n  -h, --help                 Vis denne hjelpen og avslutt\n\nDu må deaktivere akselerasjon for musehastighet for å få korrekt absolutt bevegelse."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: for mange koordinater\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Bevegelser med musehjulet kan ikke være absolutte verdier\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: to koordinater kreves\n"
+
+#, c-format
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Skriv hva som helst (CTRL-C for å avslutte):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: les stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Tastekode: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin støtter bare ASCII; bruk innliming fra utklippstavlen for UTF-8-tekst\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Tilordnes til: %d\n"
+
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  Sender shift\n"
+
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  Sender ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Bruk: type [OPTION]... [STRINGS]...\nSkriv tekststrenger.\n\nValg:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Vent N millisekunder mellom tastene (forsinkelsen mellom hvert tast ned/opp-par) (standard: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Hold hver tast nede i N millisekunder (forsinkelsen mellom tast ned og opp) (standard: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Vent N millisekunder mellom tekststrenger på kommandolinjen (standard: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Angi en fil, hvis innhold skrives som om det var oppgitt som et argument.\n                               Filbanen kan også være '-' for å lese fra stdin\n  -e, --escape=BOOL          Aktiver (1) eller deaktiver (0) escape\n  -h, --help                 Vis denne hjelpen og avslutt\n\nEscape er aktivert som standard når kommandolinjeargumenter skrives, og deaktivert som standard ved lesing fra fil og stdin.\nFilinndata strømmes: gyldige ASCII-tegn før en senere feil kan allerede ha blitt skrevet."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type støtter bare ASCII; bruk innliming fra utklippstavlen for UTF-8-tekst\n"
+
+msgid "escape mode"
+msgstr "escape-modus"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: feil: kunne ikke åpne %s: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: feil: lesing av %s mislyktes: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Dette er våre ærede bakere:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Bruk: release-all\nSlipp alle virtuelle tastatur- og museknapper."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all tar ingen argumenter\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Bruk: ydotool <cmd> <args>\nTilgjengelige kommandoer:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Bruk release-all for å frigjøre taster som holdes nede etter at en klient er avsluttet med tvang.\n  -h, --help     Vis denne hjelpen og avslutt\n  -V, --version  Vis versjonsinformasjon og avslutt\nBruk miljøvariabelen YDOTOOL_SOCKET for å angi tjenestesokkel."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: ugyldig %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: send inndatahendelse"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: ukjent kommando: %s\nKjør 'ydotool help' hvis du vil se en kommandoliste\n"
+
+msgid "failed to create socket"
+msgstr "kunne ikke opprette sokkel"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: sokkelbanen er for lang\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "kunne ikke koble til sokkelen `%s': %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Kontroller om ydotoold kjører.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Kontroller om den nåværende brukeren har tilstrekkelige rettigheter til å få tilgang til sokkelfilen.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: installer signalbehandler"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: lås sokkelkatalogen"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Bruk: ydotoold [OPTION]...\nydotool-tjenesten.\n\nValg:\n  -p, --socket-path=PATH     Egendefinert sokkelbane\n  -P, --socket-perm=PERM     Sokkelrettigheter (standard 0600)\n  -o, --socket-own=UID:GID   Sokkeleierskap\n  -s, --no-system-keys        Deaktiver SysRq- og strøm-/hvile-/omstartstaster\n  -m, --mouse-off            Deaktiver mus (EV_REL)\n  -k, --keyboard-off         Deaktiver tastatur (EV_KEY)\n  -T, --touch-on             Aktiver berøringsskjerm (EV_ABS)\n  -h, --help                 Vis denne hjelpen og avslutt\n  -V, --version              Vis versjonsinformasjon\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s mislyktes\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d mislyktes\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d mislyktes\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d mislyktes\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl mislyktes"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl mislyktes"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Det anbefales å kjøre dette programmet som root; ellers kan resultatene variere (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "kunne ikke åpne uinput-enheten"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Sokkelbane: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "kunne ikke opprette sokkel for å oppdage konflikt med en annen tjeneste"
+
+msgid "Removing old stale socket"
+msgstr "Fjerner gammel foreldet sokkel"
+
+msgid "failed remove old stale socket"
+msgstr "kunne ikke fjerne gammel foreldet sokkel"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "feil: En annen ydotoold kjører med samme sokkel."
+
+msgid "failed to bind socket"
+msgstr "kunne ikke binde sokkelen"
+
+msgid "failed to change socket permission"
+msgstr "kunne ikke endre sokkelrettigheter"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Sokkelrettighet: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "ugyldig angivelse av eierskap"
+
+msgid "failed to change socket ownership"
+msgstr "kunne ikke endre sokkeleierskap"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Sokkeleierskap: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "kunne ikke kjøre xinput-kommandoen"
+
+msgid "failed to fork"
+msgstr "kunne ikke opprette underprosess"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "fant ikke xinput-kommandoen i `%s'; deaktiverer ikke musepekerens akselerasjon"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: skriv inndatahendelse"

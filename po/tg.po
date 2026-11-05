@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Tajik / тоҷикӣ\nLanguage: tg\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Истифода: click [OPTION]... [BUTTONS]...\nТугмаҳои мушро пахш кунед.\n\nПараметрҳо:\n  -r, --repeat=N             Тамоми пайдарпайиро N маротиба такрор кунед\n  -D, --next-delay=N         Байни рӯйдодҳои вуруд N миллисония таваққуф кунед (поён/боло,                                пахши пурра ду баробар вақт мегирад)\n  -P, --press-release        Барои анҷоми пахш тугмаи мушро пахш карда раҳо кунед (ихтиёрӣ)\n  -h, --help                 Ин роҳнаморо нишон диҳед ва бароед\n\nТарзи нишон додани тугмаҳо:\n  Ҳоло ҳамаи тугмаҳои муш бо қиматҳои ададии шонздаҳӣ нишон дода мешаванд; ниқоби битии ихтиёрӣ муайян мекунад, ки кадом амали боло/поёни муш сарфи назар шавад.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Пахш кардани муш\n  0x80 - Раҳо кардани муш\n  Намунаҳо:\n    0x00: тугмаи чапро интихоб мекунад, аммо коре намекунад (метавонед барои илова кардани таваққуфи иловагӣ истифода баред)\n    0xC0: пахши тугмаи чап (поён ва баъд боло)\n    0x41: пахши тугмаи рост\n    0x82: раҳо кардани тугмаи миёна\n  Агар хоҳед, пешванди '0x'-ро партофтан мумкин аст.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "параметр %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " бо аргументи %s"
+
+msgid "repeat count"
+msgstr "шумораи такрор"
+
+msgid "delay (0..60000 ms)"
+msgstr "таваққуф (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Рӯйдоди пахш %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Истифода: key [OPTION]... [KEYCODES]...\nРӯйдодҳои тугмаҳоро фиристед.\n\nПараметрҳо:\n  -d, --key-delay=N          Байни рӯйдодҳои тугма N миллисония таваққуф кунед\n  -h, --help                 Ин роҳнаморо нишон диҳед ва бароед\n\nАзбаски шумораи тарҳҳои клавиатура дар ҷаҳонро донистан имкон надорад,\nҳоло кодҳои хоми тугмаҳоро истифода мебарем.\n\nСинтаксис: <keycode>:<pressed>\nмасалан, 28:1 28:0 пахш кардани тугмаи Enter дар клавиатураи стандартии US аст.\n     (дар ин ҷо :1 маънои поён будани тугма ва :0 маънои раҳо шудани онро дорад)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nҚиматҳои тафсирнашаванда, монанди 0, aaa, l0l, танҳо таваққуфро ба вуҷуд меоранд.\n\nБарои дидани кодҳои дастраси тугмаҳо (KEY_*) ба `/usr/include/linux/input-event-codes.h' нигаред.\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Истифода: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nНишоннамо ё чархи мушро ҳаракат диҳед.\n\nПараметрҳо:\n  -w, --wheel                Чархи мушро нисбӣ ҳаракат диҳед\n  -a, --absolute             Ҷойгоҳи мутлақро истифода баред; барои чарх татбиқ намешавад\n  -x, --xpos                 Ҷойгоҳи X\n  -y, --ypos                 Ҷойгоҳи Y\n  -h, --help                 Ин роҳнаморо нишон диҳед ва бароед\n\nБарои ҳаракати дурусти мутлақ бояд шитоби суръати мушро хомӯш кунед."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: координатҳо аз ҳад зиёданд\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Ҳаракати чархи муш набояд қимати мутлақ бошад\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: ду координат лозим аст\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Ҳар чизеро ворид кунед (барои баромадан CTRL-C):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: хондани stdin"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Рамзи тугма: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin танҳо ASCII-ро дастгирӣ мекунад; барои матни UTF-8 аз часпондан аз силули мухобиротӣ истифода баред\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Ба ин рамз табдил меёбад: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  Фиристодани shift\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  Фиристодани ctrl\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Истифода: type [OPTION]... [STRINGS]...\nСатрҳоро чоп кунед.\n\nПараметрҳо:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Байни тугмаҳо N миллисония таваққуф кунед (фосила байни ҳар ҷуфти поён/боло) (пешфарз: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Ҳар тугмаро N миллисония нигоҳ доред (фосилаи байни поён ва боло шудани тугма) (пешфарз: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Байни сатрҳои сатри фармон N миллисония таваққуф кунед (пешфарз: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            Файлро муайян кунед; муҳтавои он мисли аргумент чоп карда мешавад.\n                               Ба ҷойи роҳи файл '-' гузошта, аз stdin хондан мумкин аст\n  -e, --escape=BOOL          Escape-ро фаъол (1) ё ғайрифаъол (0) кунед\n  -h, --help                 Ин роҳнаморо нишон диҳед ва бароед\n\nҲангоми чопи аргументҳои сатри фармон Escape бо нобаёнӣ фаъол аст; ҳангоми хондан аз файл ё stdin он бо нобаёнӣ ғайрифаъол аст.\nВуруди файл ҷараёнӣ аст: матни дурусти ASCII то хатои баъдӣ шояд аллакай чоп шуда бошад."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type танҳо ASCII-ро дастгирӣ мекунад; барои матни UTF-8 аз часпондан аз силули мухобиротӣ истифода баред\n"
+
+msgid "escape mode"
+msgstr "ҳолати escape"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: хато: кушодани %s иҷро нашуд: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: хато: хондани %s иҷро нашуд: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Инҳо созандагони гиромии мо ҳастанд:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Истифода: release-all\nҲамаи тугмаҳои маҷозии клавиатура ва мушро раҳо кунед."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all аргумент қабул намекунад\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Истифода: ydotool <cmd> <args>\nФармонҳои дастрас:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Барои раҳо кардани тугмаҳои дармонда баъди қатъ шудани муштарӣ release-all-ро истифода баред.\n  -h, --help     Ин роҳнаморо нишон диҳед ва бароед\n  -V, --version  Маълумоти версияро нишон диҳед ва бароед\nБарои муайян кардани сокети демон тағйирёбандаи муҳити YDOTOOL_SOCKET-ро истифода баред."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: %s нодуруст аст: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: фиристодани рӯйдоди вуруд"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Фармони ношинос: %s\nБарои дидани рӯйхати фармонҳо 'ydotool help'-ро иҷро кунед\n"
+
+msgid "failed to create socket"
+msgstr "сохтани сокет иҷро нашуд"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: роҳи сокет хеле дароз аст\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "пайваст шудан ба сокети `%s' иҷро нашуд: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "Санҷед, ки ydotoold иҷро мешавад ё не.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Санҷед, ки корбари ҷорӣ барои дастрасӣ ба файли сокет иҷозати кофӣ дорад ё не.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: насби коркардгари сигнал"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: қулф кардани ҷузвдони сокет"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Истифода: ydotoold [OPTION]...\nДемони ydotool.\n\nПараметрҳо:\n  -p, --socket-path=PATH     Роҳи фармоишии сокет\n  -P, --socket-perm=PERM     Иҷозати сокет (пешфарз 0600)\n  -o, --socket-own=UID:GID   Моликияти сокет\n  -s, --no-system-keys        Тугмаҳои SysRq ва хомӯш/хоб/бозоғозро ғайрифаъол кунед\n  -m, --mouse-off            Мушро ғайрифаъол кунед (EV_REL)\n  -k, --keyboard-off         Клавиатураро ғайрифаъол кунед (EV_KEY)\n  -T, --touch-on             Экрани ламсиро фаъол кунед (EV_ABS)\n  -h, --help                 Ин роҳнаморо нишон диҳед ва бароед\n  -V, --version              Маълумоти версияро нишон диҳед\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s иҷро нашуд\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d иҷро нашуд\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d иҷро нашуд\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d иҷро нашуд\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl иҷро нашуд"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl иҷро нашуд"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Тавсия мешавад, ки ин барномаро ҳамчун root иҷро кунед; натиҷа метавонад фарқ кунад (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "кушодани дастгоҳи uinput иҷро нашуд"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Роҳи сокет: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "сохтани сокет барои муайян кардани бархӯрди демон иҷро нашуд"
+
+msgid "Removing old stale socket"
+msgstr "Сокети кӯҳнаи бекор нест карда мешавад"
+
+msgid "failed remove old stale socket"
+msgstr "нест кардани сокети кӯҳнаи бекор иҷро нашуд"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "хато: ydotoold-и дигар бо ҳамин сокет кор карда истодааст."
+
+msgid "failed to bind socket"
+msgstr "пайваст кардани сокет иҷро нашуд"
+
+msgid "failed to change socket permission"
+msgstr "тағйир додани иҷозати сокет иҷро нашуд"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Иҷозати сокет: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "мушаххасоти моликият нодуруст аст"
+
+msgid "failed to change socket ownership"
+msgstr "тағйир додани моликияти сокет иҷро нашуд"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Моликияти сокет: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "иҷро кардани фармони xinput иҷро нашуд"
+
+msgid "failed to fork"
+msgstr "fork иҷро нашуд"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "фармони xinput дар `%s' ёфт нашуд; шитоби нишоннамои муш ғайрифаъол намешавад"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: навиштани рӯйдоди вуруд"

@@ -1,0 +1,221 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Turkish\nLanguage: tr\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Kullanım: click [OPTION]... [BUTTONS]...\nFare düğmelerine tıklar.\n\nSeçenekler:\n  -r, --repeat=N             Tüm diziyi N kez tekrarlar\n  -D, --next-delay=N         Girdi olayları arasında N milisaniye bekler (yukarı/aşağı,                                tam bir tıklama süresi iki katına çıkar)\n  -P, --press-release        Bir tıklamayı tamamlamak için fare düğmesine basıp bırakır (isteğe bağlı)\n  -h, --help                 Bu yardımı görüntüler ve çıkar\n\nDüğmeler nasıl belirtilir:\n  Artık tüm fare düğmeleri, fare yukarı/aşağı olaylarının atlanıp atlanmayacağını belirtmek için isteğe bağlı\nbir bit maskesiyle birlikte onaltılık sayısal değerler kullanılarak gösterilir.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Fare düğmesine basma\n  0x80 - Fare düğmesini bırakma\n  Örnekler:\n    0x00: sol düğmeyi seçer ama hiçbir şey yapmaz (bunu ek beklemeler uygulamak için kullanabilirsiniz)\n    0xC0: sol düğmeye tıklar (basıp ardından bırakır)\n    0x41: sağ düğmeye basar\n    0x82: orta düğmeyi bırakır\n  İsterseniz '0x' öneki çıkarılabilir.\n"
+
+#, c-format
+msgid "option %s"
+msgstr "seçenek %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " %s bağımsız değişkeniyle"
+
+msgid "repeat count"
+msgstr "tekrar sayısı"
+
+msgid "delay (0..60000 ms)"
+msgstr "gecikme (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "Tıklama olayı %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Kullanım: key [OPTION]... [KEYCODES]...\nTuş olayları üretir.\n\nSeçenekler:\n  -d, --key-delay=N          Tuş olayları arasında N milisaniye bekler\n  -h, --help                 Bu yardımı görüntüler ve çıkar\n\nDünyada kaç klavye düzeni bulunduğunu bilmenin bir yolu olmadığından,\nşimdilik ham tuş kodlarını kullanıyoruz.\n\nSözdizimi: <keycode>:<pressed>\nör. 28:1 28:0, standart bir US klavyede Enter tuşuna basmak anlamına gelir.\n     (:1 tuşa basıldığını, ardından :0 tuşun bırakıldığını belirtir)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\n0, aaa, l0l gibi yorumlanamayan değerler yalnızca gecikmeye neden olur.\n\nKullanılabilir tuş kodları (KEY_*) için `/usr/include/linux/input-event-codes.h' dosyasına bakın.\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Kullanım: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nFare işaretçisini veya tekerleği hareket ettirir.\n\nSeçenekler:\n  -w, --wheel                Fare tekerleğini göreli olarak hareket ettirir\n  -a, --absolute             Mutlak konum kullanır; tekerlek için geçerli değildir\n  -x, --xpos                 X konumu\n  -y, --ypos                 Y konumu\n  -h, --help                 Bu yardımı görüntüler ve çıkar\n\nMutlak hareketin doğru olması için fare hızlandırmasını devre dışı bırakmanız gerekir."
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: çok fazla koordinat\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "Fare tekerleği hareketleri mutlak değerler olmamalıdır\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: iki koordinat gereklidir\n"
+
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "Bir şey yazın (çıkmak için CTRL-C):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: stdin okuma hatası"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "Tuş kodu: %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin yalnızca ASCII destekler; UTF-8 metin için panodan yapıştırın\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  Eşleştiği değer: %d\n"
+
+msgid "  Sending shift\n"
+msgstr "  shift gönderiliyor\n"
+
+msgid "  Sending ctrl\n"
+msgstr "  ctrl gönderiliyor\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Kullanım: type [OPTION]... [STRINGS]...\nMetin dizelerini yazar.\n\nSeçenekler:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          Tuşlar arasında N milisaniye bekler (her tuş basma/bırakma çifti arasındaki gecikme) (varsayılan: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           Her tuşu N milisaniye basılı tutar (tuşa basma ve bırakma arasındaki gecikme) (varsayılan: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         Komut satırı metin dizeleri arasında N milisaniye bekler (varsayılan: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            İçeriği bir bağımsız değişken olarak verilmiş gibi yazılacak dosyayı belirtir.\n                               stdin'den okumak için dosya yolu '-' olabilir\n  -e, --escape=BOOL          Escape'i etkinleştirir (1) veya devre dışı bırakır (0)\n  -h, --help                 Bu yardımı görüntüler ve çıkar\n\nKomut satırı bağımsız değişkenleri yazılırken Escape varsayılan olarak etkindir; dosya ve stdin'den yazılırken varsayılan olarak devre dışıdır.\nDosya girdisi akış halinde işlenir: daha sonraki bir hatadan önceki geçerli ASCII metni yazılmış olabilir."
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type yalnızca ASCII destekler; UTF-8 metin için panodan yapıştırın\n"
+
+msgid "escape mode"
+msgstr "escape modu"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: hata: %s açılamadı: %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: hata: %s okunamadı: %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "Değerli katkıda bulunanlarımız:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Kullanım: release-all\nTüm sanal klavye ve fare düğmelerini bırakır."
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all bağımsız değişken almaz\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Kullanım: ydotool <cmd> <args>\nKullanılabilir komutlar:"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "Sonlandırılmış bir istemciden sonra basılı kalan tuşları serbest bırakmak için release-all kullanın.\n  -h, --help     Bu yardımı görüntüler ve çıkar\n  -V, --version  Sürüm bilgisini görüntüler ve çıkar\nDaemon soketini belirtmek için YDOTOOL_SOCKET ortam değişkenini kullanın."
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: geçersiz %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: girdi olayı gönderme hatası"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: Bilinmeyen komut: %s\nKomut listesini görmek için 'ydotool help' çalıştırın\n"
+
+msgid "failed to create socket"
+msgstr "soket oluşturulamadı"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: soket yolu çok uzun\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "`%s' soketine bağlanılamadı: %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "ydotoold çalışıyor mu kontrol edin.\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "Geçerli kullanıcının soket dosyasına erişmek için yeterli izni olup olmadığını kontrol edin.\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: sinyal işleyicisi kurma hatası"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: soket dizinini kilitleme hatası"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Kullanım: ydotoold [OPTION]...\nydotool arka plan hizmeti.\n\nSeçenekler:\n  -p, --socket-path=PATH     Özel soket yolu\n  -P, --socket-perm=PERM     Soket izni (varsayılan 0600)\n  -o, --socket-own=UID:GID   Soket sahipliği\n  -s, --no-system-keys        SysRq ve güç/uyku/yeniden başlatma tuşlarını devre dışı bırakır\n  -m, --mouse-off            Fareyi devre dışı bırakır (EV_REL)\n  -k, --keyboard-off         Klavyeyi devre dışı bırakır (EV_KEY)\n  -T, --touch-on             Dokunmatik ekranı etkinleştirir (EV_ABS)\n  -h, --help                 Bu yardımı görüntüler ve çıkar\n  -V, --version              Sürüm bilgisini görüntüler\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s başarısız oldu\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d başarısız oldu\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d başarısız oldu\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d başarısız oldu\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl başarısız oldu"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl başarısız oldu"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "Bu programı root olarak çalıştırmanız önerilir; aksi halde sonuçlar değişebilir (YMMV)."
+
+msgid "failed to open uinput device"
+msgstr "uinput aygıtı açılamadı"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Soket yolu: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "daemon çakışma denetimi için soket oluşturulamadı"
+
+msgid "Removing old stale socket"
+msgstr "Eski geçersiz soket kaldırılıyor"
+
+msgid "failed remove old stale socket"
+msgstr "Eski geçersiz soket kaldırılamadı"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "hata: Aynı soketi kullanan başka bir ydotoold çalışıyor."
+
+msgid "failed to bind socket"
+msgstr "soket bağlanamadı"
+
+msgid "failed to change socket permission"
+msgstr "soket izni değiştirilemedi"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Soket izni: %s\n"
+
+msgid "invalid ownership specification"
+msgstr "geçersiz sahiplik belirtimi"
+
+msgid "failed to change socket ownership"
+msgstr "soket sahipliği değiştirilemedi"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Soket sahipliği: UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "xinput komutu çalıştırılamadı"
+
+msgid "failed to fork"
+msgstr "fork başarısız oldu"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "`%s' içinde xinput komutu bulunamadı; fare işaretçisi hızlandırması devre dışı bırakılmıyor"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: girdi olayı yazma hatası"

@@ -1,0 +1,224 @@
+msgid ""
+msgstr "Project-Id-Version: ydotool\nReport-Msgid-Bugs-To: anton@sirius.if.ua\nPOT-Creation-Date: 2026-11-06 02:48+0700\nPO-Revision-Date: 2026-11-06 00:00+0000\nLast-Translator: ydotool translation tooling <anton@sirius.if.ua>\nLanguage-Team: Tibetan\nLanguage: bo\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=1; plural=0;\nX-Native-Review: pending\n"
+
+msgid "Usage: click [OPTION]... [BUTTONS]...\nClick mouse buttons.\n\nOptions:\n  -r, --repeat=N             Repeat entire sequence N times\n  -D, --next-delay=N         Delay N milliseconds between input events (up/down,                                a complete click means doubled time)\n  -P, --press-release        Press & release mouse button to complete a click, (optional)\n  -h, --help                 Display this help and exit\n\nHow to specify buttons:\n  Now all mouse buttons are represented using hexadecimal numeric values, with an optional\nbit mask to specify if mouse up/down needs to be omitted.\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - Mouse down\n  0x80 - Mouse up\n  Examples:\n    0x00: chooses left button, but does nothing (you can use this to implement extra sleeps)\n    0xC0: left button click (down then up)\n    0x41: right button down\n    0x82: middle button up\n  The '0x' prefix can be omitted if you want.\n"
+msgstr "Usage: click [OPTION]... [BUTTONS]...\nཙིག་རྟགས་ཀྱི་མཐེབ་གནོན།\n\nགདམ་ག:\n  -r, --repeat=N             རིམ་པ་ཆ་ཚང་ N ལན་བསྐྱར་ཟློས།\n  -D, --next-delay=N         ནང་འཇུག་བྱ་འགུལ་རེ་རེའི་བར་ millisecond N ཕྱིར་འགྱངས། (མཐེབ་མར/ཡར་འགྲོ་བར་དུ། ཆ་ཚང་བའི་གནོན་འདིས་དུས་ཚོད་ལྡབ་འགྱུར་བཟོ།)\n  -P, --press-release        མཐེབ་ཆ་ཚང་གནོན་ཆེད་མཐེབ་གནོན་ཞིང་གློད། (འདེམས་རུང་)\n  -h, --help                 རོགས་རམ་འདི་སྟོན་ནས་ཕྱིར་ཐོན།\n\nམཐེབ་གདམ་སྟངས།\n  ད་ལྟ་ཙིག་རྟགས་མཐེབ་ཀུན་ཧེག་སི་ཌེ་སི་མལ་གྲངས་ཀྱིས་མཚོན། འདེམས་རུང་གི\nbit mask ཞིག་གིས་ཙིག་རྟགས་མཐེབ་ཡར/མར་བྱ་བ་སྐྱུར་དགོས་མིན་སྟོན།\n  0x00 - LEFT\n  0x01 - RIGHT\n  0x02 - MIDDLE\n  0x03 - SIDE\n  0x04 - EXTR\n  0x05 - FORWARD\n  0x06 - BACK\n  0x07 - TASK\n  0x40 - ཙིག་མཐེབ་མར་གནོན།\n  0x80 - ཙིག་མཐེབ་གློད།\n  དཔེ་མཚོན།\n    0x00: གཡོན་མཐེབ་འདེམས་ཀྱང་བྱ་བ་མི་བྱེད། (དུས་ཚོད་འགྱངས་མང་པོ་བཟོ་བར་སྤྱོད་ཆོག)\n    0xC0: གཡོན་མཐེབ་གནོན་འདིས་མར་གནོན་ནས་ཡར་གློད།\n    0x41: གཡས་མཐེབ་མར་གནོན།\n    0x82: དཀྱིལ་མཐེབ་ཡར་གློད།\n  འདོད་པ་ཡིན་ན་'0x' མགོ་ཡིག་སྐྱུར་ཆོག\n"
+
+#, c-format
+msgid "option %s"
+msgstr "གདམ་ག %s"
+
+#, c-format
+msgid " with arg %s"
+msgstr " ཞུགས་གྲངས %s དང་བཅས"
+
+msgid "repeat count"
+msgstr "བསྐྱར་ཟློས་གྲངས"
+
+msgid "delay (0..60000 ms)"
+msgstr "ཕྱིར་འགྱངས (0..60000 ms)"
+
+#, c-format
+msgid "Click Event %d\n"
+msgstr "གནོན་བྱ་འགུལ %d\n"
+
+msgid "Usage: key [OPTION]... [KEYCODES]...\nEmit key events.\n\nOptions:\n  -d, --key-delay=N          Delay N milliseconds between key events\n  -h, --help                 Display this help and exit\n\nSince there's no way to know how many keyboard layouts are there in the world,\nwe're using raw keycodes now.\n\nSyntax: <keycode>:<pressed>\ne.g. 28:1 28:0 means pressing on the Enter button on a standard US keyboard.\n     (where :1 for pressed means the key is down and then :0 means the key is released)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\nNon-interpretable values, such as 0, aaa, l0l, will only cause a delay.\n\nSee `/usr/include/linux/input-event-codes.h' for available key codes (KEY_*).\n"
+msgstr "Usage: key [OPTION]... [KEYCODES]...\nམཐེབ་བྱ་འགུལ་སྤེལ།\n\nགདམ་ག:\n  -d, --key-delay=N          མཐེབ་བྱ་འགུལ་བར་དུ millisecond N ཕྱིར་འགྱངས།\n  -h, --help                 རོགས་རམ་འདི་སྟོན་ནས་ཕྱིར་ཐོན།\n\nའཛམ་གླིང་ནང་མཐེབ་གཞོང་བཀོད་སྒྲིག་ག་ཚོད་ཡོད་མིན་ཤེས་ཐབས་མེད་པས།\nད་ལྟ་ང་ཚོས་ཐད་ཀའི་མཐེབ་ཨང་སྤྱོད་ཀྱི་ཡོད།\n\nབཀོད་སྟངས། <keycode>:<pressed>\nདཔེར་ན་ 28:1 28:0 ནི་ཚད་ལྡན US མཐེབ་གཞོང་གི Enter མཐེབ་གནོན་པ་ཡིན།\n     (:1 ནི་མཐེབ་མར་གནོན་པ་དང་ :0 ནི་མཐེབ་ཡར་གློད་པ་ཡིན)     42:1 38:1 38:0 24:1 24:0 38:1 38:0 42:0 - \"LOL\"\n\n0, aaa, l0l ལྟ་བུའི་དབྱེ་མི་ཐུབ་པའི་གྲངས་ཀ་རྣམས་ཀྱིས་ཕྱིར་འགྱངས་ཙམ་བྱེད།\n\nམཐེབ་ཨང་རག་པར་ `/usr/include/linux/input-event-codes.h' ལ་གཟིགས། (KEY_*)\n"
+
+msgid "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nMove mouse pointer or wheel.\n\nOptions:\n  -w, --wheel                Move mouse wheel relatively\n  -a, --absolute             Use absolute position, not applicable to wheel\n  -x, --xpos                 X position\n  -y, --ypos                 Y position\n  -h, --help                 Display this help and exit\n\nYou need to disable mouse speed acceleration for correct absolute movement."
+msgstr "Usage: mousemove [OPTION]... [-x <xpos> -y <ypos>] [-- <xpos> <ypos>]\nཙིག་རྟགས་ཀྱི་སྟོན་མདའམ་འཁོར་ལོ་སྤོ།\n\nགདམ་ག:\n  -w, --wheel                ཙིག་རྟགས་འཁོར་ལོ་ལྟོས་བཅས་ཀྱིས་སྤོ།\n  -a, --absolute             གནས་ས་ཏག་ཏག་སྤྱོད། འཁོར་ལོར་མི་འཇུག\n  -x, --xpos                 X གནས་ས།\n  -y, --ypos                 Y གནས་ས།\n  -h, --help                 རོགས་རམ་འདི་སྟོན་ནས་ཕྱིར་ཐོན།\n\nགནས་ས་ཏག་ཏག་སྤོ་བ་ཡང་དག་ཡོང་བར་ཙིག་རྟགས་མྱུར་ཚད་འཕར་བའི་ནུས་པ་སྤོང་དགོས།"
+
+msgid "ydotool: mousemove: too many coordinates\n"
+msgstr "ydotool: mousemove: གནས་ས་མང་དྲགས་པ།\n"
+
+msgid "Mouse wheel moves should not be absolute values\n"
+msgstr "ཙིག་རྟགས་འཁོར་ལོའི་སྤོ་བ་རྣམས་ཏག་ཏག་གནས་ཐང་མི་དགོས།\n"
+
+msgid "ydotool: mousemove: two coordinates are required\n"
+msgstr "ydotool: mousemove: གནས་ས་གཉིས་དགོས།\n"
+
+#, c-format
+msgid "Type anything (CTRL-C to exit):\n"
+msgstr "གང་རུང་འབྲི། (CTRL-C ཕྱིར་ཐོན):\n"
+
+msgid "ydotool: read stdin"
+msgstr "ydotool: stdin ཀློག"
+
+#, c-format
+msgid "Key code: %d %d %d\n"
+msgstr "མཐེབ་ཨང་། %d %d %d\n"
+
+msgid "ydotool: stdin supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: stdin ཡིས ASCII ཁོ་ན་རྒྱབ་སྐྱོར། UTF-8 ཡི་གེ་ལ clipboard ནས་སྦྱར་བ་སྤྱོད།\n"
+
+#, c-format
+msgid "  Maps to: %d\n"
+msgstr "  འདིར་སྦྱོར། %d\n"
+
+#, c-format
+msgid "  Sending shift\n"
+msgstr "  shift གཏོང་བཞིན་པ།\n"
+
+#, c-format
+msgid "  Sending ctrl\n"
+msgstr "  ctrl གཏོང་བཞིན་པ།\n"
+
+msgid "Usage: type [OPTION]... [STRINGS]...\nType strings.\n\nOptions:"
+msgstr "Usage: type [OPTION]... [STRINGS]...\nཡིག་ཕྲེང་རྣམས་མཐེབ་གནོན།\n\nགདམ་ག:"
+
+#, c-format
+msgid "  -d, --key-delay=N          Delay N milliseconds between keys (the delay between every key down/up pair) (default: %d)\n"
+msgstr "  -d, --key-delay=N          མཐེབ་རེ་རེའི་བར་ millisecond N འགྱངས། (མཐེབ་མར/ཡར་གནོན་ཆ་རེའི་བར་གྱི་འགྱངས་ཚད) (སོར་བཞག: %d)\n"
+
+#, c-format
+msgid "  -H, --key-hold=N           Hold each key for N milliseconds (the delay between key down and up) (default: %d)\n"
+msgstr "  -H, --key-hold=N           མཐེབ་རེ་རེ་དུས་ཡུན millisecond N བཟུང་། (མཐེབ་མར་གནོན་ནས་ཡར་གློད་བར་གྱི་འགྱངས་ཚད) (སོར་བཞག: %d)\n"
+
+#, c-format
+msgid "  -D, --next-delay=N         Delay N milliseconds between command line strings (default: %d)\n"
+msgstr "  -D, --next-delay=N         བཀའ་བརྡའི་ཡིག་ཕྲེང་རེ་རེའི་བར་ millisecond N འགྱངས། (སོར་བཞག: %d)\n"
+
+msgid "  -f, --file=PATH            Specify a file, the contents of which will be be typed as if passed as an argument.\n                               The filepath may also be '-' to read from stdin\n  -e, --escape=BOOL          Escape enable (1) or disable (0)\n  -h, --help                 Display this help and exit\n\nEscape is enabled by default when typing command line arguments, and disabled by default when typing from file and stdin.\nFile input is streamed: valid ASCII before a later error may already have been typed."
+msgstr "  -f, --file=PATH            ཡིག་ཆ་ཞིག་གཏན་འཁེལ། དེའི་ནང་དོན་ནི་ཞུགས་གྲངས་སུ་བཏང་བ་ལྟར་མཐེབ་གནོན་བྱེད།\n                               ཡིག་ཆའི་ལམ་ཡིག '-' བཀོལ་ནས stdin ནས་ཀློག་ཆོག\n  -e, --escape=BOOL          Escape སྤྱོད་པ་ (1) ཡང་ན་སྤོང་བ་ (0)\n  -h, --help                 རོགས་རམ་འདི་སྟོན་ནས་ཕྱིར་ཐོན།\n\nབཀའ་བརྡའི་ཞུགས་གྲངས་མཐེབ་གནོན་སྐབས Escape སོར་བཞག་གིས་སྤྱོད། ཡིག་ཆ་དང་ stdin ནས་མཐེབ་གནོན་སྐབས་སོར་བཞག་གིས་སྤོང་།\nཡིག་ཆའི་ནང་འཇུག་ནི་རྒྱུན་མཐུད་ནས་ཀློག རྗེས་སུ་ནོར་འཁྲུལ་བྱུང་ནའང་དེའི་སྔོན་གྱི་དག་པའི ASCII ཡིག་འབྲུ་རྣམས་མཐེབ་བཏབ་ཟིན་སྲིད།"
+
+msgid "ydotool: type supports ASCII only; use clipboard paste for UTF-8 text\n"
+msgstr "ydotool: type ཡིས ASCII ཁོ་ན་རྒྱབ་སྐྱོར། UTF-8 ཡི་གེ་ལ clipboard ནས་སྦྱར་བ་སྤྱོད།\n"
+
+msgid "escape mode"
+msgstr "escape རྣམ་པ"
+
+#, c-format
+msgid "ydotool: type: error: failed to open %s: %s\n"
+msgstr "ydotool: type: ནོར་འཁྲུལ། %s ཁ་ཕྱེ་མ་ཐུབ། %s\n"
+
+#, c-format
+msgid "ydotool: type: error: read %s failed: %s\n"
+msgstr "ydotool: type: ནོར་འཁྲུལ། %s ཀློག་མ་ཐུབ། %s\n"
+
+msgid "These are our honorable bakers:\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+msgstr "རང་ཅག་གི་བཟོ་མཁན་གུས་འོས་རྣམས་ནི།\n\nDustin Van Tate Testa\nElliot Wolk\ntofik\n"
+
+msgid "Usage: release-all\nRelease all virtual keyboard and mouse buttons."
+msgstr "Usage: release-all\nརྟོག་བཟོའི་མཐེབ་གཞོང་དང་ཙིག་མཐེབ་ཀུན་གློད།"
+
+msgid "ydotool: release-all takes no arguments\n"
+msgstr "ydotool: release-all ལ་ཞུགས་གྲངས་མི་དགོས།\n"
+
+msgid "Usage: ydotool <cmd> <args>\nAvailable commands:"
+msgstr "Usage: ydotool <cmd> <args>\nསྤྱོད་རུང་བཀའ་བརྡ་རྣམས།"
+
+msgid "Use release-all to recover held keys after a killed client.\n  -h, --help     Display this help and exit\n  -V, --version  Display version information and exit\nUse environment variable YDOTOOL_SOCKET to specify daemon socket."
+msgstr "client བཀག་རྗེས་བཟུང་བའི་མཐེབ་རྣམས་སླར་གློད་ཆེད release-all སྤྱོད།\n  -h, --help     རོགས་རམ་འདི་སྟོན་ནས་ཕྱིར་ཐོན།\n  -V, --version  ཐོན་རིམ་གྱི་གནས་ཚུལ་སྟོན་ནས་ཕྱིར་ཐོན།\nའཁོར་སྐྱོད་ཁོར་ཡུག་གི YDOTOOL_SOCKET འགྱུར་ཚད་སྤྱད་ནས daemon socket གཏན་འཁེལ།"
+
+#, c-format
+msgid "ydotool: invalid %s: %s\n"
+msgstr "ydotool: ནུས་མེད་ %s: %s\n"
+
+msgid "ydotool: send input event"
+msgstr "ydotool: ནང་འཇུག་བྱ་འགུལ་གཏོང་།"
+
+#, c-format
+msgid "ydotool: Unknown command: %s\nRun 'ydotool help' if you want a command list\n"
+msgstr "ydotool: མི་ཤེས་པའི་བཀའ་བརྡ། %s\nབཀའ་བརྡའི་ཐོ་ཞིག་དགོས་ན་'ydotool help' འཁོར་སྐྱོད་བྱོས།\n"
+
+msgid "failed to create socket"
+msgstr "socket བཟོ་མ་ཐུབ།"
+
+msgid "ydotool: socket path is too long\n"
+msgstr "ydotool: socket ལམ་ཡིག་རིང་དྲགས།\n"
+
+#, c-format
+msgid "failed to connect socket `%s': %s\n"
+msgstr "socket `%s' ལ་མཐུད་མ་ཐུབ། %s\n"
+
+msgid "Please check if ydotoold is running.\n"
+msgstr "ydotoold འཁོར་བཞིན་ཡོད་མེད་ཞིབ་བཤེར་གནང་།\n"
+
+msgid "Please check if the current user has sufficient permissions to access the socket file.\n"
+msgstr "ད་ལྟའི་སྤྱོད་མཁན་ལ socket ཡིག་ཆར་འཛུལ་བའི་དབང་ཆ་འདང་ངེས་ཡོད་མེད་ཞིབ་བཤེར་གནང་།\n"
+
+msgid "ydotool: install signal handler"
+msgstr "ydotool: signal handler སྒྲིག་འཇུག"
+
+msgid "ydotool: lock socket directory"
+msgstr "ydotool: socket སྣོད་ཐོ་སྒོ་ལྕགས་རྒྱག"
+
+msgid "Usage: ydotoold [OPTION]...\nThe ydotool Daemon.\n\nOptions:\n  -p, --socket-path=PATH     Custom socket path\n  -P, --socket-perm=PERM     Socket permission (default 0600)\n  -o, --socket-own=UID:GID   Socket ownership\n  -s, --no-system-keys        Disable SysRq and power/sleep/restart keys\n  -m, --mouse-off            Disable mouse (EV_REL)\n  -k, --keyboard-off         Disable keyboard (EV_KEY)\n  -T, --touch-on             Enable touchscreen (EV_ABS)\n  -h, --help                 Display this help and exit\n  -V, --version              Show version information\n"
+msgstr "Usage: ydotoold [OPTION]...\nydotool daemon།\n\nགདམ་ག:\n  -p, --socket-path=PATH     རང་མོས་ཀྱི socket ལམ་ཡིག\n  -P, --socket-perm=PERM     Socket དབང་ཚད། (སོར་བཞག 0600)\n  -o, --socket-own=UID:GID   Socket བདག་དབང་།\n  -s, --no-system-keys        SysRq དང་གློག་ཤུགས/གཉིད/བསྐྱར་འགོ་མཐེབ་སྤོང་།\n  -m, --mouse-off            ཙིག་རྟགས་སྤོང་། (EV_REL)\n  -k, --keyboard-off         མཐེབ་གཞོང་སྤོང་། (EV_KEY)\n  -T, --touch-on             ཐད་རེག་གཞོང་འཇུག །(EV_ABS)\n  -h, --help                 རོགས་རམ་འདི་སྟོན་ནས་ཕྱིར་ཐོན།\n  -V, --version              ཐོན་རིམ་གནས་ཚུལ་སྟོན།\n"
+
+#, c-format
+msgid "UI_SET_EVBIT %s failed\n"
+msgstr "UI_SET_EVBIT %s ཕམ་སོང་།\n"
+
+#, c-format
+msgid "UI_SET_KEYBIT %d failed\n"
+msgstr "UI_SET_KEYBIT %d ཕམ་སོང་།\n"
+
+#, c-format
+msgid "UI_SET_RELBIT %d failed\n"
+msgstr "UI_SET_RELBIT %d ཕམ་སོང་།\n"
+
+#, c-format
+msgid "UI_SET_ABSBIT %d failed\n"
+msgstr "UI_SET_ABSBIT %d ཕམ་སོང་།\n"
+
+msgid "UI_DEV_SETUP ioctl failed"
+msgstr "UI_DEV_SETUP ioctl ཕམ་སོང་།"
+
+msgid "UI_DEV_CREATE ioctl failed"
+msgstr "UI_DEV_CREATE ioctl ཕམ་སོང་།"
+
+msgid "You're advised to run this program as root, or YMMV."
+msgstr "ལས་རིམ་འདི root ཡིས་འཁོར་སྐྱོད་བྱེད་པར་གདམ་བྱ། དེ་མིན་འབྲས་བུ་ཁྱད་པར་ཡོང་སྲིད། (YMMV)"
+
+msgid "failed to open uinput device"
+msgstr "uinput སྒྲིག་ཆས་ཁ་ཕྱེ་མ་ཐུབ།"
+
+#, c-format
+msgid "Socket path: %s\n"
+msgstr "Socket ལམ་ཡིག: %s\n"
+
+msgid "failed to create socket for daemon collision detection"
+msgstr "daemon འགལ་བ་འཚོལ་བའི་ཆེད་ socket བཟོ་མ་ཐུབ།"
+
+msgid "Removing old stale socket"
+msgstr "socket རྙིང་པ་དང་བེད་མེད་འདི་སུབ་བཞིན་པ།"
+
+msgid "failed remove old stale socket"
+msgstr "socket རྙིང་པ་དང་བེད་མེད་སུབ་མ་ཐུབ།"
+
+msgid "error: Another ydotoold is running with the same socket."
+msgstr "ནོར་འཁྲུལ། ydotoold གཞན་ཞིག་གིས་སྤྱོད་མཚུངས་པའི socket བཀོལ་ནས་འཁོར་བཞིན་འདུག"
+
+msgid "failed to bind socket"
+msgstr "socket བཀྱིག་མ་ཐུབ།"
+
+msgid "failed to change socket permission"
+msgstr "socket དབང་ཚད་བསྒྱུར་མ་ཐུབ།"
+
+#, c-format
+msgid "Socket permission: %s\n"
+msgstr "Socket དབང་ཚད། %s\n"
+
+msgid "invalid ownership specification"
+msgstr "བདག་དབང་གསལ་བཤད་ནུས་མེད།"
+
+msgid "failed to change socket ownership"
+msgstr "socket བདག་དབང་བསྒྱུར་མ་ཐུབ།"
+
+#, c-format
+msgid "Socket ownership: UID=%d, GID=%d\n"
+msgstr "Socket བདག་དབང་། UID=%d, GID=%d\n"
+
+msgid "failed to run xinput command"
+msgstr "xinput བཀའ་བརྡ་འཁོར་སྐྱོད་མ་ཐུབ།"
+
+msgid "failed to fork"
+msgstr "fork བྱེད་མ་ཐུབ།"
+
+#, c-format
+msgid "xinput command not found in `%s', not disabling mouser pointer acceleration"
+msgstr "`%s' ནང་དུ xinput བཀའ་བརྡ་མ་རྙེད། ཙིག་སྟོན་མདའི་མྱུར་ཚད་འཕར་བ་སྤོང་མི་ཐུབ།"
+
+msgid "ydotoold: write input event"
+msgstr "ydotoold: ནང་འཇུག་བྱ་འགུལ་འབྲི།"
