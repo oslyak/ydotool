@@ -107,6 +107,8 @@ static void show_help(void) {
 	}
 
 	puts("Use release-all to recover held keys after a killed client.\n"
+	     "  -h, --help     Display this help and exit\n"
+	     "  -V, --version  Display version information and exit\n"
 	     "Use environment variable YDOTOOL_SOCKET to specify daemon socket.");
 }
 
@@ -170,8 +172,12 @@ void uinput_emit(uint16_t type, uint16_t code, int32_t val, bool syn_report) {
 }
 
 int main(int argc, char **argv) {
-	if (argc < 2 || strncmp(argv[1], "-h", 2) == 0 || strncmp(argv[1], "--h", 3) == 0 || strcmp(argv[1], "help") == 0) {
+	if (argc < 2 || strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "help") == 0) {
 		show_help();
+		return 0;
+	}
+	if (strcmp(argv[1], "-V") == 0 || strcmp(argv[1], "--version") == 0) {
+		printf("ydotool %s\n", VERSION);
 		return 0;
 	}
 
@@ -184,7 +190,7 @@ int main(int argc, char **argv) {
 	}
 
 	if (!tool_main) {
-		printf("ydotool: Unknown command: %s\n"
+		fprintf(stderr, "ydotool: Unknown command: %s\n"
 		       "Run 'ydotool help' if you want a command list\n", argv[1]);
 		return 1;
 	}
@@ -222,16 +228,16 @@ int main(int argc, char **argv) {
 
 	if (connected) {
 		int err = errno;
-		printf("failed to connect socket `%s': %s\n", sa.sun_path, strerror(err));
+		fprintf(stderr, "failed to connect socket `%s': %s\n", sa.sun_path, strerror(err));
 
 		switch (err) {
 			case ENOENT:
 			case ECONNREFUSED:
-				puts("Please check if ydotoold is running.");
+				fputs("Please check if ydotoold is running.\n", stderr);
 				break;
 			case EACCES:
 			case EPERM:
-				puts("Please check if the current user has sufficient permissions to access the socket file.");
+				fputs("Please check if the current user has sufficient permissions to access the socket file.\n", stderr);
 				break;
 		}
 

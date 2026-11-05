@@ -25,7 +25,15 @@ sudo usermod -aG ydotool "$USER"
 
 The kernel must provide the `uinput` module.
 
-Log out and back in to apply group membership. The package automatically starts one `ydotoold.service` as the system user `ydotool`.
+Log out and back in to apply group membership. The DEB automatically starts one `ydotoold.service` as the system user `ydotool`. RPM service enablement follows distribution presets; start it with `sudo systemctl enable --now ydotoold.service` if needed.
+
+### OpenRC source installation
+
+Configure with `-DOPENRC=ON -DSYSTEMD_USER_SERVICE=OFF -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_SYSCONFDIR=/etc`, then build and install with CMake. `OPENRC_INITDIR` overrides the init script directory.
+
+Before starting the service, create the system user and group `ydotool`, the group `ydotool-uinput`, and add the service user to `ydotool-uinput`. Install `packaging/70-ydotool-uinput.rules` in your distribution's udev rules directory, reload the rules, and load `uinput` at boot. The service checks device access and creates `/run/ydotoold` with restricted permissions.
+
+Add authorized desktop users to `ydotool`, then enable and start the service with `sudo rc-update add ydotoold default` and `sudo rc-service ydotoold start`.
 
 ## Use
 

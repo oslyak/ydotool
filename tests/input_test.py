@@ -17,6 +17,22 @@ BINARY = Path(sys.argv.pop(1)).resolve()
 
 
 class InputTests(unittest.TestCase):
+    def test_global_options_work_without_daemon(self):
+        with tempfile.TemporaryDirectory(prefix="ydotool-cli-") as directory:
+            env = {**os.environ, "YDOTOOL_SOCKET": str(Path(directory) / "missing")}
+            for option in ("--version", "-V", "--help", "-h"):
+                result = subprocess.run([str(BINARY), option], env=env, capture_output=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertTrue(result.stdout)
+                self.assertEqual(result.stderr, b"")
+                if option in ("--version", "-V"):
+                    self.assertTrue(result.stdout.startswith(b"ydotool "))
+            for args in (["--help-invalid"], ["unknown-command"], ["debug"]):
+                result = subprocess.run([str(BINARY), *args], env=env, capture_output=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(result.stdout, b"")
+                self.assertTrue(result.stderr)
+
     @contextlib.contextmanager
     def receiver(self):
         with tempfile.TemporaryDirectory(prefix="ydotool-test-") as directory:
@@ -49,6 +65,15 @@ class InputTests(unittest.TestCase):
                 capture_output=True, timeout=3,
             )
         return result, events
+
+    def test_mousemove_errors_use_stderr_without_emitting_events(self):
+        for args in ([b"--invalid", b"1", b"2"], [b"1"], [b"1", b"2", b"3"],
+                     [b"-a", b"-w", b"1", b"2"]):
+            result, events = self.run_client([b"mousemove", *args])
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(result.stdout, b"")
+            self.assertTrue(result.stderr)
+            self.assertEqual(events, [])
 
     def test_release_all_help_does_not_emit_events(self):
         result, events = self.run_client([b"release-all", b"--help"])

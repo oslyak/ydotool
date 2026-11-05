@@ -56,7 +56,7 @@ jobs:
               if grep -q Ubuntu /etc/os-release; then compiler=gcc-14; else compiler=gcc; fi
               DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential cmake git python3 scdoc systemd udev kmod dpkg-dev "$compiler"
             elif command -v dnf >/dev/null; then
-              dnf install -y gcc gcc-c++ cmake git make python3 libubsan scdoc systemd systemd-udev systemd-rpm-macros rpm-build kmod
+              dnf install -y gcc gcc-c++ cmake git make python3 libubsan scdoc systemd systemd-udev systemd-rpm-macros rpm-build redhat-rpm-config kmod
             else
               zypper --non-interactive refresh
               zypper --non-interactive install --no-recommends -y gcc gcc-c++ cmake git-core make python3 libubsan1-gcc15 scdoc systemd systemd-rpm-macros rpm-build kmod udev

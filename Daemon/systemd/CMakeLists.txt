@@ -1,10 +1,12 @@
-find_package(PkgConfig)
+find_package(PkgConfig QUIET)
 
 # Try to get the systemd directory for system/user units from the package
 # and fall back on upstream default without the '/usr' prefix if not forced by
 # command line.
-pkg_check_modules(SYSTEMD systemd)
-if (SYSTEMD_FOUND)
+if(PkgConfig_FOUND AND NOT DEFINED SD_UNITDIR)
+    pkg_check_modules(SYSTEMD QUIET systemd)
+endif()
+if(SYSTEMD_FOUND AND NOT DEFINED SD_UNITDIR)
     if(SYSTEMD_USER_SERVICE)
         pkg_get_variable(SD_UNITDIR systemd systemduserunitdir)
     elseif(SYSTEMD_SYSTEM_SERVICE)
@@ -13,7 +15,11 @@ if (SYSTEMD_FOUND)
 endif()
 
 if(NOT DEFINED SD_UNITDIR)
-    set(SD_UNITDIR "lib/systemd/user")
+    if(SYSTEMD_USER_SERVICE)
+        set(SD_UNITDIR "lib/systemd/user")
+    else()
+        set(SD_UNITDIR "lib/systemd/system")
+    endif()
 endif()
 
 message("Systemd service file is going to be installed at ${SD_UNITDIR}")

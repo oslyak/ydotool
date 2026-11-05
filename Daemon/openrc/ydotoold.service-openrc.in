@@ -3,10 +3,19 @@
 name=$RC_SVCNAME
 description="Starts ydotoold service"
 supervisor="supervise-daemon"
-command="/usr/local/bin/ydotoold"
+command="@CMAKE_INSTALL_FULL_BINDIR@/ydotoold"
+command_user="ydotool:ydotool"
+command_args="--socket-path=/run/ydotoold/socket --socket-perm=0660 --no-system-keys"
 
-reload() {
-	ebegin "Reloading $RC_SVCNAME"
-	/usr/bin/kill -HUP $MAINPID
-	eend $?
+depend() {
+	need localmount
+	after modules udev
+}
+
+start_pre() {
+	checkpath --directory --mode 0750 --owner ydotool:ydotool /run/ydotoold || return 1
+	if ! su -s /bin/sh -c 'test -w /dev/uinput' ydotool; then
+		eerror "User ydotool needs write access to /dev/uinput; check module, groups and udev rules"
+		return 1
+	fi
 }

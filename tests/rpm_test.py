@@ -39,18 +39,19 @@ if name == 'modprobe':
             self.assertEqual(result.returncode, 0, result.stderr)
             return log.read_text() if log.exists() else ''
 
-    def test_initial_install_loads_module_and_settles_udev_before_start(self):
+    def test_install_prepares_device_before_distribution_service_macros(self):
         calls = self.run_hook('post', 1)
         self.assertLess(calls.index('modprobe uinput'), calls.index('udevadm settle'))
-        self.assertLess(calls.index('udevadm settle'), calls.index('systemctl start'))
-        self.assertIn('systemctl enable ydotoold.service', calls)
+        self.assertNotIn('systemctl enable', calls)
+        self.assertNotIn('modprobe', self.run_hook('post', 1, systemd=False))
 
-    def test_upgrade_preserves_enablement_and_remove_stops_service(self):
-        self.assertNotIn('systemctl enable', self.run_hook('post', 2))
-        self.assertIn('systemctl try-restart ydotoold.service', self.run_hook('postun', 1))
-        self.assertIn('systemctl disable --now ydotoold.service', self.run_hook('preun', 0))
-        for section in ('post', 'preun', 'postun'):
-            self.assertNotIn('systemctl', self.run_hook(section, 0, systemd=False))
+    def test_distribution_policy_is_not_overridden(self):
+        spec = SPEC.read_text()
+        self.assertNotIn('systemctl enable', spec)
+        self.assertNotIn('-DCMAKE_C_FLAGS="-O', spec)
+        for macro in ('%systemd_post ', '%systemd_preun ', '%systemd_postun_with_restart ',
+                      '%service_add_pre ', '%service_add_post ', '%service_del_preun ', '%service_del_postun '):
+            self.assertIn(macro + 'ydotoold.service', spec)
 
     def test_license_and_version_follow_project_sources(self):
         spec = SPEC.read_text()

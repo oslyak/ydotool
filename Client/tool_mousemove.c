@@ -108,7 +108,7 @@ int tool_mousemove(int argc, char **argv) {
 				break;
 			case 'x':
 				if (i >= 2) {
-					show_help();
+					fputs("ydotool: mousemove: too many coordinates\n", stderr);
 					return 1;
 				}
 				pos[0] = strtol(optarg, nullptr, 10);
@@ -116,7 +116,7 @@ int tool_mousemove(int argc, char **argv) {
 				break;
 			case 'y':
 				if (i >= 2) {
-					show_help();
+					fputs("ydotool: mousemove: too many coordinates\n", stderr);
 					return 1;
 				}
 				pos[1] = strtol(optarg, nullptr, 10);
@@ -124,8 +124,7 @@ int tool_mousemove(int argc, char **argv) {
 				break;
 
 			case '?':
-				/* getopt_long already printed an error message. */
-				break;
+				return 2;
 
 			default:
 				abort();
@@ -137,7 +136,7 @@ int tool_mousemove(int argc, char **argv) {
 	if (optind < argc) {
 		while (optind < argc) {
 			if (i >= 2) {
-				show_help();
+				fputs("ydotool: mousemove: too many coordinates\n", stderr);
 				return 1;
 			}
 			pos[i] = strtol(argv[optind++], nullptr, 10);
@@ -147,7 +146,7 @@ int tool_mousemove(int argc, char **argv) {
 
 	if (i == 2) {
 		if (is_abs && is_wheel) {
-			puts("Mouse wheel moves should not be absolute values");
+			fputs("Mouse wheel moves should not be absolute values\n", stderr);
 			return 1;
 		}
 
@@ -164,7 +163,7 @@ int tool_mousemove(int argc, char **argv) {
 			uinput_emit(EV_REL, REL_Y, pos[1], true);
 		}
 	} else {
-		show_help();
+		fputs("ydotool: mousemove: two coordinates are required\n", stderr);
 		return 1;
 	}
 

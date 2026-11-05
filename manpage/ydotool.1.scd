@@ -9,6 +9,16 @@ ydotool - command-line _/dev/uinput_ automation tool
 
 *ydotool* *cmd* --help
 
+*ydotool* [*--help*|*--version*]
+
+# GLOBAL OPTIONS
+
+*-h*, *--help*
+	Display help and exit without connecting to the daemon.
+
+*-V*, *--version*
+	Display version information and exit without connecting to the daemon.
+
 # DESCRIPTION
 
 *ydotool* lets you programmatically (or manually) simulate keyboard input and mouse activity, etc.
