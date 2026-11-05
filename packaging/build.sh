@@ -33,7 +33,7 @@ else
         tar -xf - -C "$work/source"
 fi
 printf '%s %s\n' "$source_revision" "$SOURCE_DATE_EPOCH" > "$work/source/SOURCE_REVISION"
-flags='-O2 -D_FORTIFY_SOURCE=3 -fstack-protector-strong -fPIE'
+flags='-O2 -D_FORTIFY_SOURCE=3 -fstack-protector-strong -fPIE -Wformat -Werror=format-security'
 link_flags='-Wl,-z,relro,-z,now -pie'
 if [[ "$mode" == test ]]; then
     flags+=' -fsanitize=undefined -fno-sanitize-recover=all'

@@ -80,7 +80,7 @@ static void configure_terminal(void) {
 int tool_stdin([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
     configure_terminal(); // Set terminal to raw mode
 
-    printf(_("Type anything (CTRL-C to exit):\n"));
+    fputs(_("Type anything (CTRL-C to exit):\n"), stdout);
 
     while (1) {
 		char buffer[4] = {0};
@@ -124,11 +124,11 @@ int tool_stdin([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
 
 		// Emit key events
 		if (isUppercase) {
-		printf(_("  Sending shift\n"));
+		fputs(_("  Sending shift\n"), stdout);
 			uinput_emit(EV_KEY, KEY_LEFTSHIFT, 1, true); // Press shift for uppercase
 		}
 		if (isCtrl) {
-			printf(_("  Sending ctrl\n"));
+			fputs(_("  Sending ctrl\n"), stdout);
 			uinput_emit(EV_KEY, KEY_LEFTCTRL, 1, true); // Press ctrl
 			}
 			uinput_emit(EV_KEY, kc, 1, true); // Key down
